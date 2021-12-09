@@ -1,9 +1,10 @@
 <template>
   <div id="home">
       <p>Đã vào</p>
-      <!-- <p>{{numdept}}</p> -->
+      <p>{{employees_num}}</p>
       <ul>
-          <li v-for="employee in employees" :key="employee.id">
+          <li v-for="employee in employees" 
+            :key="employee.id">
               <p>Xin chào: {{employee.first_name}}</p>
           </li>
       </ul>
@@ -18,7 +19,7 @@ export default {
         this.getEmployee()
     },
     computed:{
-        ...mapGetters(['employees'])
+        ...mapGetters(['employees', 'employees_num'])
     },
     methods:{
         ...mapActions(['getEmployee'])
@@ -28,6 +29,6 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 
 </style>

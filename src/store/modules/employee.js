@@ -1,15 +1,16 @@
 import axios from 'axios'
 const employee = {
-    stage: {
+    state: {
         employees:[],
     },
     getters:{
-        employees: stage => stage.employees,
+        employees: state => state.employees,
+        employees_num: state => state.employees.length
        
     },
     mutations:{
-        SET_EMPLOYEES(stage, employees){
-            stage.employees = employees
+        SET_EMPLOYEES(state, employees){
+            state.employees = employees
         }
     },
     actions:{

@@ -19,7 +19,7 @@ const router = new VueRouter({
     routes
 });
 router.beforeEach((to, from, next)=>{
-    document.tile = to.meta.title;
+    document.title = to.meta.title;
     next();
 });
 
