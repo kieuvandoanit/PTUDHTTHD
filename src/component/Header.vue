@@ -11,16 +11,12 @@
               <li>
                   <router-link tag="a" class="menu-link" to="/Store">Store</router-link>
                 </li>
+            <li>
+                  <router-link tag="a" class="menu-link" to="/Order">Order</router-link>
+                </li>
               
           </ul>
       </div>
-      <!-- <div id="cart" class="col-md-2">
-          <router-link tag="a" id="cart_link" to="/Cart">
-            <img src="../assets/images/cart.jpg" alt="" id="cart_logo">
-            <span class="number_cart">{{num_cart}}</span> 
-          </router-link>
-          
-      </div> -->
   </div>
 </template>
 
