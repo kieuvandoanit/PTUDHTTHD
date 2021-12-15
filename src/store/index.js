@@ -4,12 +4,14 @@ import Vuex from 'vuex'
 import employee from './modules/employee'
 import store from './modules/store'
 import order from './modules/order'
+import payment from './modules/payment'
 Vue.use(Vuex)
 const storeData={
     modules: {
         employee,
         store,
-        order
+        order, 
+        payment
     }
 }
 
