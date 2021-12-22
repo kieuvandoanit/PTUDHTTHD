@@ -8,7 +8,6 @@ const order = {
     getters:{
         orders: state => state.orders,
         ordersDetail: state => state.order_detail,
-       
     },
     mutations:{
         SET_ORDERS(state, orders){

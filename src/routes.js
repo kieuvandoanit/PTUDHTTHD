@@ -8,6 +8,7 @@ import UpdateProductManager from './component/admin/product/UpdateProduct'
 import StoreManager from './component/admin/store/Store'
 import CreateStoreManager from './component/admin/store/CreateStore'
 import UpdateStoreManager from './component/admin/store/UpdateStore'
+import Payment from './component/payment'
 
 export const routes = [
     {path: '/', name: 'homepage', component: Home, meta:{title: 'Home'}},
@@ -20,4 +21,6 @@ export const routes = [
     {path:'/admin/store', name:'Store', component: StoreManager, meta:{title:'StoreManager'}},
     {path:'/admin/store/create', name:'CreateStore', component: CreateStoreManager, meta:{title:'CreateStoreManager'}},
     {path:'/admin/store/update', name:'UpdateStore', component: UpdateStoreManager, meta:{title:'UpdateStoreManager'}},
+    {path: '/payment', name: 'Payment', component: Payment, meta:{title: 'Payment'}}
+    
 ]
