@@ -1,7 +1,7 @@
 <template>
   <div id="header">
       <div id="logo" class="col-md-2">
-          <a href="#" class="logo_link">R01</a>
+          <a href="/" class="logo_link"><b-icon icon="cart-plus-fill"></b-icon>Đi chợ Thuê</a>
       </div>
       <div id="menu" class="col-md-8">
           <ul>
@@ -30,12 +30,12 @@ export default {
 #header{
         padding: 10px 0px;
         display: flex;
-        background-color: beige;
+        background-color: #CAD3F2;
     }
     #logo>a{
         font-size: 25px;
         font-weight: 700;
-        color: #6c2d2d;
+        color: #1589e7;
     }
     #menu>ul{
         display: flex;
