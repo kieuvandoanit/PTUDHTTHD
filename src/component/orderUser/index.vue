@@ -12,24 +12,9 @@
             </tr>
         </thead>
         <tbody>
-            <tr>    
-            <td><router-link to="/">61b1bbc0fc692ccd16526664</router-link></td>
-            <td>12/02/2021</td>
-            <td>120000</td>
-            <td>Delete</td>
-            </tr>
-            <tr>
-            <td>61b1bbc0fc692ccd16526664</td>
-            <td>12/02/2021</td>
-            <td>120000</td>
-            <td>Delete</td>
-            </tr>
-            <tr>
-            <td>61b1bbc0fc692ccd16526664</td>
-            <td>12/02/2021</td>
-            <td>120000</td>
-            <td>Delete</td>
-            </tr>
+            <OrderUser/>
+            <OrderUser/>
+            <OrderUser/>
         </tbody>
         </table>
   </div>
@@ -37,11 +22,24 @@
 
 <script>
 import HeaderUser from '../Header_user.vue'
+import OrderUser from './orderUser.vue'
+
+import {mapGetters, mapActions} from 'vuex'
+
 export default {
     components:{
-        HeaderUser
+        HeaderUser,
+        OrderUser
     },
-
+    created(){
+        this.getOrder();
+    },
+    computed:{
+        ...mapGetters(['orders'])
+    },
+    methods:{
+        ...mapActions(['getOrder'])
+    }
 
 
 }
