@@ -12,9 +12,11 @@
             </tr>
         </thead>
         <tbody>
-            <OrderUser/>
-            <OrderUser/>
-            <OrderUser/>
+            <OrderUser1
+                v-for="order in orderUser"
+                :key="order.id"
+                v-bind:order="order"
+            />
         </tbody>
         </table>
   </div>
@@ -22,23 +24,23 @@
 
 <script>
 import HeaderUser from '../Header_user.vue'
-import OrderUser from './orderUser.vue'
+import OrderUser1 from './orderUser.vue'
 
 import {mapGetters, mapActions} from 'vuex'
 
 export default {
     components:{
         HeaderUser,
-        OrderUser
+        OrderUser1
     },
     created(){
-        this.getOrder();
+        this.getOrderByUser(123);
     },
     computed:{
-        ...mapGetters(['orders'])
+        ...mapGetters(['orderUser'])
     },
     methods:{
-        ...mapActions(['getOrder'])
+        ...mapActions(['getOrderByUser'])
     }
 }
 </script>

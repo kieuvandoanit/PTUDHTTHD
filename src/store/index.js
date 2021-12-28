@@ -5,13 +5,15 @@ import employee from './modules/employee'
 import store from './modules/store'
 import order from './modules/order'
 import payment from './modules/payment'
+import cart from './modules/cart'
 Vue.use(Vuex)
 const storeData={
     modules: {
         employee,
         store,
         order, 
-        payment
+        payment,
+        cart
     }
 }
 

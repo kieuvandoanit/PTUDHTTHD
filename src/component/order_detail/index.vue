@@ -39,7 +39,7 @@
     </div>
     <div class="d-flex justify-content-start align-items-center py-1 pl-3">
         <div class="text-muted">Shipper ID: </div>
-        <div class="ml-auto"> <label>{{ordersDetail.shipper_id}}</label> </div>
+        <div class="ml-auto"> <label>{{ordersDetail.shipperId}}</label> </div>
     </div>
     <div class="d-flex justify-content-start align-items-center pb-4 pl-3 border-bottom">
         <div class="text-muted"> <button class="text-white btn">Discount</button> </div>
@@ -47,12 +47,12 @@
     </div>
     <div class="d-flex justify-content-start align-items-center pl-3 py-3 mb-4 border-bottom">
         <div class="text-muted"> Total price: </div>
-        <div class="ml-auto h5"> {{ordersDetail.total_price}} VNĐ</div>
+        <div class="ml-auto h5"> {{ordersDetail.totalPrice}} VNĐ</div>
     </div>
     <div class="row border rounded p-1 my-3">
         <div class="col-md-12 py-3">
             <div class="d-flex flex-column align-items start"> <b>Shipping Address</b>
-                <p class="text-justify pt-2">{{ordersDetail.address.home_number}} {{ordersDetail.address.street}}, phường {{ordersDetail.address.ward}}, quận {{ordersDetail.address.distric}}</p>
+                <p class="text-justify pt-2">{{ordersDetail.address.home_number}} {{ordersDetail.address.street}}, phường {{ordersDetail.address.ward}}, quận {{ordersDetail.address.district}}</p>
                 <p class="text-justify">{{ordersDetail.address.province}}</p>
             </div>
         </div>

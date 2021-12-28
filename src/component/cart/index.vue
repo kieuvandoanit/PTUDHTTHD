@@ -12,50 +12,22 @@
           <th style="width:22%" class="text-center">Thành tiền</th> 
         </tr> 
         </thead> 
-        <tbody><tr> 
-        <td data-th="Product"> 
-          <div class="row"> 
-          <div class="col-sm-3 hidden-xs"><img src="http://hocwebgiare.com/thiet_ke_web_chuan_demo/shopping_cart/images/090.jpg" alt="Sản phẩm 1" class="img-responsive" width="100">
-          </div> 
-          <div class="col-sm-9"> 
-            <h4 class="nomargin">Sản phẩm 1</h4> 
-            <p>Mô tả của sản phẩm 1</p> 
-          </div> 
-          </div> 
-        </td> 
-        <td data-th="Price">200.000 đ</td> 
-        <td data-th="Quantity"><input class="form-control text-center" value="1" type="number">
-        </td> 
-        <td data-th="Subtotal" class="text-center">200.000 đ</td> 
-        </tr> 
-        <tr> 
-        <td data-th="Product"> 
-          <div class="row"> 
-          <div class="col-sm-3 hidden-xs"><img src="http://hocwebgiare.com/thiet_ke_web_chuan_demo/shopping_cart/images/174.jpg" alt="Sản phẩm 1" class="img-responsive" width="100">
-          </div> 
-          <div class="col-sm-9"> 
-            <h4 class="nomargin">Sản phẩm 2</h4> 
-            <p>Mô tả của sản phẩm 2</p> 
-          </div> 
-          </div> 
-        </td> 
-        <td data-th="Price">300.000 đ</td> 
-        <td data-th="Quantity"><input class="form-control text-center" value="1" type="number">
-        </td> 
-        <td data-th="Subtotal" class="text-center">300.000 đ</td> 
-        </tr> 
-        </tbody><tfoot> 
-        <tr> 
-          <td><a href="http://hocwebgiare.com/" class="btn btn-warning"><i class="fa fa-angle-left"></i> Tiếp tục mua hàng</a>
-          </td> 
-          <td><a href="http://hocwebgiare.com/" class="btn btn-success"><i class="fa fa-angle-left"></i> Cập nhật giỏ hàng</a>
-          </td>
-          <td colspan="1" class="hidden-xs"> </td> 
-          <td class="hidden-xs text-center"><strong>Tổng tiền 500.000 đ</strong>
-          </td> 
-          <td><router-link to="/payment" class="btn btn-success btn-block">Thanh toán <i class="fa fa-angle-right"></i></router-link>
-          </td> 
-        </tr> 
+        <tbody>
+          <ProductCart
+            v-for="product in cart.product"
+            :key="product.productID"
+            v-bind:product="product"
+          />
+        </tbody>
+        <tfoot> 
+          <tr> 
+            <td><a href="http://hocwebgiare.com/" class="btn btn-warning"><i class="fa fa-angle-left"></i> Tiếp tục mua hàng</a></td> 
+            <td><button class="btn btn-success" v-on:click="updateOrder"><i class="fa fa-angle-left"></i> Cập nhật giỏ hàng</button></td>
+            <td colspan="1" class="hidden-xs"> </td> 
+            <td class="hidden-xs text-center"><strong>Tổng tiền {{cart.totalPrice}} đ</strong></td> 
+            <td><router-link to="/payment" class="btn btn-success btn-block">Thanh toán <i class="fa fa-angle-right"></i></router-link>
+            </td> 
+          </tr> 
         </tfoot> 
       </table>
       </div>
@@ -63,10 +35,42 @@
 </template>
 
 <script>
+
 import HeaderUser from "../Header_user.vue"
+import ProductCart from "./productCart.vue"
+import {mapGetters, mapActions} from 'vuex';
+import axios from "axios";
+
 export default {
   components: {
     HeaderUser,
+    ProductCart
+  },
+  created(){
+    this.getCart(12345)
+  },
+  computed: {
+    ...mapGetters(['cart'])
+  },
+  methods:{
+    ...mapActions(['getCart']),
+    updateOrder(){
+      let userID = 12345;
+      let cart = {
+        product: this.cart.product,
+        totalPrice: this.cart.totalPrice
+      }
+      axios.put(`http://localhost:52861/api/cart/${userID}`,{
+        product: cart.product,
+        totalPrice: cart.totalPrice
+      })
+      .then(function(res){
+        alert(res.data);
+      })
+      .catch(function (error) {
+          console.log(error);
+      });
+    }
   }
 }
 </script>
