@@ -12,6 +12,8 @@ import Payment from './component/payment'
 import Cart from './component/cart'
 import OrderUser from './component/orderUser'
 import OrderDetailUser from './component/orderDetailUser'
+import Shipper from './component/admin/shipper/Shipper'
+import ShipperDetail from './component/admin/shipper/ShipperDetail'
 
 export const routes = [
     //Quan ly
@@ -27,6 +29,8 @@ export const routes = [
     {path:'/admin/store/create', name:'CreateStore', component: CreateStoreManager, meta:{title:'CreateStoreManager'}},
     {path:'/admin/store/update', name:'UpdateStore', component: UpdateStoreManager, meta:{title:'UpdateStoreManager'}},
     {path: '/payment', name: 'Payment', component: Payment, meta:{title: 'Payment'}},
+    {path: '/admin/shipper', name: 'Shipper', component: Shipper, meta:{title: 'Shipper'}},
+    {path: '/admin/shipper/:id', name: 'ShipperDetail', component: ShipperDetail, meta:{title: 'ShipperDetail'}},
     //user
     {path: '/user/cart', name: 'Cart', component: Cart, meta: {title: 'Cart'}},
     {path: '/user/order', name: 'OrderUser', component: OrderUser, meta: {title: 'Order'}},

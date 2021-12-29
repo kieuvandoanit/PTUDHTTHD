@@ -6,6 +6,7 @@ import store from './modules/store'
 import order from './modules/order'
 import payment from './modules/payment'
 import cart from './modules/cart'
+import shipper from './modules/shipper'
 Vue.use(Vuex)
 const storeData={
     modules: {
@@ -13,7 +14,8 @@ const storeData={
         store,
         order, 
         payment,
-        cart
+        cart,
+        shipper
     }
 }
 
