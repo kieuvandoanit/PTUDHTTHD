@@ -1,15 +1,15 @@
 import axios from 'axios'
 const payment = {
     state: {
-        payments:[],
+        Payments:[],
     },
     getters:{
-        payments: state => state.payments,
+        Payments: state => state.Payments,
        
     },
     mutations:{
-        SET_PAYMENT(state, payments){
-            state.payments = payments
+        SET_PAYMENT(state, Payments){
+            state.Payments = Payments
         }
     },
     actions:{
@@ -30,7 +30,12 @@ const payment = {
             }catch(error){
                 console.log(error)
             }
-        }
+        },
+        // async getDay(){
+        //     const d = new Date();
+        //     let day = d.getDate();
+        //     return day;
+        // }
     }
 }
 

@@ -1,148 +1,300 @@
 <template>
   <div id="Payment">
-      <Header/>
-      <!-- <ul>
+    <Header />
+    <!-- <ul>
           <li v-for="payment in payments" 
             :key="payment.PaymentId">
               <p>Thanh toan: {{payment.PaymentMethod}}</p>
           </li>
       </ul> -->
-      <div class="row">
+    <div class="row">
       <div class="col-75">
         <div class="container">
           <form class="needs-validation" v-on:submit="submitPayment">
-          
             <div class="row">
               <div class="col-50">
-                <h4>Billing Address</h4>
-                <label for="fname"><i class="fa fa-user"></i> Full Name</label>
-                <input type="text" id="fname" name="fullname" placeholder="John M. Doe" v-model="fullname">
+                <h4>Thông tin giao hàng</h4>
+                <label for="fullname"
+                  ><i class="fa fa-user"></i>Họ và tên</label
+                >
+                <input
+                  type="text"
+                  id="fullname"
+                  name="fullname"
+                  placeholder="John M. Doe"
+                  v-model="fullname"
+                />
+                <label for="phoneNumber"
+                  ><i class="fa fa-phone-card-o"></i> Số điện thoai</label
+                >
+                <input
+                  type="text"
+                  id="phoneNumber"
+                  name="phoneNumber"
+                  placeholder="012345678"
+                  v-model="phoneNumber"
+                />
                 <label for="email"><i class="fa fa-envelope"></i> Email</label>
-                <input type="text" id="email" name="email" placeholder="john@example.com" v-model="email">
-                <label for="adr"><i class="fa fa-address-card-o"></i> Address</label>
-                <input type="text" id="adr" name="address" placeholder="542 W. 15th Street" v-model="address">
-                <label for="city"><i class="fa fa-institution"></i> City</label>
-                <input type="text" id="city" name="city" placeholder="New York" v-model="city">
-
+                <input
+                  type="text"
+                  id="email"
+                  name="email"
+                  placeholder="john@example.com"
+                  v-model="email"
+                />
+ 
                 <div class="row">
                   <div class="col-50">
-                    <label for="state">State</label>
-                    <input type="text" id="state" name="state" placeholder="NY" v-model="state">
+                    <label for="home_number">Số nhà</label>
+                    <input type="number" id="home_number" name="home_number" placeholder="542" v-model="home_number">
                   </div>
                   <div class="col-50">
-                    <label for="zip">Zip</label>
-                    <input type="number" id="zip" name="zip" placeholder="10001" v-model="zip">
+                    <label for="street">Tên đường</label>
+                    <input type="text" id="street" name="street" placeholder="Nguyễn Tất Thành" v-model="street">
+                  </div>
+                  <div class="col-50">
+                    <label for="ward">Phường</label>
+                    <input type="text" id="ward" name="ward" placeholder="Phường" v-model="ward">
+                  </div>
+                  <div class="col-50">
+                    <label for="district">Quận</label>
+                    <input type="text" id="district" name="district" placeholder="Quận" v-model="district">
+                  </div>
+                  <div class="col-50">
+                    <label for="province">Tỉnh/ Thành phố</label>
+                    <input type="text" id="province" name="province" placeholder="Tỉnh/Thành phố" v-model="province">
                   </div>
                 </div>
               </div>
 
               <div class="col-50">
-                <h4>Payment</h4>
-                <label for="fname">Accepted Cards</label>
-                <div class="icon-container">
-                  <i class="fa fa-cc-visa" style="color:navy;"></i>
-                  <i class="fa fa-cc-amex" style="color:blue;"></i>
-                  <i class="fa fa-cc-mastercard" style="color:red;"></i>
-                  <i class="fa fa-cc-discover" style="color:orange;"></i>
-                </div>
-                <label for="cname">Name on Card</label>
-                <input type="text" id="cname" name="cardname" placeholder="John More Doe" v-model="cardname">
-                <label for="ccnum">Credit card number</label>
-                <input type="text" id="ccnum" name="cardnumber" placeholder="1111-2222-3333-4444" v-model="cardnumber">
-                <label for="expmonth">Exp Month</label>
-                <input type="text" id="expmonth" name="expmonth" placeholder="September" v-model="expmonth">
-                <div class="row">
-                  <div class="col-50">
-                    <label for="expyear">Exp Year</label>
-                    <input type="text" id="expyear" name="expyear" placeholder="2018" v-model="expyear">
+                <h4>Thanh toán</h4>
+                <label for="paymentMethod">Chọn hình thức thanh toán</label>
+                <button
+                  type="submit"
+                  v-on:click="online = !online"
+                  value="Submit"
+                >
+                  Online
+                </button>
+                <button
+                  type="submit"
+                  v-on:click="offline = !offline"
+                  value="Submit"
+                >
+                  Offline
+                </button>
+                <!-- <select class="col-50" name="paymentMethod" id="paymentMethod">
+                  <option @click="online" value="Trực tuyến">Trực tuyến</option>
+                  <option value="Trực tiếp">Trực tiếp</option>
+                </select> -->
+                <div v-if="online">
+                  <label for="bankName">Tên Ngân Hàng</label>
+                  <select class="col-50" name="bankName" id="bankName">
+                    <option value="Agribank">Agribank</option>
+                    <option value="Saccombank">Saccombank</option>
+                    <option value="TP Bank">TP Bank</option>
+                    <option value="Vietcombank">Vietcombank</option>
+                  </select>
+
+                  <label for="nameOnCard">Tên chủ tài khoản</label>
+                  <input
+                    type="text"
+                    id="nameOnCard"
+                    name="nameOnCard"
+                    placeholder="John More Doe"
+                    v-model="nameOnCard"
+                  />
+                  <label for="creditCardNumber">Số tài khoản</label>
+                  <input
+                    type="text"
+                    id="creditCardNumber"
+                    name="creditCardNumber"
+                    placeholder="1111-2222-3333-4444"
+                    v-model="creditCardNumber"
+                  />
+                  <!-- <label for="expMonth">Tháng hết hạn</label>
+                <input type="text" id="expMonth" name="expMonth" placeholder="September" v-model="expMonth"> -->
+                  <div class="row">
+                    <div class="col-50">
+                      <label for="expYear">Năm hết hạn</label>
+                      <input
+                        type="text"
+                        id="expYear"
+                        name="expYear"
+                        placeholder="2018"
+                        v-model="expYear"
+                      />
+                    </div>
+                    <div class="col-50">
+                      <label for="cvcNumber">CVC Number</label>
+                      <input
+                        type="number"
+                        id="cvcNumber"
+                        name="cvcNumber"
+                        placeholder="333"
+                        v-model="cvcNumber"
+                      />
+                    </div>
                   </div>
-                  <div class="col-50">
-                    <label for="cvv">CVC Number</label>
-                    <input type="number" id="cvv" name="cvc" placeholder="333" v-model="cvc">
-                  </div>
                 </div>
+                <div v-if="offline">Bạn đã chọn thanh toán trực tiếp!</div>
               </div>
-              
             </div>
-            
-            <input type="submit" value="Submit" class="btn">
+
+            <input type="submit" value="Submit" class="btn" />
           </form>
         </div>
       </div>
-  <div class="col-25">
-    <div class="container">
-      <h4>Cart <span class="price" style="color:black"><i class="fa fa-shopping-cart"></i> <b></b></span></h4>
-      <p><a href="#">Product 1</a> <span class="price">$15</span></p>
-      <p><a href="#">Product 2</a> <span class="price">$5</span></p>
-      <p><a href="#">Product 3</a> <span class="price">$8</span></p>
-      <p><a href="#">Product 4</a> <span class="price">$2</span></p>
-      <hr>
-      <p>Total <span class="price" style="color:black"><b>$30</b></span></p>
+      <div class="col-25">
+        <div class="container">
+          <h4>
+            Cart
+            <span class="price" style="color: black"
+              ><i class="fa fa-shopping-cart"></i> <b></b
+            ></span>
+          </h4>
+          <p>
+            <a href="#">{{ this.product[0].productName }}</a>
+            <span class="price">{{ this.product[0].price }}</span>
+          </p>
+          <p>
+            <a href="#">{{ this.product[1].productName }}</a>
+            <span class="price">{{ this.product[1].price }}</span>
+          </p>
+          <hr />
+          <p>
+            Total
+            <span class="price" style="color: black"><b>100.000 VNĐ</b></span>
+          </p>
+        </div>
+      </div>
     </div>
-  </div>
-</div>
   </div>
 </template>
 
 <script>
-import {mapGetters, mapActions} from 'vuex'
-import axios from 'axios'
-import Header from '../Header.vue'
+import { mapGetters, mapActions } from "vuex";
+import axios from "axios";
+import Header from "../Header.vue";
 export default {
-    name: "Payment",
-    components:{
-        Header,
-
-    },
-    created(){
-        this.getPayment()
-    },
-    computed:{
-        ...mapGetters(['payments'])
-    },
-    data:function(){
-      return {
-        fullname:"",
-        email:"",
-        address:"",
-        city:"",
-        state:"",
-        zip:"",
-        cardname:"",
-        cardnumber:"",
-        expmonth:"",
-        expyear:"",
-        cvc:""
-      }
-    },
-    methods:{
-        ...mapActions(['getPayment']),
-        submitPayment(e){
-          e.preventDefault();
-          
-        axios.post('https://localhost:44337/api/payment/add',{
-           "fullname": this.fullname,
-           "email":this.email,
-           "address":this.address,
-           "city":this.city,
-           "state":this.state,
-           "zip":this.zip,
-           "cardname":this.cardname,
-           "cardnumber":this.cardnumber,
-           "expmonth":this.expmonth,
-           "expyear":this.expyear,
-           "cvc":this.cvc
+  name: "Payment",
+  components: {
+    Header,
+  },
+  created() {
+    this.getPayment();
+  },
+  computed: {
+    ...mapGetters(["Payments"]),
+  },
+  data: function () {
+    return {
+      online: false,
+      offline: false,
+      orderDate: "",
+      payments: "",
+      paymentOnline: {
+        bankName: "",
+        nameOnCard: "",
+        creditCardNumber: "",
+        expYear: "",
+        cvcNumber: "",
+      },
+      fullname: "",
+      phoneNumber: "",
+      email: "",
+      address: {
+        province: "",
+        district: "",
+        ward: "",
+        street: "",
+        home_number: "",
+      },
+      product: [
+            {
+              productName: "Cà rốt",
+              price: "25.000",
+              unit: "kg",
+              quantity: "2",
+              productImage: "",
+            },
+            {
+              productName: "Khoai lang Nhật",
+              price: "25.000",
+              unit: "kg",
+              quantity: "2",
+              productImage: "",
+            },
+          ],
+      discount: "",
+      totalPrice: "100000",
+      customerId: "",
+      status: "",
+      shipperId: "",
+      shipperName: "",
+      storeId: "",
+      _class: "",
+    };
+  },
+  methods: {
+    ...mapActions(["getPayment"]),
+    submitPayment(e) {
+      e.preventDefault();
+      axios.post("https://localhost:44337/api/payment/add", {
+          "orderDate": this.paymentMethod,
+          "payments": this.paymentMethod,
+          "paymentOnline": {
+            "bankName": this.bankName,
+            "nameOnCard": this.nameOnCard,
+            "creditCardNumber": this.creditCardNumber,
+            "expYear": this.expYear,
+            "cvcNumber": this.cvcNumber,
+          },
+          "fullname": this.fullname,
+          "phoneNumber": this.phoneNumber,
+          "email": this.email,
+          "address": {
+            "province": this.province,
+            "district": this.district,
+            "ward": this.ward,
+            "street": this.street,
+            "home_number": this.home_number,
+          },
+          "product": [
+            {
+              "productName": "Cà rốt",
+              "price": "25.000",
+              "unit": "kg",
+              "quantity": "2",
+              "productImage": "",
+            },
+            {
+              "productName": "Khoai lang Nhật",
+              "price": "25.000",
+              "unit": "kg",
+              "quantity": "2",
+              "productImage": "",
+            },
+          ],
+          "discount": "",
+          "totalPrice": "80000",
+          "customerId": "",
+          "status": "",
+          "shipperId": "",
+          "shipperName": "",
+          "storeId": "",
+          "_class": "",
         })
-        .then(function(res){
-                alert(res.data);
-            })
-            .catch(function (error) {
-                console.log(error);
-            });
-      }
+        .then(function (res) {
+          alert(res.data);
+        })
+        .catch(function (error) {
+          console.log(error);
+        });
     },
-    
-}
+  },
+};
 </script>
 
 <style scoped>
@@ -151,8 +303,18 @@ body {
   font-size: 17px;
   padding: 8px;
 }
+button {
+  background-color: #4caf50; /* Green */
+  border: none;
+  color: white;
+  padding: 5px 10px;
+  text-align: center;
+  text-decoration: none;
+  font-size: 16px;
+  cursor: pointer;
+}
 
-h4{
+h4 {
   text-align: center;
 }
 * {
@@ -195,7 +357,7 @@ h4{
   border-radius: 3px;
 }
 
-input[type=text] {
+input[type="text"] {
   width: 100%;
   margin-bottom: 20px;
   padding: 12px;
@@ -215,7 +377,7 @@ label {
 }
 
 .btn {
-  background-color: #04AA6D;
+  background-color: #4caf50;
   color: white;
   padding: 12px;
   margin: 10px 0;
@@ -231,7 +393,7 @@ label {
 }
 
 a {
-  color: #2196F3;
+  color: #2196f3;
 }
 
 hr {
@@ -242,5 +404,4 @@ span.price {
   float: right;
   color: grey;
 }
-
 </style>
