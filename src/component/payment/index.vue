@@ -46,23 +46,23 @@
                 <div class="row">
                   <div class="col-50">
                     <label for="home_number">Số nhà</label>
-                    <input type="number" id="home_number" name="home_number" placeholder="542" v-model="home_number">
+                    <input type="number" id="home_number" name="home_number" placeholder="542" v-model="address.home_number">
                   </div>
                   <div class="col-50">
                     <label for="street">Tên đường</label>
-                    <input type="text" id="street" name="street" placeholder="Nguyễn Tất Thành" v-model="street">
+                    <input type="text" id="street" name="street" placeholder="Nguyễn Tất Thành" v-model="address.street">
                   </div>
                   <div class="col-50">
                     <label for="ward">Phường</label>
-                    <input type="text" id="ward" name="ward" placeholder="Phường" v-model="ward">
+                    <input type="text" id="ward" name="ward" placeholder="Phường" v-model="address.ward">
                   </div>
                   <div class="col-50">
                     <label for="district">Quận</label>
-                    <input type="text" id="district" name="district" placeholder="Quận" v-model="district">
+                    <input type="text" id="district" name="district" placeholder="Quận" v-model="address.district">
                   </div>
                   <div class="col-50">
                     <label for="province">Tỉnh/ Thành phố</label>
-                    <input type="text" id="province" name="province" placeholder="Tỉnh/Thành phố" v-model="province">
+                    <input type="text" id="province" name="province" placeholder="Tỉnh/Thành phố" v-model="address.province">
                   </div>
                 </div>
               </div>
@@ -72,14 +72,14 @@
                 <label for="paymentMethod">Chọn hình thức thanh toán</label>
                 <button
                   type="submit"
-                  v-on:click="online = !online"
+                  v-on:click="changeMethod()"
                   value="Submit"
                 >
                   Online
                 </button>
                 <button
                   type="submit"
-                  v-on:click="offline = !offline"
+                  v-on:click="changeMethod()"
                   value="Submit"
                 >
                   Offline
@@ -88,7 +88,7 @@
                   <option @click="online" value="Trực tuyến">Trực tuyến</option>
                   <option value="Trực tiếp">Trực tiếp</option>
                 </select> -->
-                <div v-if="online">
+                <div v-if="this.paymentMethod === 'online'">
                   <label for="bankName">Tên Ngân Hàng</label>
                   <select class="col-50" name="bankName" id="bankName">
                     <option value="Agribank">Agribank</option>
@@ -103,7 +103,7 @@
                     id="nameOnCard"
                     name="nameOnCard"
                     placeholder="John More Doe"
-                    v-model="nameOnCard"
+                    v-model="paymentOnline.nameOnCard"
                   />
                   <label for="creditCardNumber">Số tài khoản</label>
                   <input
@@ -111,10 +111,10 @@
                     id="creditCardNumber"
                     name="creditCardNumber"
                     placeholder="1111-2222-3333-4444"
-                    v-model="creditCardNumber"
+                    v-model="paymentOnline.creditCardNumber"
                   />
                   <!-- <label for="expMonth">Tháng hết hạn</label>
-                <input type="text" id="expMonth" name="expMonth" placeholder="September" v-model="expMonth"> -->
+                  <input type="text" id="expMonth" name="expMonth" placeholder="September" v-model="expMonth"> -->
                   <div class="row">
                     <div class="col-50">
                       <label for="expYear">Năm hết hạn</label>
@@ -123,7 +123,7 @@
                         id="expYear"
                         name="expYear"
                         placeholder="2018"
-                        v-model="expYear"
+                        v-model="paymentOnline.expYear"
                       />
                     </div>
                     <div class="col-50">
@@ -133,12 +133,12 @@
                         id="cvcNumber"
                         name="cvcNumber"
                         placeholder="333"
-                        v-model="cvcNumber"
+                        v-model="paymentOnline.cvcNumber"
                       />
                     </div>
                   </div>
                 </div>
-                <div v-if="offline">Bạn đã chọn thanh toán trực tiếp!</div>
+                <div v-if="this.paymentMethod === 'offline'">Bạn đã chọn thanh toán trực tiếp!</div>
               </div>
             </div>
 
@@ -190,6 +190,7 @@ export default {
   },
   data: function () {
     return {
+      paymentMethod: "online",
       online: false,
       offline: false,
       orderDate: "",
@@ -238,6 +239,13 @@ export default {
     };
   },
   methods: {
+    changeMethod(){
+      if(this.paymentMethod === "online"){
+        this.paymentMethod = "offline"
+      }else{
+        this.paymentMethod = "online"
+      }
+    },
     ...mapActions(["getPayment"]),
     submitPayment(e) {
       e.preventDefault();
