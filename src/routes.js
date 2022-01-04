@@ -14,6 +14,7 @@ import OrderUser from './component/orderUser'
 import OrderDetailUser from './component/orderDetailUser'
 import Shipper from './component/admin/shipper/Shipper'
 import ShipperDetail from './component/admin/shipper/ShipperDetail'
+import OrderShipper from './component/shipper'
 
 export const routes = [
     //Quan ly
@@ -35,4 +36,7 @@ export const routes = [
     {path: '/user/cart', name: 'Cart', component: Cart, meta: {title: 'Cart'}},
     {path: '/user/order', name: 'OrderUser', component: OrderUser, meta: {title: 'Order'}},
     {path: '/user/order/:id', name: 'OrderDetailUser',component: OrderDetailUser, meta:{title: 'Order detail'}},
+    //shipper
+    {path: '/shipper/order', name: 'OrderShipper', component: OrderShipper, meta: {title: 'OrderShipper'}},
+
 ]
