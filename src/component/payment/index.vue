@@ -71,26 +71,14 @@
                 <h4>Thanh toán</h4>
                 <label for="paymentMethod">Chọn hình thức thanh toán</label>
                 <button
-                  type="submit"
-                  v-on:click="changeMethod"
-                  value="Submit"
-                >
-                  Online
-                </button>
+                  type="submit" v-on:click="changeMethod" value="Submit" >Online</button>
                 <button
-                  type="submit"
-                  v-on:click="changeMethod"
-                  value="Submit"
-                >
-                  Offline
+                  type="submit" v-on:click="changeMethod" value="Submit" > Offline 
                 </button>
-                <!-- <select class="col-50" name="paymentMethod" id="paymentMethod">
-                  <option @click="online" value="Trực tuyến">Trực tuyến</option>
-                  <option value="Trực tiếp">Trực tiếp</option>
-                </select> -->
+                
                 <div v-if="this.paymentMethod === 'online'">
                   <label for="bankName">Tên Ngân Hàng</label>
-                  <select class="col-50" name="bankName" id="bankName">
+                  <select class="col-50" name="bankName" id="bankName" v-model="paymentOnline.bankName">
                     <option value="Agribank">Agribank</option>
                     <option value="Saccombank">Saccombank</option>
                     <option value="TP Bank">TP Bank</option>
@@ -202,7 +190,6 @@ export default {
       },
       fullname: "",
       phoneNumber: "",
-      email: "",
       address: {
         province: "",
         district: "",
@@ -237,7 +224,8 @@ export default {
     };
   },
   methods: {
-    changeMethod(){
+    changeMethod(e){
+      e.preventDefault();
       if(this.paymentMethod === "online"){
         this.paymentMethod = "offline"
       }else{
@@ -270,26 +258,26 @@ export default {
           "product": [
             {
               "productName": "Cà rốt",
-              "price": "25.000",
+              "price": "50.000",
               "unit": "kg",
               "quantity": "2",
               "productImage": "",
             },
             {
               "productName": "Khoai lang Nhật",
-              "price": "25.000",
+              "price": "50.000",
               "unit": "kg",
               "quantity": "2",
               "productImage": "",
             },
           ],
           "discount": "",
-          "totalPrice": "100000",
-          "customerId": "",
-          "status": "",
-          "shipperId": "",
+          "totalPrice": 100000,
+          "customerId": 123,
+          "status": "Thành công",
+          "shipperId": 123,
           "shipperName": "",
-          "storeId": "",
+          "storeId": 1234,
           "_class": "",
         })
         .then(function (res) {

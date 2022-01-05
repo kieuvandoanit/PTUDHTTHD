@@ -8,7 +8,7 @@
           <span v-bind:class="classObject" style="font-size: 12px; margin-top: 15px;">{{order.status}}</span>
       </th>
       <th class="col-md-1" style="font-weight: 400">{{order.totalPrice}}</th>
-      <th class="col-md-1" style="font-weight: 400"><router-link class="btn btn-outline-success" v-bind:to="'/order/'+order.id">Xem</router-link></th>
+      <th class="col-md-1" style="font-weight: 400"><router-link class="btn btn-outline-success" v-bind:to="'/order/'">Cập nhật</router-link></th>
   </tr>
 </template>
 
