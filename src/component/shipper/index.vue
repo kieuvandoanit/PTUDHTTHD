@@ -8,11 +8,11 @@
             <label class="mr-sm-2 sr-only" for="inlineFormCustomSelect">Trạng thái: </label>
             <select class="custom-select mr-sm-2 form-group" id="inlineFormCustomSelect" v-model="status" style="width: 200px; height: 40px;">
                 <option value="All" selected>Tất cả</option>
-                <option value="Receive">Đã tiếp nhận</option>
-                <option value="Prepare">Chuẩn bị</option>
-                <option value="Delivering">Đang giao</option>
-                <option value="Success">Thành công</option>
-                <option value="Delete">Đã hủy</option>
+                <option value="Đã tiếp nhận">Đã tiếp nhận</option>
+                <option value="Chuẩn bị">Chuẩn bị</option>
+                <option value="Đang giao">Đang giao</option>
+                <option value="Thành công">Thành công</option>
+                <option value="Đã hủy">Đã hủy</option>
             </select>
             </div>
             <div class="col-auto my-1">

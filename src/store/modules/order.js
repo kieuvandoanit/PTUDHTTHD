@@ -51,7 +51,7 @@ const order = {
     actions:{
         async getOrder({commit}){
             try{
-                const response = await axios.get('https://localhost:44337/api/payment');
+                const response = await axios.get('https://localhost:44337/api/ordershipper');
                 commit('SET_ORDERS', response.data)
             }catch(error){
                 console.log(error)

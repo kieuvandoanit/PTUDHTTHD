@@ -224,6 +224,7 @@ export default {
     };
   },
   methods: {
+    ...mapActions(["getPayment"]),
     changeMethod(e){
       e.preventDefault();
       if(this.paymentMethod === "online"){
@@ -232,7 +233,6 @@ export default {
         this.paymentMethod = "online"
       }
     },
-    ...mapActions(["getPayment"]),
     submitPayment(e) {
       e.preventDefault();
       axios.post("https://localhost:44337/api/payment/add", {
