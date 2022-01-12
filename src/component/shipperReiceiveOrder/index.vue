@@ -37,10 +37,10 @@
         <div class="text-muted">Payment Method: </div>
         <div class="ml-auto"><b>  {{ordersDetail.payments}}</b></div>
     </div>
-    <div class="d-flex justify-content-start align-items-center py-1 pl-3">
+    <!-- <div class="d-flex justify-content-start align-items-center py-1 pl-3">
         <div class="text-muted">Shipper ID: </div>
         <div class="ml-auto"> <label>{{ordersDetail.shipperId}}</label> </div>
-    </div>
+    </div> -->
     <div class="d-flex justify-content-start align-items-center pb-4 pl-3 border-bottom">
         <div class="text-muted"> <button class="text-white btn">Discount</button> </div>
         <div class="ml-auto price"> {{ordersDetail.discount}} </div>
@@ -52,28 +52,34 @@
     <div class="row border rounded p-1 my-3">
         <div class="col-md-12 py-3">
             <div class="d-flex flex-column align-items start"> <b>Shipping Address</b>
-                <p class="text-justify pt-2">{{ordersDetail.address.home_number}} {{ordersDetail.address.street}}, {{ordersDetail.address.ward}}, {{ordersDetail.address.district}}</p>
+                <p class="text-justify pt-2">{{ordersDetail.address.home_number}} {{ordersDetail.address.street}}, phường {{ordersDetail.address.ward}}, quận {{ordersDetail.address.district}}</p>
                 <p class="text-justify">{{ordersDetail.address.province}}</p>
             </div>
         </div>
     </div>
     <div class="row border rounded p-1 my-3">
         <div class="col-md-12 py-3">
-            <div class="d-flex flex-column align-items start"> <b>Cập nhật trạng thái đơn hàng</b>
-                <form v-on:submit="updateOrder">
+            <div class="d-flex flex-column align-items start"> <b>Nhận đơn hàng</b>
+                <form v-on:submit="updateShipperOrder">
                     <div class="form-row align-items-center">
                         <div class="col-auto my-1">
-                        <label class="mr-sm-2" for="inlineFormCustomSelect">Trạng thái</label>
-                        <select class="custom-select mr-sm-2" v-model="status" id="inlineFormCustomSelect">
-                            <option selected value="Đã tiếp nhận">Đã tiếp nhận</option>
-                            <option value="Chuẩn bị">Chuẩn bị</option>
-                            <option value="Đang giao">Đang giao</option>
-                            <option value="Thành công">Thành công</option>
+                        <label class="mr-sm-2" for="inlineFormCustomSelect">Mã Shipper</label>
+                        <select class="custom-select mr-sm-2" v-model="ordersDetail.shipperId" id="inlineFormCustomSelect">
+                            <option selected value="SP01">SP01</option>
+                            <option value="SP02">SP02</option>
+                            <option value="SP03">SP03</option>
+                            <option value="SP04">SP04</option>
+                        </select>
+                        <label class="mr-sm-2" for="inlineFormCustomSelect">Họ Tên Shipper</label>
+                        <select class="custom-select mr-sm-2" v-model="ordersDetail.shipperName" id="inlineFormCustomSelect">
+                            <option selected value="Nguyễn Tuấn Anh">Nguyễn Tuấn Anh</option>
+                            <option value="Trần Văn Phúc">Trần Văn Phúc</option>
+                            <option value="Lê Hoài Nam">Lê Hoài Nam</option>
+                            <option value="Phan Thanh Kiệt">Phan Thanh Kiệt</option>
                         </select>
                         </div>
                         <div class="col-auto my-1">
-                            <button type="submit" class="btn btn-primary">Cập nhật</button>
-                            
+                            <button type="submit" class="btn btn-primary">Nhận đơn</button>
                         </div>
                     </div>
                 </form>
@@ -108,18 +114,29 @@ export default {
     },
     methods:{
         ...mapActions(['getOrderDetail']),
-        updateOrder(e){
+        updateShipperOrder(e){
             e.preventDefault()
-            axios.put('https://localhost:44337/api/ordershipper/'+this.$route.params.id,{
-                "status": this.status
-            })
+            axios.put('http://localhost:6039/order/' + this.$route.params.id,{
+            address: this.ordersDetail.address,
+            orderDate: this.ordersDetail.orderDate,
+            fullname: this.ordersDetail.fullname,
+            phoneNumber: this.ordersDetail.phoneNumber,
+            totalPrice: this.ordersDetail.totalPrice,
+            product: this.ordersDetail.product,
+            status: this.status,
+            payments: this.ordersDetail.payments,
+            customerId: this.ordersDetail.customerId,
+            discount: this.ordersDetail.discount,
+            shipperId: this.ordersDetail.shipperId,
+            shipperName: this.ordersDetail.shipperName,
+            storeId: this.ordersDetail.storeId
+        })
             .then(function(res){
                 alert(res.data);
             })
             .catch(function (error) {
                 console.log(error);
             });
-      
         }
     }
 }

@@ -273,11 +273,11 @@ export default {
           ],
           "discount": "",
           "totalPrice": 100000,
-          "customerId": 123,
+          "customerId": "CUS01",
           "status": "Thành công",
-          "shipperId": 123,
+          "shipperId": "SP01",
           "shipperName": "",
-          "storeId": 1234,
+          "storeId": "ST01",
           "_class": "",
         })
         .then(function (res) {

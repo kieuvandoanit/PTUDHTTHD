@@ -16,6 +16,8 @@ import Shipper from './component/admin/shipper/Shipper'
 import ShipperDetail from './component/admin/shipper/ShipperDetail'
 import ShipperOrder from './component/shipper'
 import ShipperOrderDetail from './component/shipperOrderDetail'
+import ShipperOrderHistory from './component/shipperHistoryOrder'
+import ShipperReceiveOrder from './component/shipperReiceiveOrder'
 
 export const routes = [
     //Quan ly
@@ -39,6 +41,7 @@ export const routes = [
     {path: '/payment', name: 'Payment', component: Payment, meta:{title: 'Payment'}},
     //shipper
     {path: '/shipper/order', name: 'ShipperOrder', component: ShipperOrder, meta: {title: 'ShipperOrder'}},
+    {path: '/shipper/receiveOrder/:id',name:'ShipperReceiveOrder', component: ShipperReceiveOrder, meta:{title:'ShipperReceiveOrder'}},
     {path: '/shipper/order/:id',name:'ShipperOrderDetail', component: ShipperOrderDetail, meta:{title:'ShipperOrderDetail'}},
-
+    {path: '/shipper/orderHistory', name: 'ShipperOrderHistory', component: ShipperOrderHistory, meta: {title: 'ShipperOrderHistory'}},
 ]

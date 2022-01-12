@@ -8,7 +8,6 @@ import "bootstrap/dist/css/bootstrap.css";
 import "bootstrap-vue/dist/bootstrap-vue.css";
 import babelPolyfill from 'babel-polyfill'
 
-
 Vue.config.productionTip = false;
 
 Vue.use(BootstrapVue);
