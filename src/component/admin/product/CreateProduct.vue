@@ -68,7 +68,7 @@ export default {
     submitForm(){
       this.errors = []
       if(this.form.name && this.form.price && this.form.unit && this.form.numberInventory){
-        axios.post('http://localhost:6039/product', this.form)
+        axios.post('http://localhost:8099/createProduct', this.form)
         .then((res) => {
           if(res.data){
             this.$router.push('/admin/product')
