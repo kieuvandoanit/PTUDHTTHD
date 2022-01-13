@@ -15,6 +15,9 @@ import OrderUser from './component/orderUser'
 import OrderDetailUser from './component/orderDetailUser'
 import Shipper from './component/admin/shipper/Shipper'
 import ShipperDetail from './component/admin/shipper/ShipperDetail'
+import StoreRegister from './component/partner/store/register'
+import OrderPage from './component/user/store'
+import ProductPage from './component/user/product'
 import ShipperOrder from './component/shipper'
 import ShipperOrderDetail from './component/shipperOrderDetail'
 import ShipperOrderHistory from './component/shipperHistoryOrder'
@@ -40,6 +43,10 @@ export const routes = [
     {path: '/user/cart', name: 'Cart', component: Cart, meta: {title: 'Cart'}},
     {path: '/user/order', name: 'OrderUser', component: OrderUser, meta: {title: 'Order'}},
     {path: '/user/order/:id', name: 'OrderDetailUser',component: OrderDetailUser, meta:{title: 'Order detail'}},
+    {path: '/storepage', name: 'Order page',component: OrderPage, meta:{title: 'Order page'}},
+    {path: '/product', name: 'Product page',component: ProductPage, meta:{title: 'Product page'}},
+    /**Store router */
+    {path: '/store/register', name: 'StoreRegister', component: StoreRegister, meta:{title: 'Store Register'}},
     {path: '/payment', name: 'Payment', component: Payment, meta:{title: 'Payment'}},
     //shipper
     {path: '/shipper/order', name: 'ShipperOrder', component: ShipperOrder, meta: {title: 'ShipperOrder'}},
