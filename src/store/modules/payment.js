@@ -1,15 +1,15 @@
 import axios from 'axios'
 const payment = {
     state: {
-        payments:[],
+        Payments:[],
     },
     getters:{
-        payments: state => state.payments,
+        Payments: state => state.Payments,
        
     },
     mutations:{
-        SET_PAYMENT(state, payments){
-            state.payments = payments
+        SET_PAYMENT(state, Payments){
+            state.Payments = Payments
         }
     },
     actions:{
@@ -22,15 +22,8 @@ const payment = {
                 console.log(error)
             }
         },
-        async addPayment({commit}){
-            try{
-                const response = await axios.get('https://localhost:44337/api/payment/add');
-                console.log(response.data);
-                commit('SET_PAYMENT', response.data);
-            }catch(error){
-                console.log(error)
-            }
-        }
+        
+        
     }
 }
 
