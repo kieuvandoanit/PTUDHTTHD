@@ -8,6 +8,7 @@ import UpdateProductManager from './component/admin/product/UpdateProduct'
 import StoreManager from './component/admin/store/Store'
 import CreateStoreManager from './component/admin/store/CreateStore'
 import UpdateStoreManager from './component/admin/store/UpdateStore'
+import AdminShipperOrder from './component/admin/shipperOrder/ShipperOrder'
 import Payment from './component/payment'
 import Cart from './component/cart'
 import OrderUser from './component/orderUser'
@@ -20,7 +21,7 @@ import ShipperOrderHistory from './component/shipperHistoryOrder'
 import ShipperReceiveOrder from './component/shipperReiceiveOrder'
 
 export const routes = [
-    //Quan ly
+    //Admin
     {path: '/', name: 'homepage', component: Home, meta:{title: 'Home'}},
     {path:'/store',name:'Store', component: Store, meta:{title: 'Store'}},
     {path: '/order',name:'Order', component: OrderManager, meta:{title:'Order'}},
@@ -34,6 +35,7 @@ export const routes = [
     {path:'/admin/store/update', name:'UpdateStore', component: UpdateStoreManager, meta:{title:'UpdateStoreManager'}},
     {path: '/admin/shipper', name: 'Shipper', component: Shipper, meta:{title: 'Shipper'}},
     {path: '/admin/shipper/:id', name: 'ShipperDetail', component: ShipperDetail, meta:{title: 'ShipperDetail'}},
+    {path: '/admin/shipper/order', name: 'AdminShipperOrder', component: AdminShipperOrder, meta:{title: 'AdminShipperOrder'}},
     //user
     {path: '/user/cart', name: 'Cart', component: Cart, meta: {title: 'Cart'}},
     {path: '/user/order', name: 'OrderUser', component: OrderUser, meta: {title: 'Order'}},
