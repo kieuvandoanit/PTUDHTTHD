@@ -32,7 +32,7 @@ export default {
             this.$router.push('/admin/shipper');
         },
         ShipperOrder: function(){
-            this.$router.push('/admin/shipper/order');
+            this.$router.push('/admin/order');
         }
     }
 }

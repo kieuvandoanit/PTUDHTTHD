@@ -8,7 +8,7 @@
       <div class="col-9 body">
         <div class="row header-body">
            <div class="col-6">
-            <button type="button" class="btn btn-success" v-on:click="AddStore">Thêm cửa hàng</button>
+            <button type="button" class="btn btn-success" v-on:click="AddStore">Danh sách đơn hàng</button>
           </div> 
           <div class="col-6">
             <div class="input-group mb-3">
@@ -23,24 +23,20 @@
           <table class="table table-striped">
             <thead>
               <tr>
-                <th scope="col">STT</th>
-                <th scope="col">Tên</th>
-                <th scope="col">Số điện thoại</th>
-                <th scope="col">Trạng thái</th>
-                <th scope="col"></th>
+                <th scope="col">Mã đơn hàng</th>
+                <th scope="col">Khách Hàng</th>
+                <th scope="col">Tổng Tiền</th>
+                <th scope="col">ID Shipper</th>
+                <th scope="col">Tên Shipper</th>
+                 <th scope="col">Cập nhật</th>
               </tr>
             </thead>
             <tbody>
-              <tr v-for="(store, index) in stores" :key="index">
-                <th scope="row">{{index + 1}}</th>
-                <td>{{store.name}}</td>
-                <td>{{store.phone_number}}</td>
-                <td>{{store.isApprove}}</td>
-                <td>
-                    <button type="button" class="btn btn-primary" v-on:click="UpdateStore(store.id)">Sửa</button>
-                    <button type="button" class="btn btn-danger" v-on:click="DeleteStore(store.id)">Xóa</button>
-                </td>
-              </tr>
+              <Order
+                v-for="order in orders"
+                :key="order.id"
+                v-bind:order="order"
+              />
             </tbody>
           </table>
         </div>
@@ -52,28 +48,36 @@
 import axios from 'axios';
 import Header from '../partials/header';
 import Sidebar from '../partials/sidebar';
+import Order from './order.vue'
+import {mapGetters, mapActions} from 'vuex'
 
 export default {
   components: {
     Header,
-    Sidebar
+    Sidebar,
+    Order,
+
   },
   data () {
     return {
-      stores: [],
-      errors: []
+      
     }
   },
   created(){
-    axios.get("http://localhost:8099/stores")
-    .then(response =>{
-      this.stores = response.data
-    })
-    .catch(e =>{
-      this.errors.push(e)
-    })
+    this.getOrder()
+    // axios.get("http://localhost:8099/stores")
+    // .then(response =>{
+    //   this.stores = response.data
+    // })
+    // .catch(e =>{
+    //   this.errors.push(e)
+    // })
+  },
+  computed:{
+    ...mapGetters(['orders'])
   },
   methods:{
+    ...mapActions(['getOrder']),
     AddStore: function(){
       this.$router.push('store/create')
     },
