@@ -12,6 +12,10 @@
         <div class="col-2"><b-icon icon="journal-bookmark-fill"></b-icon> </div>
         <div class="col-10" v-on:click="ShipperManager">Quản lý người giao hàng</div>
     </div>
+    <div class="row item-manager">
+        <div class="col-2"><b-icon icon="journal-bookmark-fill"></b-icon> </div>
+        <div class="col-10" v-on:click="ShipperOrder">Quản lý đơn hàng (Shipper)</div>
+    </div>
 </div>
 </template>
 
@@ -26,6 +30,9 @@ export default {
         },
         ShipperManager: function(){
             this.$router.push('/admin/shipper');
+        },
+        ShipperOrder: function(){
+            this.$router.push('/admin/order');
         }
     }
 }
