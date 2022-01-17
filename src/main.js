@@ -6,7 +6,8 @@ import store from './store'
 import { BootstrapVue, IconsPlugin } from "bootstrap-vue";
 import "bootstrap/dist/css/bootstrap.css";
 import "bootstrap-vue/dist/bootstrap-vue.css";
-import babelPolyfill from 'babel-polyfill'
+import babelPolyfill from 'babel-polyfill';
+import firebase from "firebase";
 
 Vue.config.productionTip = false;
 
@@ -14,6 +15,19 @@ Vue.use(BootstrapVue);
 Vue.use(IconsPlugin);
 
 Vue.use(VueRouter);
+
+/**Config connect firebase */
+
+firebase.initializeApp({
+    apiKey: "AIzaSyAm-9zXqBpV9bToj6ZVYnIMtYMmtJ9QokI",
+    authDomain: "uploadfileimages.firebaseapp.com",
+    projectId: "uploadfileimages",
+    storageBucket: "uploadfileimages.appspot.com",
+    messagingSenderId: "941202696055",
+    appId: "1:941202696055:web:023b8ca93f5219c44fe372",
+    measurementId: "G-JCQSYVG7CM"
+})
+
 
 const router = new VueRouter({
     routes

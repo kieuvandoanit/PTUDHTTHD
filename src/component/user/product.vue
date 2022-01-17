@@ -37,6 +37,15 @@
                 </div> 
             </div>
         </div>
+        <div class="pagination">
+            <nav aria-label="Page navigation example">
+                <ul class="pagination">
+                    <li class="page-item"  v-on:click="PreviousPage()"><a class="page-link" href="#">Previous</a></li>
+                    <li class="page-item"><a class="page-link" href="#">{{page+1}}</a></li>
+                    <li class="page-item"  v-on:click="NextPage()"><a class="page-link" href="#">Next</a></li>
+                </ul>
+            </nav>
+        </div>
     </div>
 </template>
 <script>
@@ -47,22 +56,34 @@ export default {
   },
   data () {
     return {
-      errors: [],
-      products: [],
+        errors: [],
+        products: [],
+        size: 6,
+        page: 0,
     }
   },
   created(){
-     axios.get("http://localhost:8099/products")
-    .then(response =>{
-      this.products = response.data
-      console.log(this.products)
-    })
-    .catch(e =>{
-      this.errors.push(e)
-    })
+     this.callAPI()
   },
   methods:{
-
+      NextPage: function() {
+          this.page++ 
+          this.callAPI()
+      },
+      callAPI: function(){
+          axios.get(`http://localhost:8099/products?size=${this.size}&page=${this.page}`)
+            .then(response =>{
+                this.products = response.data['content']
+            })
+            .catch(e =>{
+            this.errors.push(e)
+        })
+      },
+      PreviousPage: function() {
+          this.page = (this.page > 0) ? this.page-1 : 0 
+          console.log(this.page)
+          this.callAPI()
+      }
   }
    
 }
@@ -77,7 +98,7 @@ export default {
      width: 100%;
  }
  .body{
-     height: 1000px;
+     height: 800px;
      margin-top: 15px;
  }
  img{
