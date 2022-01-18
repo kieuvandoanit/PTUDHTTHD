@@ -34,7 +34,7 @@
             <tbody>
               <tr v-for="(product, index) in products" :key="index">
                 <th scope="row">{{index + 1}}</th>
-                <td></td>
+                <td><img src="" /></td>
                 <td>{{product.name}}</td>
                 <td>{{product.price}} VNĐ</td>
                 <td>{{product.numberInventory}}</td>
@@ -67,9 +67,10 @@ export default {
     }
   },
   created(){
-    axios.get("http://localhost:8099/products")
+    axios.get("http://localhost:8099/products?size=100&page=0")
     .then(response =>{
-      this.products = response.data
+      this.products = response.data['content']
+      console.log(this.products)
     })
     .catch(e =>{
       this.errors.push(e)

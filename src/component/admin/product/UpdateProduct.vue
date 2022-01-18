@@ -14,6 +14,14 @@
             <li v-for="(error, index) in errors" :key="index" style="color: red">{{ error }}</li>
           </ul>
         </p>
+          <div>
+              <label for="name">Hình ảnh*</label>
+              <input type="file" @change="previewImage" accept="image/*">
+              <p>Loading: {{uploadValue.toFixed()+"%"}}
+                <progress :value="uploadValue" max="100"></progress>
+              </p>
+              <img :src="form.image" style="width: 200px">
+          </div>
           <div class="form-group item-input">
               <label for="name">Tên sản phẩm*</label>
               <input type="text" class="form-control" id="name" placeholder="Nhập tên sản phẩm" v-model="form.name">
@@ -46,6 +54,7 @@
 import Header from '../partials/header';
 import Sidebar from '../partials/sidebar';
 import axios from 'axios';
+import firebase from 'firebase';
  
 export default {
    name: 'UpdateProduct',
@@ -56,24 +65,51 @@ export default {
   data () {
     return {
       errors: [],
+      imageData: null,
+      picture: null,
+      uploadValue: 0,
       form: {
         name: '',
         price: '',
         numberInventory: '',
         unit: '',
-        desc: ''
+        desc: '',
+        image: '',
       }
     }
   },
   created(){
     this.product = this.$route.params.product;
+    console.log(this.product)
     this.form.name = this.product.name;
     this.form.price = this.product.price;
     this.form.numberInventory = this.product.numberInventory;
     this.form.unit = this.product.unit;
     this.form.desc = this.product.desc;
+    this.form.image = this.product.image;
   },
   methods:{
+    previewImage(event){
+      this.uploadValue=0;
+      this.picture=null;
+      this.imageData=event.target.files[0];
+      this.onUpload()
+    },
+    onUpload(){
+      const storageRef=firebase.storage().ref(`${this.imageData.name}`).put(this.imageData);
+      storageRef.on(`state_changed`, snapshot=>{
+          this.uploadValue=(snapshot.bytesTransferred/snapshot.totalBytes)*100;
+        }, error => {
+          console.log(error.message)
+        },
+        ()=>{
+          this.uploadValue=100;
+          storageRef.snapshot.ref.getDownloadURL().then((url)=>{
+            this.picture=url;
+            this.form.image= url;
+          });
+        })
+    },
     submitForm(){
       this.errors = []
       if(this.form.name && this.form.price && this.form.unit && this.form.numberInventory){

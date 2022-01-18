@@ -18,16 +18,23 @@ import StatisticalStore from './component/admin/Statistical/countStore'
 import StatisticalTopProduct from './component/admin/Statistical/topProduct'
 import StatisticalTopStore from './component/admin/Statistical/topStore'
 
+import AdminShipperOrder from './component/admin/shipperOrder/ShipperOrder'
 import Payment from './component/payment'
 import Cart from './component/cart'
 import OrderUser from './component/orderUser'
 import OrderDetailUser from './component/orderDetailUser'
 import Shipper from './component/admin/shipper/Shipper'
 import ShipperDetail from './component/admin/shipper/ShipperDetail'
-import OrderShipper from './component/shipper'
+import StoreRegister from './component/partner/store/register'
+import OrderPage from './component/user/store'
+import ProductPage from './component/user/product'
+import ShipperOrder from './component/shipper'
+import ShipperOrderDetail from './component/shipperOrderDetail'
+import ShipperOrderHistory from './component/shipperHistoryOrder'
+import ShipperReceiveOrder from './component/shipperReiceiveOrder'
 
 export const routes = [
-    //Quan ly
+    //Admin
     {path: '/', name: 'homepage', component: Home, meta:{title: 'Home'}},
     {path:'/store',name:'Store', component: Store, meta:{title: 'Store'}},
     {path: '/order',name:'Order', component: OrderManager, meta:{title:'Order'}},
@@ -52,11 +59,20 @@ export const routes = [
     {path: '/payment', name: 'Payment', component: Payment, meta:{title: 'Payment'}},
     {path: '/admin/shipper', name: 'Shipper', component: Shipper, meta:{title: 'Shipper'}},
     {path: '/admin/shipper/:id', name: 'ShipperDetail', component: ShipperDetail, meta:{title: 'ShipperDetail'}},
+    {path: '/admin/order', name: 'AdminShipperOrder', component: AdminShipperOrder, meta:{title: 'AdminShipperOrder'}},
     //user
     {path: '/user/cart', name: 'Cart', component: Cart, meta: {title: 'Cart'}},
     {path: '/user/order', name: 'OrderUser', component: OrderUser, meta: {title: 'Order'}},
     {path: '/user/order/:id', name: 'OrderDetailUser',component: OrderDetailUser, meta:{title: 'Order detail'}},
+    {path: '/storepage', name: 'Order page',component: OrderPage, meta:{title: 'Order page'}},
+    {path: '/product', name: 'Product page',component: ProductPage, meta:{title: 'Product page'}},
+    /**Store router */
+    {path: '/store/register', name: 'StoreRegister', component: StoreRegister, meta:{title: 'Store Register'}},
+    {path: '/payment', name: 'Payment', component: Payment, meta:{title: 'Payment'}},
     //shipper
     {path: '/shipper/order', name: 'OrderShipper', component: OrderShipper, meta: {title: 'OrderShipper'}},
-
+    {path: '/shipper/order', name: 'ShipperOrder', component: ShipperOrder, meta: {title: 'ShipperOrder'}},
+    {path: '/shipper/receiveOrder/:id',name:'ShipperReceiveOrder', component: ShipperReceiveOrder, meta:{title:'ShipperReceiveOrder'}},
+    {path: '/shipper/order/:id',name:'ShipperOrderDetail', component: ShipperOrderDetail, meta:{title:'ShipperOrderDetail'}},
+    {path: '/shipper/orderHistory', name: 'ShipperOrderHistory', component: ShipperOrderHistory, meta: {title: 'ShipperOrderHistory'}},
 ]

@@ -224,6 +224,7 @@ export default {
     };
   },
   methods: {
+    ...mapActions(["getPayment"]),
     changeMethod(e){
       e.preventDefault();
       if(this.paymentMethod === "online"){
@@ -232,7 +233,6 @@ export default {
         this.paymentMethod = "online"
       }
     },
-    ...mapActions(["getPayment"]),
     submitPayment(e) {
       e.preventDefault();
       axios.post("https://localhost:44337/api/payment/add", {
@@ -273,11 +273,11 @@ export default {
           ],
           "discount": "",
           "totalPrice": 100000,
-          "customerId": 123,
+          "customerId": "CUS01",
           "status": "Thành công",
-          "shipperId": 123,
+          "shipperId": "SP01",
           "shipperName": "",
-          "storeId": 1234,
+          "storeId": "ST01",
           "_class": "",
         })
         .then(function (res) {

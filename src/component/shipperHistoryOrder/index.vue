@@ -1,11 +1,11 @@
 <template>
   <div id="list_order">
     <Header/>
-    <h3>Lọc đơn hàng</h3>
+    <h3>Lịch sử giao hàng</h3>
     <form v-on:submit="findStatus">
         <div class="form-row align-items-center row">
             <div class="col-auto my-1">
-            <label class="mr-sm-2 sr-only" for="inlineFormCustomSelect">Trạng thái: </label>
+            <label class="mr-sm-2 sr-only" for="inlineFormCustomSelect">Trạng thái đơn hàng: </label>
             <select class="custom-select mr-sm-2 form-group" id="inlineFormCustomSelect" v-model="status" style="width: 200px; height: 40px;">
                 <option value="All" selected>Tất cả</option>
                 <option value="Đã tiếp nhận">Đã tiếp nhận</option>
@@ -24,15 +24,14 @@
     <table class="table table-striped">
         <thead>
             <tr>
-                <th class="col-md-1">Mã đơn hàng</th>
-                <th class="col-md-1">Họ tên khách</th>
-                <th class="col-md-1">Địa chỉ</th>
-                <th class="col-md-1">Điện thoại</th>
-                <!-- <th class="col-md-1">Trạng thái</th> -->
-                <th class="col-md-1">ShipperID</th>
-                <th class="col-md-2">Tên Shipper</th>
+                <th class="col-sm-1">Mã đơn hàng</th>
+                <th class="col-md-1">Ngày đặt hàng</th>
+                <!-- <th class="col-md-2">Họ tên khách</th> -->
+                <th class="col-md-2">Trạng thái</th>
                 <th class="col-md-2">Tổng tiền</th>
-                <th class="col-md-2">Nhận đơn hàng</th>
+                <th class="col-md-2">Mã Shipper</th>
+                <th class="col-md-2">Tên Shipper</th>
+                <th class="col-md-2">Chi tiết</th>
             </tr>
         </thead>
         <tbody>
