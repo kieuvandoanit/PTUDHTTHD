@@ -22,9 +22,9 @@
         <div class="body">
             <div class="row">
                  <div class="col-4" v-for="(product, index) in products" :key="index">
-                    <div class="card">
+                    <div class="card" v-on:click="GetProductDetail(product.id)" style="cursor: pointer;">
                         <div class="image">
-                            <img src="https://media.phunutoday.vn/files/content/2020/08/12/thit-do-tang-can-nhanh-1421.jpg" />
+                            <img :src="product.image" style="witdh: 100px"/>
                         </div>
                         <div class="content">
                                 <h6>{{product.name}}</h6>
@@ -64,6 +64,7 @@ export default {
   },
   created(){
      this.callAPI()
+     console.log(localStorage.storedData)
   },
   methods:{
       NextPage: function() {
@@ -83,7 +84,23 @@ export default {
           this.page = (this.page > 0) ? this.page-1 : 0 
           console.log(this.page)
           this.callAPI()
+      },
+      GetProductDetail: function(id) {
+          axios.get(`https://localhost:44331/api/product/${id}`)
+            .then(response =>{
+                let product = response.data
+                this.$router.push({
+                    name: 'Product Detail page',
+                    params: {
+                        product: product
+                    }
+                })
+            })
+            .catch(e => {
+                this.errors.push(e)
+            })
       }
+
   }
    
 }
@@ -98,7 +115,7 @@ export default {
      width: 100%;
  }
  .body{
-     height: 800px;
+     height: 900px;
      margin-top: 15px;
  }
  img{
