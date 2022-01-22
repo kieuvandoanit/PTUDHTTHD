@@ -34,7 +34,7 @@
             <tbody>
               <tr v-for="(product, index) in products" :key="index">
                 <th scope="row">{{index + 1}}</th>
-                <td><img src="" /></td>
+                <td><img :src="product.image" style="width: 75px;"/></td>
                 <td>{{product.name}}</td>
                 <td>{{product.price}} VNĐ</td>
                 <td>{{product.numberInventory}}</td>

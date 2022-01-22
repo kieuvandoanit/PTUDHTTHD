@@ -47,7 +47,7 @@
 </template>
 
 <script>
-import Header from '../Header.vue'
+import Header from '../HeaderShipper.vue'
 import Order from './order.vue'
 import {mapGetters, mapActions} from 'vuex'
 export default {
@@ -74,11 +74,12 @@ export default {
         },
         updateStatus(e){
             e.preventDefault()
-            axios.put('https://localhost:44337/api/ordershipper/'+this.$route.params.id,{
+            axios.put('http://localhost:52861/api/ordershipper/'+this.$route.params.id,{
                 status: this.status
             })
             .then(function(res){
                 alert(res.data);
+                
             })
             .catch(function (error) {
                 console.log(error);

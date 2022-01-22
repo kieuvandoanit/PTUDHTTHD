@@ -2,7 +2,7 @@
   <div id="header">
     <div id="logo" class="col-md-2">
       <a href="/" class="logo_link"
-        ><b-icon icon="cart-plus-fill"></b-icon>Đi chợ Thuê</a>
+        ><b-icon icon="cart-plus-fill"></b-icon>Hi Duy</a>
     </div>
     <div id="menu" class="col-md-8">
       <ul>
@@ -10,10 +10,10 @@
           <router-link tag="a" class="menu-link" to="/">Trang chủ</router-link>
         </li>
         <li>
-          <router-link tag="a" class="menu-link" to="/Store">Store</router-link>
+          <router-link tag="a" class="menu-link" to="/shipper/order">Các đơn hàng</router-link>
         </li>
         <li>
-          <router-link tag="a" class="menu-link" to="/Order">Order</router-link>
+          <router-link tag="a" class="menu-link" to="/shipper/orderHistory">Lịch sửa giao hàng</router-link>
         </li>
       </ul>
     </div>

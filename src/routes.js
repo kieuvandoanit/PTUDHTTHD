@@ -34,6 +34,9 @@ import ShipperOrder from './component/shipper'
 import ShipperOrderDetail from './component/shipperOrderDetail'
 import ShipperOrderHistory from './component/shipperHistoryOrder'
 import ShipperReceiveOrder from './component/shipperReiceiveOrder'
+import RegisterPage from './component/user/register'
+import LoginPage from './component/user/login'
+import ProductDetailPage from './component/user/productDetail'
 
 export const routes = [
     //Admin
@@ -70,6 +73,9 @@ export const routes = [
     {path: '/user/order/:id', name: 'OrderDetailUser',component: OrderDetailUser, meta:{title: 'Order detail'}},
     {path: '/storepage', name: 'Order page',component: OrderPage, meta:{title: 'Order page'}},
     {path: '/product', name: 'Product page',component: ProductPage, meta:{title: 'Product page'}},
+    {path: '/register', name: 'Register page',component: RegisterPage, meta:{title: 'Register page'}},
+    {path: '/login', name: 'Login page',component: LoginPage, meta:{title: 'Login page'}},
+    {path: '/product-detail', name: 'Product Detail page',component: ProductDetailPage, meta:{title: 'Product Detail page'}},
     /**Store router */
     {path: '/store/register', name: 'StoreRegister', component: StoreRegister, meta:{title: 'Store Register'}},
     {path: '/payment', name: 'Payment', component: Payment, meta:{title: 'Payment'}},

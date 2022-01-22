@@ -235,7 +235,7 @@ export default {
     },
     submitPayment(e) {
       e.preventDefault();
-      axios.post("https://localhost:44337/api/payment/add", {
+      axios.post("http://localhost:52861/api/order/add", {
           "orderDate": new Date(),
           "payments": this.paymentMethod,
           "paymentOnline": {
