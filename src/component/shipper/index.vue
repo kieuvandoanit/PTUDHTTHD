@@ -75,7 +75,9 @@ export default {
         },
         updateStatus(e){
             e.preventDefault()
+
             axios.put('http://localhost:52861/api/ordershipper/'+this.$route.params.id,{
+
                 status: this.status
             })
             .then(function(res){
