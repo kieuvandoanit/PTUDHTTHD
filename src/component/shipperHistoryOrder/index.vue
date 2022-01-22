@@ -47,7 +47,7 @@
 </template>
 
 <script>
-import Header from '../Header.vue'
+import Header from '../HeaderShipper.vue'
 import Order from './order.vue'
 import {mapGetters, mapActions} from 'vuex'
 export default {
@@ -79,6 +79,7 @@ export default {
             })
             .then(function(res){
                 alert(res.data);
+                
             })
             .catch(function (error) {
                 console.log(error);

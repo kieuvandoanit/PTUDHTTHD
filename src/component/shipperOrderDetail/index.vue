@@ -86,7 +86,7 @@
 
 <script>
 import axios from 'axios';
-import Header from '../Header.vue'
+import Header from '../HeaderShipper.vue'
 import Product from './product.vue'
 import {mapGetters, mapActions} from 'vuex'
 export default {
