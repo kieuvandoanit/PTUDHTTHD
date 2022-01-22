@@ -32,7 +32,7 @@
                 <th class="col-md-1">ShipperID</th>
                 <th class="col-md-2">Tên Shipper</th>
                 <th class="col-md-2">Tổng tiền</th>
-                <th class="col-md-2">Nhận đơn hàng</th>
+                <th class="col-md-2">Nhận đơn</th>
             </tr>
         </thead>
         <tbody>
@@ -48,7 +48,7 @@
 </template>
 
 <script>
-import Header from '../Header.vue'
+import Header from '../HeaderShipper.vue'
 import Order from './order.vue'
 import {mapGetters, mapActions} from 'vuex'
 export default {
