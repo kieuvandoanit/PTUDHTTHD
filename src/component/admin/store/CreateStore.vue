@@ -54,7 +54,7 @@
 import Header from '../partials/header';
 import Sidebar from '../partials/sidebar';
 import axios from 'axios';
- 
+
 export default {
   components: {
     Header,
@@ -88,7 +88,7 @@ export default {
         })
         .catch((error) =>{
           this.errors.push(error)
-        }) 
+        })
       }
       if(!this.form.name){
       this.errors.push("Tên bắt buộc phải nhập")

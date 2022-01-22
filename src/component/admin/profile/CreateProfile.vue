@@ -25,18 +25,18 @@
           <div>
               <label for="name">Chứng nhận vệ sinh an toàn thực phẩm*</label>
               <input type="file" @change="previewImage2" accept="image/*">
-              <p>Loading: {{uploadValue.toFixed()+"%"}}
-                <progress :value="uploadValue" max="100"></progress>
+              <p>Loading: {{uploadValue2.toFixed()+"%"}}
+                <progress :value="uploadValue2" max="100"></progress>
               </p>
               <img :src="foodSafetyCertificateImg" style="width: 200px">
           </div>
           <div class="form-group item-input">
               <label for="name">Tên cửa hàng</label>
-              <input type="text" class="form-control" id="name" placeholder="Nhập tên sản phẩm" v-model="form.storeName">
+              <input type="text" class="form-control" id="name" placeholder="Nhập tên cửa hàng" v-model="form.storeName">
           </div>
           <div class="form-group item-input">
             <label for="price">Mã cửa hàng</label>
-            <input type="number" class="form-control" id="price" placeholder="Nhập đơn giá" v-model="form.store_id">
+            <input type="text" class="form-control" id="price" placeholder="Mã cửa hàng" v-model="form.store_id">
           </div>
            <div class="form-group item-input" >
                <button class="btn btn-success btn-add">Thêm mới</button>
@@ -65,6 +65,7 @@ export default {
       foodSafetyCertificateData: null,
       foodSafetyCertificateImg: null,
       uploadValue: 0,
+      uploadValue2: 0,
       form: {
         storeName: '',
         store_id: '',
@@ -96,7 +97,7 @@ export default {
         })
     },
     previewImage2(event){
-      this.uploadValue=0;
+      this.uploadValue2=0;
       this.foodSafetyCertificateImg=null;
       this.foodSafetyCertificateData=event.target.files[0];
       this.onUpload2()
@@ -109,7 +110,7 @@ export default {
           console.log(error.message)
         },
         ()=>{
-          this.uploadValue=100;
+          this.uploadValue2=100;
           storageRef.snapshot.ref.getDownloadURL().then((url)=>{
             this.foodSafetyCertificateImg=url;
             this.form.foodSafetyCertificate= url;
@@ -133,7 +134,7 @@ export default {
       this.errors.push("Tên bắt buộc phải nhập")
       }
       if(!this.form.store_id){
-        this.errors.push("Đơn giá bắt buộc phải nhập")
+        this.errors.push("Mã bắt buộc phải nhập")
       }
 
     }

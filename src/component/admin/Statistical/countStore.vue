@@ -63,18 +63,6 @@ export default {
     axios.get("http://localhost:36028/api/Store")
     .then(response =>{
       this.Stores = response.data;
-      // let districts= ["1","2","3","4","5","6","7","8","9"];
-      // districts.forEach( district =>{
-      //   let countStore=[];
-      //   countStore = this.Stores.filter(item => item.address.district === district);
-      //   this.StatiscalStore.push({
-      //     district: district,
-      //     province: "Hồ Chí Minh",
-      //     count: countStore.length,
-      //   })
-      //   //console.log(`${district} : ${countStore.length}`);
-      // })
-      console.log( this.Stores);
     })
     .catch(e =>{
       this.errors.push(e)

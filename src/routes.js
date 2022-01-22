@@ -11,12 +11,14 @@ import UpdateStoreManager from './component/admin/store/UpdateStore'
 import ProfileManager from './component/admin/profile/Profile'
 import CreateProfileManager from './component/admin/profile/CreateProfile'
 import UpdateProfileManager from './component/admin/profile/UpdateProfile'
+import ProductDetail from './component/product_detail'
 
 import StatisticalUser from './component/admin/Statistical/countUser'
 import StatisticalShipper from './component/admin/Statistical/countShipper'
 import StatisticalStore from './component/admin/Statistical/countStore'
 import StatisticalTopProduct from './component/admin/Statistical/topProduct'
 import StatisticalTopStore from './component/admin/Statistical/topStore'
+import StatisticalProduct from './component/admin/Statistical/statisticalProduct'
 
 import AdminShipperOrder from './component/admin/shipperOrder/ShipperOrder'
 import Payment from './component/payment'
@@ -48,13 +50,15 @@ export const routes = [
     {path:'/admin/store/update', name:'UpdateStore', component: UpdateStoreManager, meta:{title:'UpdateStoreManager'}},
     {path:'/admin/profile', name:'Profile', component: ProfileManager, meta:{title:'ProfileManager'}},
     {path:'/admin/profile/create', name:'CreateProfile', component: CreateProfileManager, meta:{title:'CreateProfileManager'}},
-    {path:'/admin/profile/update', name:'UpdateProfile', component: StatisticalTopStore, meta:{title:'StatisticalTopStore'}},
+    {path:'/admin/profile/update', name:'UpdateProfile', component: UpdateProfileManager, meta:{title:'UpdateProfileManager'}},
+
 
     {path:'/admin/statistical/countUser', name:'countShipper', component: StatisticalUser, meta:{title:'StatisticalUser'}},
     {path:'/admin/statistical/countShipper', name:'countShipper', component: StatisticalShipper, meta:{title:'StatisticalShipper'}},
     {path:'/admin/statistical/countStore', name:'countStore', component: StatisticalStore, meta:{title:'StatisticalStore'}},
     {path:'/admin/statistical/topProduct', name:'topProduct', component: StatisticalTopProduct, meta:{title:'StatisticalTopProduct'}},
     {path:'/admin/statistical/topStore', name:'topStore', component: StatisticalTopStore, meta:{title:'StatisticalTopStore'}},
+    {path:'/admin/statistical/StatisticalProduct', name:'topStatisticalProduct', component: StatisticalProduct, meta:{title:'StatisticalProduct'}},
 
     {path: '/payment', name: 'Payment', component: Payment, meta:{title: 'Payment'}},
     {path: '/admin/shipper', name: 'Shipper', component: Shipper, meta:{title: 'Shipper'}},
@@ -69,8 +73,9 @@ export const routes = [
     /**Store router */
     {path: '/store/register', name: 'StoreRegister', component: StoreRegister, meta:{title: 'Store Register'}},
     {path: '/payment', name: 'Payment', component: Payment, meta:{title: 'Payment'}},
+    {path:'/products/:id',name:'ProductDetail',component: ProductDetail,meta:{title:'Product Details'}},
+
     //shipper
-    {path: '/shipper/order', name: 'OrderShipper', component: OrderShipper, meta: {title: 'OrderShipper'}},
     {path: '/shipper/order', name: 'ShipperOrder', component: ShipperOrder, meta: {title: 'ShipperOrder'}},
     {path: '/shipper/receiveOrder/:id',name:'ShipperReceiveOrder', component: ShipperReceiveOrder, meta:{title:'ShipperReceiveOrder'}},
     {path: '/shipper/order/:id',name:'ShipperOrderDetail', component: ShipperOrderDetail, meta:{title:'ShipperOrderDetail'}},

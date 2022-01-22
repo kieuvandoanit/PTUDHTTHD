@@ -6,7 +6,7 @@
         <Sidebar/>
       </div>
       <div class="col-9 body">
-        <h1>Sửa sản phẩm</h1>
+        <h1>Thêm mới Thông tin</h1>
         <form class="needs-validation cus-form" v-on:submit.prevent="submitForm">
         <p v-if="errors.length">
           <b>Lỗi:</b>
@@ -15,35 +15,31 @@
           </ul>
         </p>
           <div>
-              <label for="name">Hình ảnh*</label>
+              <label for="name">Giấy phép kinh doanh*</label>
               <input type="file" @change="previewImage" accept="image/*">
               <p>Loading: {{uploadValue.toFixed()+"%"}}
                 <progress :value="uploadValue" max="100"></progress>
               </p>
-              <img :src="form.image" style="width: 200px">
+              <img :src="businessLicenseImg" style="width: 200px">
+          </div>
+          <div>
+              <label for="name">Chứng nhận vệ sinh an toàn thực phẩm*</label>
+              <input type="file" @change="previewImage2" accept="image/*">
+              <p>Loading: {{uploadValue2.toFixed()+"%"}}
+                <progress :value="uploadValue2" max="100"></progress>
+              </p>
+              <img :src="foodSafetyCertificateImg" style="width: 200px">
           </div>
           <div class="form-group item-input">
-              <label for="name">Tên sản phẩm*</label>
-              <input type="text" class="form-control" id="name" placeholder="Nhập tên sản phẩm" v-model="form.name">
+              <label for="name">Tên cửa hàng</label>
+              <input type="text" class="form-control" id="name" placeholder="Nhập tên cửa hàng" v-model="form.storeName">
           </div>
           <div class="form-group item-input">
-            <label for="price">Đơn giá*</label>
-            <input type="number" class="form-control" id="price" placeholder="Nhập đơn giá" v-model="form.price">
-          </div>
-           <div class="form-group item-input">
-            <label for="numberInventory">Số lượng*</label>
-            <input type="number" class="form-control" id="numberInventory" placeholder="Nhập đơn giá" v-model="form.numberInventory">
-          </div>
-          <div class="form-group item-input">
-            <label for="unit">Đơn vị*</label>
-            <input type="text" class="form-control" id="unit" placeholder="Nhập đơn giá" v-model="form.unit">
-          </div>
-          <div class="form-group item-input">
-            <label for="desc" class="form-label">Mô tả sản phẩm</label>
-            <textarea class="form-control" id="desc" rows="3" v-model="form.desc" name="desc"></textarea>
+            <label for="price">Mã cửa hàng</label>
+            <input type="text" class="form-control" id="price" placeholder="Mã cửa hàng" v-model="form.store_id">
           </div>
            <div class="form-group item-input" >
-               <button class="btn btn-success btn-add">Cập nhật</button>
+               <button class="btn btn-success btn-add">Thêm mới</button>
           </div>
         </form>
       </div>
@@ -70,6 +66,7 @@ export default {
       foodSafetyCertificateData: null,
       foodSafetyCertificateImg: null,
       uploadValue: 0,
+      uploadValue2: 0,
       form: {
         storeName: '',
         store_id: '',
@@ -79,24 +76,23 @@ export default {
     }
   },
   created(){
-    this.product = this.$route.params.product;
+    this.profile = this.$route.params.profile;
     console.log(this.product)
-    this.form.name = this.product.name;
-    this.form.price = this.product.price;
-    this.form.numberInventory = this.product.numberInventory;
-    this.form.unit = this.product.unit;
-    this.form.desc = this.product.desc;
-    this.form.image = this.product.image;
+    this.form.storeName = this.profile.storeName;
+    this.form.store_id = this.profile.store_id;
+    this.form.businessLicense = this.profile.businessLicense;
+    this.form.foodSafetyCertificate = this.profile.foodSafetyCertificate;
+
   },
   methods:{
     previewImage(event){
       this.uploadValue=0;
-      this.picture=null;
-      this.imageData=event.target.files[0];
+      this.businessLicenseImg=null;
+      this.businessLicenseData=event.target.files[0];
       this.onUpload()
     },
     onUpload(){
-      const storageRef=firebase.storage().ref(`${this.imageData.name}`).put(this.imageData);
+      const storageRef=firebase.storage().ref(`${this.businessLicenseData.name}`).put(this.businessLicenseData);
       storageRef.on(`state_changed`, snapshot=>{
           this.uploadValue=(snapshot.bytesTransferred/snapshot.totalBytes)*100;
         }, error => {
@@ -105,8 +101,29 @@ export default {
         ()=>{
           this.uploadValue=100;
           storageRef.snapshot.ref.getDownloadURL().then((url)=>{
-            this.picture=url;
-            this.form.image= url;
+            this.businessLicenseImg=url;
+            this.form.businessLicense= url;
+          });
+        })
+    },
+    previewImage2(event){
+      this.uploadValue2=0;
+      this.foodSafetyCertificateImg=null;
+      this.foodSafetyCertificateData=event.target.files[0];
+      this.onUpload2()
+    },
+    onUpload2(){
+      const storageRef=firebase.storage().ref(`${this.foodSafetyCertificateData.name}`).put(this.foodSafetyCertificateData);
+      storageRef.on(`state_changed`, snapshot=>{
+          this.uploadValue=(snapshot.bytesTransferred/snapshot.totalBytes)*100;
+        }, error => {
+          console.log(error.message)
+        },
+        ()=>{
+          this.uploadValue2=100;
+          storageRef.snapshot.ref.getDownloadURL().then((url)=>{
+            this.foodSafetyCertificateImg=url;
+            this.form.foodSafetyCertificate= url;
           });
         })
     },
@@ -127,7 +144,7 @@ export default {
       this.errors.push("Tên bắt buộc phải nhập")
       }
       if(!this.form.store_id){
-        this.errors.push("Đơn giá bắt buộc phải nhập")
+        this.errors.push("Mã bắt buộc phải nhập")
       }
 
     }
