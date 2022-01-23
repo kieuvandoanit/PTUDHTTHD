@@ -11,7 +11,6 @@ import UpdateStoreManager from './component/admin/store/UpdateStore'
 import ProfileManager from './component/admin/profile/Profile'
 import CreateProfileManager from './component/admin/profile/CreateProfile'
 import UpdateProfileManager from './component/admin/profile/UpdateProfile'
-import ProductDetail from './component/product_detail'
 
 import StatisticalUser from './component/admin/Statistical/countUser'
 import StatisticalShipper from './component/admin/Statistical/countShipper'
@@ -30,7 +29,7 @@ import OrderDetailUser from './component/orderDetailUser'
 import Shipper from './component/admin/shipper/Shipper'
 import ShipperDetail from './component/admin/shipper/ShipperDetail'
 import StoreRegister from './component/partner/store/register'
-import OrderPage from './component/user/store'
+import StorePage from './component/user/store'
 import ProductPage from './component/user/product'
 import ShipperOrder from './component/shipper'
 import ShipperOrderDetail from './component/shipperOrderDetail'
@@ -39,6 +38,7 @@ import ShipperReceiveOrder from './component/shipperReiceiveOrder'
 import RegisterPage from './component/user/register'
 import LoginPage from './component/user/login'
 import ProductDetailPage from './component/user/productDetail'
+import ProductDetail from './component/product_detail'
 
 export const routes = [
     //Admin
@@ -76,7 +76,7 @@ export const routes = [
     {path: '/user/cart', name: 'Cart', component: Cart, meta: {title: 'Cart'}},
     {path: '/user/order', name: 'OrderUser', component: OrderUser, meta: {title: 'Order'}},
     {path: '/user/order/:id', name: 'OrderDetailUser',component: OrderDetailUser, meta:{title: 'Order detail'}},
-    {path: '/storepage', name: 'Order page',component: OrderPage, meta:{title: 'Order page'}},
+    {path: '/storepage', name: 'Store page',component: StorePage, meta:{title: 'Store page'}},
     {path: '/product', name: 'Product page',component: ProductPage, meta:{title: 'Product page'}},
     {path: '/register', name: 'Register page',component: RegisterPage, meta:{title: 'Register page'}},
     {path: '/login', name: 'Login page',component: LoginPage, meta:{title: 'Login page'}},
@@ -84,7 +84,7 @@ export const routes = [
     /**Store router */
     {path: '/store/register', name: 'StoreRegister', component: StoreRegister, meta:{title: 'Store Register'}},
     {path: '/payment', name: 'Payment', component: Payment, meta:{title: 'Payment'}},
-    {path:'/products/:id',name:'ProductDetail',component: ProductDetail,meta:{title:'Product Details'}},
+    {path:'/products/origin',name:'ProductDetail',component: ProductDetail,meta:{title:'Product Details'}},
 
     //shipper
     {path: '/shipper/order', name: 'ShipperOrder', component: ShipperOrder, meta: {title: 'ShipperOrder'}},

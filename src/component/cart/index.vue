@@ -47,7 +47,8 @@ export default {
     ProductCart
   },
   created(){
-    this.getCart(12345)
+    let userID = localStorage.getItem('userID');
+    this.getCart(userID)
   },
   computed: {
     ...mapGetters(['cart'])
@@ -55,7 +56,7 @@ export default {
   methods:{
     ...mapActions(['getCart']),
     updateOrder(){
-      let userID = 12345;
+      let userID = localStorage.getItem('userID');
       let cart = {
         product: this.cart.product,
         totalPrice: this.cart.totalPrice

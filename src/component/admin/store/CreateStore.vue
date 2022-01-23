@@ -20,27 +20,31 @@
           </div>
           <div class="form-group item-input">
             <label for="phone_number">Số điện thoại*</label>
-            <input type="text" class="form-control" id="phone_number" placeholder="Nhập đơn giá" v-model="form.phone_number">
+            <input type="text" class="form-control" id="phone_number" placeholder="Nhập số điện thoại" v-model="form.phone_number">
           </div>
         <div class="form-group item-input">
-            <label for="province">Thành phố*</label>
-            <input type="text" class="form-control" id="province" placeholder="Nhập thành phố" v-model="form.province">
-        </div>
-        <div class="form-group item-input">
-            <label for="distric">Quận/huyện*</label>
-            <input type="text" class="form-control" id="distric" placeholder="Nhập quận/huyện" v-model="form.distric">
-        </div>
+            <label for="province">Chọn tỉnh/thành phố*</label>
+            <select class="form-control" v-model="form.address.province" @change="changeProvince">
+                <option v-for="province in provinces" v-bind:value="province.name" >{{ province.name }}</option>  
+            </select>
+          </div>
+          <div class="form-group item-input">
+            <label for="district">Chọn quận/huyện*</label>
+            <select class="form-control" v-model="form.address.district">
+                <option v-for="district in districts" v-bind:value="district.name" >{{ district.name }}</option>  
+            </select>
+          </div>
         <div class="form-group item-input">
             <label for="ward">Phường/xã*</label>
-            <input type="text" class="form-control" id="ward" placeholder="Nhập phường/xã" v-model="form.ward">
+            <input type="text" class="form-control" id="ward" placeholder="Nhập phường/xã" v-model="form.address.ward">
         </div>
         <div class="form-group item-input">
             <label for="street">Tên đường*</label>
-            <input type="text" class="form-control" id="street" placeholder="Nhập phường/xã" v-model="form.street">
+            <input type="text" class="form-control" id="street" placeholder="Nhập tên đường" v-model="form.address.street">
         </div>
         <div class="form-group item-input">
             <label for="home_number">Số nhà*</label>
-            <input type="text" class="form-control" id="home_number" placeholder="Nhập số nhà" v-model="form.home_number">
+            <input type="text" class="form-control" id="home_number" placeholder="Nhập số nhà" v-model="form.address.home_number">
         </div>
         <div class="form-group item-input" >
             <button class="btn btn-success btn-add">Thêm mới</button>
@@ -63,23 +67,36 @@ export default {
   data () {
     return {
       errors: [],
+      districts: [],
+      provinces: [],
       form: {
         name: '',
         phone_number: '',
-        province: '',
-        distric: '',
-        ward: '',
-        street: '',
-        home_number:'',
+        address:{
+          province: '',
+          district: '',
+          ward: '',
+          street: '',
+          home_number:''
+        },
         isApprove: ''
       }
     }
   },
+  created(){
+    axios.get('https://provinces.open-api.vn/api/?depth=2')
+        .then((res) => {
+          this.provinces = res.data;
+    }) 
+  },
   methods:{
+     changeProvince(){
+        this.districts = this.provinces.filter(item => item.name === this.form.address.province)[0]['districts']
+    },
     submitForm(){
       this.errors = []
       this.form.isApprove = "no";
-      if(this.form.name && this.form.phone_number && this.form.province && this.form.distric && this.form.ward && this.form.street && this.form.home_number){
+      if(this.form.name && this.form.phone_number && this.form.address.province && this.form.address.district && this.form.address.ward && this.form.address.street && this.form.address.home_number){
         axios.post('http://localhost:8099/createStore', this.form)
         .then((res) => {
           if(res.data){
@@ -96,7 +113,7 @@ export default {
       if(!this.form.phone_number){
         this.errors.push("Điện thoại bắt buộc phải nhập")
       }
-      if(!this.form.province && !this.form.distric && !this.form.ward && !this.form.street && !this.form.home_number){
+      if(!this.form.address.province && !this.form.address.district && !this.form.address.ward && !this.form.address.street && !this.form.address.home_number){
         this.errors.push("Địa chỉ bắt buộc phải nhập đầy đủ")
       }
     }

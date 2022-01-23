@@ -41,6 +41,7 @@
                 <td>
                     <button type="button" class="btn btn-primary" v-on:click="UpdateProduct(product.id)">Sửa</button>
                     <button type="button" class="btn btn-danger" v-on:click="DeleteProduct(product.id)">Xóa</button>
+                    <button type="button" class="btn btn-success" v-on:click="OriginProduct(product.id)">Nguồn gốc</button>
                 </td>
               </tr>
             </tbody>
@@ -67,10 +68,9 @@ export default {
     }
   },
   created(){
-    axios.get("http://localhost:8099/products?size=100&page=0")
+    axios.get("http://localhost:8099/products")
     .then(response =>{
-      this.products = response.data['content']
-      console.log(this.products)
+      this.products = response.data
     })
     .catch(e =>{
       this.errors.push(e)
@@ -93,6 +93,18 @@ export default {
         if(product.id === productID){
           this.$router.push({
             name: 'UpdateProduct',
+            params: {
+              product: product
+            }
+          })
+        }
+      })
+    },
+    OriginProduct: function(productID){
+      this.products.forEach(product =>{
+        if(product.id === productID){
+          this.$router.push({
+            name: 'ProductDetail',
             params: {
               product: product
             }

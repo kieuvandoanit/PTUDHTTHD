@@ -47,14 +47,15 @@ export default {
         axios.post('https://localhost:44331/login', this.form)
         .then((res) => {
           if(res.data){
-            localStorage.setItem('userID', res.data.Id)
-            localStorage.setItem('name', res.data.name)
-            localStorage.setItem('phone', res.data.phone)
-            localStorage.setItem('province', res.data.province)
-            localStorage.setItem('district', res.data.district)
-            localStorage.setItem('ward', res.data.ward)
-            localStorage.setItem('street', res.data.street)
-            this.$router.push('/product')
+            localStorage.setItem('userID', res.data[0].Id)
+            localStorage.setItem('name', res.data[0].name)
+            localStorage.setItem('phone', res.data[0].phone)
+            localStorage.setItem('province', res.data[0].province)
+            localStorage.setItem('district', res.data[0].district)
+            localStorage.setItem('ward', res.data[0].ward)
+            localStorage.setItem('street', res.data[0].street)
+            localStorage.setItem('home_number', res.data[0].home_number)
+            this.$router.push('/storepage')
           }
         })
         .catch((error) =>{

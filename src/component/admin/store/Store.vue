@@ -9,7 +9,7 @@
         <div class="row header-body">
            <div class="col-6">
             <button type="button" class="btn btn-success" v-on:click="AddStore">Thêm cửa hàng</button>
-          </div> 
+          </div>
           <div class="col-6">
             <div class="input-group mb-3">
               <input type="text" class="form-control" placeholder="Tìm kiếm cửa hàng">
@@ -39,6 +39,7 @@
                 <td>
                     <button type="button" class="btn btn-primary" v-on:click="UpdateStore(store.id)">Sửa</button>
                     <button type="button" class="btn btn-danger" v-on:click="DeleteStore(store.id)">Xóa</button>
+                    <button type="button" class="btn btn-success" v-on:click="StatisticalStore(store.id)">DoanhThu</button>
                 </td>
               </tr>
             </tbody>
@@ -90,6 +91,18 @@ export default {
         if(store.id === storeID){
           this.$router.push({
             name: 'UpdateStore',
+            params: {
+              store: store
+            }
+          })
+        }
+      })
+    },
+    StatisticalStore: function(storeID){
+      this.stores.forEach(store =>{
+        if(store.id === storeID){
+          this.$router.push({
+            name: 'topStore',
             params: {
               store: store
             }
