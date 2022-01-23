@@ -20,7 +20,7 @@
               <p>Loading: {{uploadValue.toFixed()+"%"}}
                 <progress :value="uploadValue" max="100"></progress>
               </p>
-              <img :src="businessLicenseImg" style="width: 200px">
+              <img :src="form.businessLicense" style="width: 200px">
           </div>
           <div>
               <label for="name">Chứng nhận vệ sinh an toàn thực phẩm*</label>
@@ -28,7 +28,7 @@
               <p>Loading: {{uploadValue2.toFixed()+"%"}}
                 <progress :value="uploadValue2" max="100"></progress>
               </p>
-              <img :src="foodSafetyCertificateImg" style="width: 200px">
+              <img :src="form.foodSafetyCertificate" style="width: 200px">
           </div>
           <div class="form-group item-input">
               <label for="name">Tên cửa hàng</label>
@@ -39,7 +39,7 @@
             <input type="text" class="form-control" id="price" placeholder="Mã cửa hàng" v-model="form.store_id">
           </div>
            <div class="form-group item-input" >
-               <button class="btn btn-success btn-add">Thêm mới</button>
+               <button class="btn btn-success btn-add">Cập nhật</button>
           </div>
         </form>
       </div>
@@ -133,7 +133,7 @@ export default {
         axios.put(`http://localhost:6040/updateProfile/${this.profile.id}`, this.form)
         .then((res) => {
           if(res.data){
-            this.$router.push('/admin/product')
+            this.$router.push('/admin/profile')
           }
         })
         .catch((error) =>{

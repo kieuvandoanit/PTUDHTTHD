@@ -48,14 +48,30 @@ export default {
         isBuy : false,
         commentList: [],
         contentInput: '',
+        product: {},
     }
   },
   created(){
-    this.product = this.$route.params.product;
-    this.subTotal = this.quantity*this.product.price;
     this.userID = localStorage.getItem('userID')
     this.getOrderByUserId();
-    this.GetCommentByProductIdAndUserID();
+    if(JSON.stringify(this.$route.params) === '{}'){
+        console.log('reload')
+        let productId = localStorage.getItem('productId');
+        axios.get(`https://localhost:44331/api/product/${productId}`)
+            .then(response =>{
+                this.product = response.data;
+                this.subTotal = this.quantity*this.product.price;
+            })
+            .catch(e =>{
+                this.errors.push(e)
+            })
+        this.GetCommentByProductIdAndUserID(productId);
+    }else{
+        this.product = this.$route.params.product;
+        this.subTotal = this.quantity*this.product.price;
+        localStorage.setItem('productId', this.product.Id);
+        this.GetCommentByProductIdAndUserID(this.product.Id);
+    }
   },
   methods:{
       getOrderByUserId(){
@@ -65,7 +81,7 @@ export default {
                 ordersListByUserId.forEach((order, indexOrder) => {
                     let productsOfOrder = order.product;
                     productsOfOrder.forEach((product, indexProduct) =>{
-                        if(product.productName == this.product.name){
+                        if(product.productID == this.product.Id){
                             this.isBuy = true;
                         }
                     })
@@ -99,8 +115,8 @@ export default {
                 }
             })
       },
-      GetCommentByProductIdAndUserID(){
-          axios.get(`https://localhost:44331/api/comment?userId=${this.userID}&productId=${this.product.Id}`)
+      GetCommentByProductIdAndUserID(productId){
+          axios.get(`https://localhost:44331/api/comment?userId=${this.userID}&productId=${productId}`)
             .then(response =>{
                 this.commentList = response.data;
             })
