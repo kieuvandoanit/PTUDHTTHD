@@ -64,13 +64,13 @@ export default {
     return {
       profiles: [],
       errors: []
+
     }
   },
   created(){
     axios.get("http://localhost:6040/profile")
     .then(response =>{
       this.profiles = response.data
-      console.log(this.profiles);
     })
     .catch(e =>{
       this.errors.push(e)

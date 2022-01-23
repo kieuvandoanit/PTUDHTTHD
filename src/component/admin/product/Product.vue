@@ -41,6 +41,7 @@
                 <td>
                     <button type="button" class="btn btn-primary" v-on:click="UpdateProduct(product.id)">Sửa</button>
                     <button type="button" class="btn btn-danger" v-on:click="DeleteProduct(product.id)">Xóa</button>
+                    <button type="button" class="btn btn-success" v-on:click="OriginProduct(product.id)">Nguồn gốc</button>
                 </td>
               </tr>
             </tbody>
@@ -93,6 +94,18 @@ export default {
         if(product.id === productID){
           this.$router.push({
             name: 'UpdateProduct',
+            params: {
+              product: product
+            }
+          })
+        }
+      })
+    },
+    OriginProduct: function(productID){
+      this.products.forEach(product =>{
+        if(product.id === productID){
+          this.$router.push({
+            name: 'ProductDetail',
             params: {
               product: product
             }
