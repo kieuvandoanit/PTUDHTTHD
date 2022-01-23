@@ -46,8 +46,12 @@
             <input type="text" class="form-control" id="ward" placeholder="Nhập phường/xã" v-model="form.ward">
           </div>
           <div class="form-group item-input">
-            <label for="street">Nhập số nhà - tên đường*</label>
+            <label for="street">Nhập tên đường*</label>
             <input type="text" class="form-control" id="street" placeholder="Nhập số nhà - tên đường" v-model="form.street">
+          </div>
+          <div class="form-group item-input">
+            <label for="street">Nhập số nhà*</label>
+            <input type="text" class="form-control" id="street" placeholder="Nhập số nhà - tên đường" v-model="form.home_number">
           </div>
           <div class="form-group item-input">
             <label for="role">Chọn chức năng của bạn*</label>
@@ -90,6 +94,7 @@ export default {
         ward: '',
         street: '',
         role: 1,
+        home_number: '',
       }
     }
   },
