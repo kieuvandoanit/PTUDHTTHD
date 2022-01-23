@@ -1,7 +1,7 @@
 <template>
   <div id="list_order">
     <Header/>
-    <h3>Lịch sử giao hàng</h3>
+    <!-- <h3>Lịch sử giao hàng</h3>
     <form v-on:submit="findStatus">
         <div class="form-row align-items-center row">
             <div class="col-auto my-1">
@@ -19,7 +19,7 @@
             <button type="submit" class="btn btn-primary">Submit</button>
             </div>
         </div>
-    </form>
+    </form> -->
     <h4>Danh sách đơn hàng</h4>
     <table class="table table-striped">
         <thead>
@@ -36,7 +36,7 @@
         </thead>
         <tbody>
             <Order
-                v-for="order in orders"
+                v-for="order in orderShipper"
                 :key="order.id"
                 v-bind:order="order"
             />
@@ -61,13 +61,14 @@ export default {
         }
     },
     created(){
-        this.getOrder()
+        let shipperID = '61cbcfcc603371c45627a7e7';
+        this.getOrderByShipper(shipperID)
     },
     computed:{
-        ...mapGetters(['orders'])
+        ...mapGetters(['orderShipper'])
     },
     methods:{
-        ...mapActions(['getOrder']),
+        ...mapActions(['getOrderByShipper']),
         findStatus(e){
             e.preventDefault();
             this.$store.dispatch('filterOrder',this.status)
