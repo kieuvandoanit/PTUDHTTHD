@@ -17,7 +17,11 @@
                 <div class="input-group-append">
                     <button class="input-group-text">Tìm kiếm</button>
                 </div>
+                <div>
+                    <router-link to="/user/cart"><img style="height: 35px;" src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/df/Shopping_cart_icon.svg/116px-Shopping_cart_icon.svg.png" alt=""></router-link>
+                </div>
             </div>
+            
         </div>
         <div class="body">
             <div class="row">

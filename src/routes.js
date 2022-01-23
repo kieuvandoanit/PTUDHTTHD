@@ -1,3 +1,5 @@
+import auth from './middleware/auth';
+import log from './middleware/log';
 import Home from './component/home'
 import Store from './component/store'
 import OrderManager from './component/order'
@@ -42,7 +44,7 @@ import ProductDetail from './component/product_detail'
 
 export const routes = [
     //Admin
-    {path: '/', name: 'homepage', component: Home, meta:{title: 'Home'}},
+    {path: '/', name: 'homepage', component: Home, meta:{middleware: auth, title: 'Home'}},
     {path:'/store',name:'Store', component: Store, meta:{title: 'Store'}},
     {path: '/order',name:'Order', component: OrderManager, meta:{title:'Order'}},
     {path:'/order/:id',name:'OrderDetail',component: OrderDetail,meta:{title:'Order Details'}},
@@ -79,7 +81,7 @@ export const routes = [
     {path: '/storepage', name: 'Store page',component: StorePage, meta:{title: 'Store page'}},
     {path: '/product', name: 'Product page',component: ProductPage, meta:{title: 'Product page'}},
     {path: '/register', name: 'Register page',component: RegisterPage, meta:{title: 'Register page'}},
-    {path: '/login', name: 'Login page',component: LoginPage, meta:{title: 'Login page'}},
+    {path: '/login', name: 'Login',component: LoginPage, meta:{title: 'Login page'}},
     {path: '/product-detail', name: 'Product Detail page',component: ProductDetailPage, meta:{title: 'Product Detail page'}},
     /**Store router */
     {path: '/store/register', name: 'StoreRegister', component: StoreRegister, meta:{title: 'Store Register'}},

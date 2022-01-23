@@ -233,33 +233,19 @@ export default {
             "street": this.address.street,
             "home_number": this.address.home_number,
           },
-          "product": [
-            {
-              "productName": "Cà rốt",
-              "price": "50.000",
-              "unit": "kg",
-              "quantity": "2",
-              "productImage": "",
-            },
-            {
-              "productName": "Khoai lang Nhật",
-              "price": "50.000",
-              "unit": "kg",
-              "quantity": "2",
-              "productImage": "",
-            },
-          ],
+          "product": this.cart.product,
           "discount": "",
-          "totalPrice": 100000,
-          "customerId": "CUS01",
-          "status": "Thành công",
-          "shipperId": "SP01",
+          "totalPrice": this.cart.totalPrice,
+          "customerId": this.cart.userID,
+          "status": "Chờ tiếp nhận",
+          "shipperId": "",
           "shipperName": "",
-          "storeId": "ST01",
+          "storeId": localStorage.getItem("storeID"),
           "_class": "",
         })
         .then(function (res) {
           alert(res.data);
+          
         })
         .catch(function (error) {
           console.log(error);
