@@ -1,5 +1,6 @@
 <template>
    <div class="container-fluid">
+       <HeaderUser/>
         <div class="header">
             <div class="row d-flex align-items-center h-100">
                 <div class="col-4" style="padding-left: 20px">
@@ -45,9 +46,10 @@
 </template>
 <script>
 import axios from 'axios';
-
+import HeaderUser from '../Header_user.vue'
 export default {
   components: {
+      HeaderUser
   },
   data () {
     return {

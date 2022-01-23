@@ -58,7 +58,7 @@ const order = {
         async getOrder({commit}){
             try{
                 //const response = await axios.get('http://localhost:52861/api/order');
-                 const response = await axios.get('http://localhost:6039/order');
+                 const response = await axios.get('http://localhost:52861/api/order');
                 commit('SET_ORDERS', response.data)
             }catch(error){
                 console.log(error)

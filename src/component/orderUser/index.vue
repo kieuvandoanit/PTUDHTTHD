@@ -34,7 +34,8 @@ export default {
         OrderUser1
     },
     created(){
-        this.getOrderByUser(123);
+        let userID = localStorage.getItem('userID');
+        this.getOrderByUser(userID);
     },
     computed:{
         ...mapGetters(['orderUser'])

@@ -58,11 +58,11 @@ export default {
             localStorage.setItem('role', res.data[0].role)
             let role = res.data[0].role;
             if(role === 1){// user
-              this.$router.push('/storepage') 
+              this.$router.push('/storepage');
             }else if(role === 2){ // cua hang
 
             }else if(role === 3){ // shipper
-
+              this.$router.push('/shipper/order');
             }else{//admin
 
             }
