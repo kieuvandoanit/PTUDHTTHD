@@ -18,15 +18,15 @@
             </div>
         </div>
         <div class="review">
-            <h4>Đánh giá sản phẩm <i>(2 đánh giá)</i></h4>
-            <div style="padding-top: 15px;">
-                <b>Nguyễn Đức Hiếu - <i>20/01/2022 15:00:00</i></b>
-                <div>Sản phẩm rất tuyệt vời</div>
+            <h4>Đánh giá sản phẩm <i>({{this.commentList.length}} đánh giá)</i></h4>
+            <div style="padding-top: 15px;" v-for="(comment, index) in this.commentList">
+                <b>{{comment.userName}} - <i>{{comment.createdAt}}</i></b>
+                <div>{{comment.content}}</div>
             </div>
-            <div class="input-group mb-3" style="padding-top: 30px;">
-                <input type="text" class="form-control" placeholder="Đánh giá của bạn" >
+            <div class="input-group mb-3" style="padding-top: 30px;" v-if="this.isBuy">
+                <input type="text" class="form-control" placeholder="Đánh giá của bạn" v-model="contentInput">
                 <div class="input-group-append">
-                    <button class="btn btn-outline-secondary" type="button">Đánh giá</button>
+                    <button class="btn btn-outline-secondary" type="button" v-on:click="AddComment()">Đánh giá</button>
                 </div>
             </div>
         </div>
@@ -44,15 +44,70 @@ export default {
         products: [],
         quantity: 1,
         subTotal: 0,
+        userID : '',
+        isBuy : false,
+        commentList: [],
+        contentInput: '',
     }
   },
   created(){
     this.product = this.$route.params.product;
     this.subTotal = this.quantity*this.product.price;
-    console.log(this.product)
+    this.userID = localStorage.getItem('userID')
+    this.getOrderByUserId();
+    this.GetCommentByProductIdAndUserID();
   },
   methods:{
-      
+      getOrderByUserId(){
+        axios.get(`https://localhost:44331/api/order/${this.userID}`)
+            .then(response =>{
+                let ordersListByUserId = response.data
+                ordersListByUserId.forEach((order, indexOrder) => {
+                    let productsOfOrder = order.product;
+                    productsOfOrder.forEach((product, indexProduct) =>{
+                        if(product.productName == this.product.name){
+                            this.isBuy = true;
+                        }
+                    })
+                })
+            })
+            .catch(e =>{
+            this.errors.push(e)
+        })
+      },
+      AddComment(){
+          let date = new Date();
+          let dateStr =
+            ("00" + (date.getMonth() + 1)).slice(-2) + "/" +
+            ("00" + date.getDate()).slice(-2) + "/" +
+            date.getFullYear() + " " +
+            ("00" + date.getHours()).slice(-2) + ":" +
+            ("00" + date.getMinutes()).slice(-2) + ":" +
+            ("00" + date.getSeconds()).slice(-2);
+          let form = {
+                content:this.contentInput,
+                userId: this.userID,
+                productId: this.product.Id,
+                userName: localStorage.getItem('name'),
+                createdAt: dateStr,
+            }
+          axios.post(`https://localhost:44331/api/comment`, form)
+            .then(response => {
+                if(response.data){
+                    this.commentList.push(response.data)
+                    this.contentInput = ''
+                }
+            })
+      },
+      GetCommentByProductIdAndUserID(){
+          axios.get(`https://localhost:44331/api/comment?userId=${this.userID}&productId=${this.product.Id}`)
+            .then(response =>{
+                this.commentList = response.data;
+            })
+            .catch(e =>{
+            this.errors.push(e)
+        })
+      }
   }
    
 }

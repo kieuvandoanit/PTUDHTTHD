@@ -19,7 +19,9 @@ import StatisticalTopProduct from './component/admin/Statistical/topProduct'
 import StatisticalTopStore from './component/admin/Statistical/topStore'
 import StatisticalProduct from './component/admin/Statistical/statisticalProduct'
 
-import AdminShipperOrder from './component/admin/shipperOrder/ShipperOrder'
+import AdminShipperOrder from './component/admin/shipperOrder/shipperOrder'
+import AdminShipperDetailOrder from './component/admin/shipperOrder/shipperDetailOrder'
+
 import Payment from './component/payment'
 import Cart from './component/cart'
 import OrderUser from './component/orderUser'
@@ -27,7 +29,7 @@ import OrderDetailUser from './component/orderDetailUser'
 import Shipper from './component/admin/shipper/Shipper'
 import ShipperDetail from './component/admin/shipper/ShipperDetail'
 import StoreRegister from './component/partner/store/register'
-import OrderPage from './component/user/store'
+import StorePage from './component/user/store'
 import ProductPage from './component/user/product'
 import ShipperOrder from './component/shipper'
 import ShipperOrderDetail from './component/shipperOrderDetail'
@@ -67,11 +69,14 @@ export const routes = [
     {path: '/admin/shipper', name: 'Shipper', component: Shipper, meta:{title: 'Shipper'}},
     {path: '/admin/shipper/:id', name: 'ShipperDetail', component: ShipperDetail, meta:{title: 'ShipperDetail'}},
     {path: '/admin/order', name: 'AdminShipperOrder', component: AdminShipperOrder, meta:{title: 'AdminShipperOrder'}},
+    {path: '/admin/order/:id', name: 'AdminShipperDetailOrder', component: AdminShipperDetailOrder, meta:{title: 'AdminShipperDetailOrder'}},
+
+
     //user
     {path: '/user/cart', name: 'Cart', component: Cart, meta: {title: 'Cart'}},
     {path: '/user/order', name: 'OrderUser', component: OrderUser, meta: {title: 'Order'}},
     {path: '/user/order/:id', name: 'OrderDetailUser',component: OrderDetailUser, meta:{title: 'Order detail'}},
-    {path: '/storepage', name: 'Order page',component: OrderPage, meta:{title: 'Order page'}},
+    {path: '/storepage', name: 'Store page',component: StorePage, meta:{title: 'Store page'}},
     {path: '/product', name: 'Product page',component: ProductPage, meta:{title: 'Product page'}},
     {path: '/register', name: 'Register page',component: RegisterPage, meta:{title: 'Register page'}},
     {path: '/login', name: 'Login page',component: LoginPage, meta:{title: 'Login page'}},

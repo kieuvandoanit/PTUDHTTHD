@@ -7,16 +7,19 @@
       </div>
       <div class="col-9 body">
         <div class="row header-body">
-           <div class="col-6">
+           <!-- <div class="col-6">
             <button type="button" class="btn btn-success" v-on:click="AddStore">Danh sách đơn hàng</button>
+          </div>  -->
+          <div class="col-6">
+            <button type="button" class="btn btn-success" >Danh sách đơn hàng</button>
           </div> 
           <div class="col-6">
-            <div class="input-group mb-3">
-              <input type="text" class="form-control" placeholder="Tìm kiếm cửa hàng">
+            <!-- <div class="input-group mb-3">
+              <input type="text" class="form-control" placeholder="Tìm kiếm đơn hàng">
               <div class="input-group-append">
                 <span class="input-group-text" id="basic-addon2">Tìm kiếm</span>
               </div>
-            </div>
+            </div> -->
           </div>
         </div>
         <div class="row content-body">
@@ -81,26 +84,8 @@ export default {
     AddStore: function(){
       this.$router.push('store/create')
     },
-    DeleteStore: function(storeID){
-      axios.delete(`http://localhost:8099/deleteStore/${storeID}`)
-        .then(response =>{
-          if(response.status === 200){
-            this.$router.go(this.$router.currentRoute)
-          }
-        })
-    },
-    UpdateStore: function(storeID){
-      this.stores.forEach(store =>{
-        if(store.id === storeID){
-          this.$router.push({
-            name: 'UpdateStore',
-            params: {
-              store: store
-            }
-          })
-        }
-      })
-    }
+    
+    
   }
 }
 </script>

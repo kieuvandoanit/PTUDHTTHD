@@ -4,17 +4,29 @@
       <a href="/" class="logo_link"
         ><b-icon icon="cart-plus-fill"></b-icon>Hi Duy</a>
     </div>
-    <div id="menu" class="col-md-8">
+    <div id="menu" class="col-md-10">
       <ul>
         <li>
           <router-link tag="a" class="menu-link" to="/">Trang chủ</router-link>
         </li>
         <li>
-          <router-link tag="a" class="menu-link" to="/shipper/order">Các đơn hàng</router-link>
+          <router-link tag="a" class="menu-link" to="/shipper/order">Đơn hàng</router-link>
         </li>
         <li>
-          <router-link tag="a" class="menu-link" to="/shipper/orderHistory">Lịch sửa giao hàng</router-link>
+          <router-link tag="a" class="menu-link" to="/shipper/orderHistory">Lịch sử giao hàng</router-link>
         </li>
+        <!-- <li class="nav-item">
+          <a class="btn btn-outline-primary mr-sm-2 btn-xs pull-right" href="/">
+            <i class="fa fa-sign-in" aria-hidden="true"></i>
+            Đăng nhập
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="btn btn-outline-success btn-xs pull-right" href="/register">
+            <i class="fa fa-user-plus" aria-hidden="true"></i>
+            Đăng ký
+          </a>
+        </li> -->
       </ul>
     </div>
   </div>
