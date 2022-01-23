@@ -11,7 +11,6 @@ import UpdateStoreManager from './component/admin/store/UpdateStore'
 import ProfileManager from './component/admin/profile/Profile'
 import CreateProfileManager from './component/admin/profile/CreateProfile'
 import UpdateProfileManager from './component/admin/profile/UpdateProfile'
-import ProductDetail from './component/product_detail'
 
 import StatisticalUser from './component/admin/Statistical/countUser'
 import StatisticalShipper from './component/admin/Statistical/countShipper'
@@ -39,6 +38,7 @@ import ShipperReceiveOrder from './component/shipperReiceiveOrder'
 import RegisterPage from './component/user/register'
 import LoginPage from './component/user/login'
 import ProductDetailPage from './component/user/productDetail'
+import ProductDetail from './component/product_detail'
 
 export const routes = [
     //Admin
@@ -84,7 +84,7 @@ export const routes = [
     /**Store router */
     {path: '/store/register', name: 'StoreRegister', component: StoreRegister, meta:{title: 'Store Register'}},
     {path: '/payment', name: 'Payment', component: Payment, meta:{title: 'Payment'}},
-    {path:'/products/:id',name:'ProductDetail',component: ProductDetail,meta:{title:'Product Details'}},
+    {path:'/products/origin',name:'ProductDetail',component: ProductDetail,meta:{title:'Product Details'}},
 
     //shipper
     {path: '/shipper/order', name: 'ShipperOrder', component: ShipperOrder, meta: {title: 'ShipperOrder'}},

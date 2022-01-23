@@ -109,6 +109,7 @@ export default {
     };
   },
   created() {
+    this.store = this.$route.params.store;
     axios.get("http://localhost:6040/Order").then((response) => {
       this.Orders = response.data;
       this.changeLocation();
@@ -117,7 +118,7 @@ export default {
   methods: {
     changeLocation: function () {
       let listOrder = [];
-      listOrder = this.Orders.filter((item) => item.storeId === "1");
+      listOrder = this.Orders.filter((item) => item.storeId === this.store.id);
       if (this.time == 1) {
         this.StatisticalYear(listOrder);
       }
@@ -143,13 +144,13 @@ export default {
               storeByYear = listOrder.filter(
                 (item) =>
                   new Date(item.orderDate).getFullYear() === yearEl &&
-                  item.storeId === "1"
+                  item.storeId === this.store.id
               );
               storeByYear.forEach((record, subIndex) => {
                 totalByStore += record.totalPrice;
                 if (subIndex === storeByYear.length - 1) {
                   this.statisticalByYear.push({
-                    storeId: "1",
+                    storeId: this.store.id,
                     time: yearEl,
                     totalPrice: totalByStore,
                   });
@@ -186,7 +187,7 @@ export default {
             );
             totalByStore = this.totalPrice(storeByMonth);
             this.statisticalByMonth.push({
-              storeId: "1",
+              storeId: this.store.id,
               year: Listyears[i],
               month: Listmonths[j - 1],
               time: Listmonths[j - 1] + "/" + Listyears[i],
@@ -238,7 +239,7 @@ export default {
       let quaterOfYear= list.filter(item => item.year == lsYear)
           let total = this.totalPrice(quaterOfYear)
           this.statisticalByQuater.push({
-            storeId: "1",
+            storeId: this.store.id,
             time: "Quý "+num + "-" + lsYear,
             totalPrice: total
           })
