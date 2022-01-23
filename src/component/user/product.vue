@@ -22,9 +22,9 @@
         <div class="body">
             <div class="row">
                  <div class="col-4" v-for="(product, index) in products" :key="index">
-                    <div class="card" v-on:click="GetProductDetail(product.id)" style="cursor: pointer;">
+                    <div class="card" v-on:click="GetProductDetail(product.Id)" style="cursor: pointer;">
                         <div class="image">
-                            <img :src="product.image" style="witdh: 100px"/>
+                            <img :src="product.image" style="witdh: 100px; height: 250px;"/>
                         </div>
                         <div class="content">
                                 <h6>{{product.name}}</h6>
@@ -53,17 +53,29 @@ export default {
     }
   },
   created(){
-        this.store = this.$route.params.store;
-        console.log(this.store)
-        this.callAPI()
+        if(JSON.stringify(this.$route.params) === '{}'){
+            let storeId = localStorage.getItem('storeID');
+            this.GetStoreDetail(storeId)
+            this.callAPI(storeId)
+        }else{
+            this.store = this.$route.params.store;
+            this.callAPI(this.store.id)
+            localStorage.setItem('storeID', this.store.id)
+        }
   },
   methods:{
-      NextPage: function() {
-          this.page++ 
-          this.callAPI()
+      GetStoreDetail: function(storeID){
+          axios.get(`https://localhost:44331/api/store/${storeID}`)
+            .then(response =>{
+                console.log(response)
+                this.store = response.data
+            })
+            .catch(e =>{
+            this.errors.push(e)
+        })
       },
-      callAPI: function(){
-          axios.get(`https://localhost:44331/api/product?storeID=${this.store.id}`)
+      callAPI: function(storeID){
+          axios.get(`https://localhost:44331/api/product?storeID=${storeID}`)
             .then(response =>{
                 console.log(response)
                 this.products = response.data
@@ -71,11 +83,6 @@ export default {
             .catch(e =>{
             this.errors.push(e)
         })
-      },
-      PreviousPage: function() {
-          this.page = (this.page > 0) ? this.page-1 : 0 
-          console.log(this.page)
-          this.callAPI()
       },
       GetProductDetail: function(id) {
           axios.get(`https://localhost:44331/api/product/${id}`)
