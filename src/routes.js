@@ -20,7 +20,9 @@ import StatisticalTopProduct from './component/admin/Statistical/topProduct'
 import StatisticalTopStore from './component/admin/Statistical/topStore'
 import StatisticalProduct from './component/admin/Statistical/statisticalProduct'
 
-import AdminShipperOrder from './component/admin/shipperOrder/ShipperOrder'
+import AdminShipperOrder from './component/admin/shipperOrder/shipperOrder'
+import AdminShipperDetailOrder from './component/admin/shipperOrder/shipperDetailOrder'
+
 import Payment from './component/payment'
 import Cart from './component/cart'
 import OrderUser from './component/orderUser'
@@ -67,6 +69,9 @@ export const routes = [
     {path: '/admin/shipper', name: 'Shipper', component: Shipper, meta:{title: 'Shipper'}},
     {path: '/admin/shipper/:id', name: 'ShipperDetail', component: ShipperDetail, meta:{title: 'ShipperDetail'}},
     {path: '/admin/order', name: 'AdminShipperOrder', component: AdminShipperOrder, meta:{title: 'AdminShipperOrder'}},
+    {path: '/admin/order/:id', name: 'AdminShipperDetailOrder', component: AdminShipperDetailOrder, meta:{title: 'AdminShipperDetailOrder'}},
+
+
     //user
     {path: '/user/cart', name: 'Cart', component: Cart, meta: {title: 'Cart'}},
     {path: '/user/order', name: 'OrderUser', component: OrderUser, meta: {title: 'Order'}},

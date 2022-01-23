@@ -10,7 +10,7 @@
       <th class="col-md-1" style="font-weight: 400">{{order.totalPrice}}</th>
       <th class="col-md-1" style="font-weight: 400">{{order.shipperId}}</th>
       <th class="col-md-1" style="font-weight: 400">{{order.shipperName}}</th>
-      <th class="col-md-1" style="font-weight: 400"><router-link class="btn btn-outline-success" v-bind:to="'/shipper/receiveOrder/'+order.id">Giao đơn</router-link></th>
+      <th class="col-md-1" style="font-weight: 400"><router-link class="btn btn-outline-success" v-bind:to="'/admin/order/'+order.id">Giao đơn</router-link></th>
   </tr>
 </template>
 
