@@ -55,7 +55,7 @@ export default {
             localStorage.setItem('ward', res.data[0].ward)
             localStorage.setItem('street', res.data[0].street)
             localStorage.setItem('home_number', res.data[0].home_number)
-            this.$router.push('/product')
+            this.$router.push('/storepage')
           }
         })
         .catch((error) =>{
