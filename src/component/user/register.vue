@@ -32,13 +32,13 @@
           <div class="form-group item-input">
             <label for="province">Chọn tỉnh/thành phố*</label>
             <select class="form-control" v-model="form.province" @change="changeProvince">
-                <option v-for="province in provinces" v-bind:value="province.name" >{{ province.name }}</option>  
+                <option v-for="province in provinces" :key="province.name" v-bind:value="province.name" >{{ province.name }}</option>  
             </select>
           </div>
           <div class="form-group item-input">
             <label for="district">Chọn quận/huyện*</label>
             <select class="form-control" v-model="form.district" @change="changeDistrict">
-                <option v-for="district in districts" v-bind:value="district.name" >{{ district.name }}</option>  
+                <option v-for="district in districts" :key="district.name" v-bind:value="district.name" >{{ district.name }}</option>  
             </select>
           </div>
           <div class="form-group item-input">
@@ -56,7 +56,7 @@
           <div class="form-group item-input">
             <label for="role">Chọn chức năng của bạn*</label>
             <select class="form-control" v-model="form.role" @change="changeProvince">
-                <option v-for="role in roles" v-bind:value="role.value" >{{ role.name }}</option>  
+                <option v-for="role in roles" :key="role.value" v-bind:value="role.value" >{{ role.name }}</option>  
             </select>
           </div>
            <div class="form-group item-input" >
@@ -118,6 +118,14 @@ export default {
           axios.post('https://localhost:44331/api/user', this.form)
             .then((res) => {
               if(res.data){
+                //tao cart 
+                let userIDCart = res.data.Id;
+                axios.post('http://localhost:6039/cart',
+                  {
+                    "userID":userIDCart,
+                    "product":[],
+                    "totalPrice":0
+                  })
                 this.$router.push('/login')
               }
             })
