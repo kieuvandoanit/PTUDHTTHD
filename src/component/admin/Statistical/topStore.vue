@@ -109,7 +109,7 @@ export default {
     };
   },
   created() {
-    axios.get("http://localhost:36028/api/Order").then((response) => {
+    axios.get("http://localhost:6040/Order").then((response) => {
       this.Orders = response.data;
       this.changeLocation();
     });
@@ -119,18 +119,28 @@ export default {
       let listOrder = [];
       listOrder = this.Orders.filter((item) => item.storeId === "1");
       if (this.time == 1) {
-        let listyears = [];
-        this.Orders.forEach((year, index) => {
+        this.StatisticalYear(listOrder);
+      }
+      if (this.time == 3) {
+        this.StatistcalMonth(listOrder);
+      }
+      if (this.time == 2) {
+        this.statisticalQuater(listOrder);
+      }
+    },
+    StatisticalYear(listOrder){
+      let listyears = [];
+      listOrder.forEach((year, index) => {
           if (
             listyears.indexOf(new Date(year.orderDate).getFullYear()) === -1
           ) {
             listyears.push(new Date(year.orderDate).getFullYear());
           }
-          if (index === this.Orders.length - 1) {
+          if (index === listOrder.length - 1) {
             listyears.forEach((yearEl, indexYear) => {
               let storeByYear = [];
               let totalByStore = 0;
-              storeByYear = this.Orders.filter(
+              storeByYear = listOrder.filter(
                 (item) =>
                   new Date(item.orderDate).getFullYear() === yearEl &&
                   item.storeId === "1"
@@ -145,24 +155,14 @@ export default {
                   });
                 }
               });
-              if (indexYear === listyears.length - 1) {
-                //console.log(this.TotalStoreStore)
-              }
             });
           }
         });
-      }
-      if (this.time == 3) {
-        this.StatistcalMonth(listOrder);
-      }
-      if (this.time == 2) {
-        this.statisticalQuater(listOrder);
-      }
     },
-
     StatistcalMonth(listOrder) {
       if (this.statisticalByMonth.length > 0) {
-      } else {
+      }
+      else {
         let Listyears = [];
         listOrder.forEach((year, index) => {
           if (
@@ -250,6 +250,6 @@ export default {
       }
       return totalPrice;
     },
-  },
+  }
 };
 </script>
