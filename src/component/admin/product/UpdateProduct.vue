@@ -55,7 +55,7 @@ import Header from '../partials/header';
 import Sidebar from '../partials/sidebar';
 import axios from 'axios';
 import firebase from 'firebase';
- 
+
 export default {
    name: 'UpdateProduct',
   components: {
@@ -121,7 +121,7 @@ export default {
         })
         .catch((error) =>{
           this.errors.push(error)
-        }) 
+        })
       }
       if(!this.form.name){
       this.errors.push("Tên bắt buộc phải nhập")

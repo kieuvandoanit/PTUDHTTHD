@@ -2,8 +2,7 @@
   <div id="header">
     <div id="logo" class="col-md-2">
       <a href="/" class="logo_link"
-        ><b-icon icon="cart-plus-fill"></b-icon>Đi chợ Thuê</a
-      >
+        ><b-icon icon="cart-plus-fill"></b-icon>Đi chợ Thuê</a>
     </div>
     <div id="menu" class="col-md-8">
       <ul>

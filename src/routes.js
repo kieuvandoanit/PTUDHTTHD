@@ -8,7 +8,21 @@ import UpdateProductManager from './component/admin/product/UpdateProduct'
 import StoreManager from './component/admin/store/Store'
 import CreateStoreManager from './component/admin/store/CreateStore'
 import UpdateStoreManager from './component/admin/store/UpdateStore'
-import AdminShipperOrder from './component/admin/shipperOrder/ShipperOrder'
+import ProfileManager from './component/admin/profile/Profile'
+import CreateProfileManager from './component/admin/profile/CreateProfile'
+import UpdateProfileManager from './component/admin/profile/UpdateProfile'
+import ProductDetail from './component/product_detail'
+
+import StatisticalUser from './component/admin/Statistical/countUser'
+import StatisticalShipper from './component/admin/Statistical/countShipper'
+import StatisticalStore from './component/admin/Statistical/countStore'
+import StatisticalTopProduct from './component/admin/Statistical/topProduct'
+import StatisticalTopStore from './component/admin/Statistical/topStore'
+import StatisticalProduct from './component/admin/Statistical/statisticalProduct'
+
+import AdminShipperOrder from './component/admin/shipperOrder/shipperOrder'
+import AdminShipperDetailOrder from './component/admin/shipperOrder/shipperDetailOrder'
+
 import Payment from './component/payment'
 import Cart from './component/cart'
 import OrderUser from './component/orderUser'
@@ -39,9 +53,25 @@ export const routes = [
     {path:'/admin/store', name:'Store', component: StoreManager, meta:{title:'StoreManager'}},
     {path:'/admin/store/create', name:'CreateStore', component: CreateStoreManager, meta:{title:'CreateStoreManager'}},
     {path:'/admin/store/update', name:'UpdateStore', component: UpdateStoreManager, meta:{title:'UpdateStoreManager'}},
+    {path:'/admin/profile', name:'Profile', component: ProfileManager, meta:{title:'ProfileManager'}},
+    {path:'/admin/profile/create', name:'CreateProfile', component: CreateProfileManager, meta:{title:'CreateProfileManager'}},
+    {path:'/admin/profile/update', name:'UpdateProfile', component: UpdateProfileManager, meta:{title:'UpdateProfileManager'}},
+
+
+    {path:'/admin/statistical/countUser', name:'countShipper', component: StatisticalUser, meta:{title:'StatisticalUser'}},
+    {path:'/admin/statistical/countShipper', name:'countShipper', component: StatisticalShipper, meta:{title:'StatisticalShipper'}},
+    {path:'/admin/statistical/countStore', name:'countStore', component: StatisticalStore, meta:{title:'StatisticalStore'}},
+    {path:'/admin/statistical/topProduct', name:'topProduct', component: StatisticalTopProduct, meta:{title:'StatisticalTopProduct'}},
+    {path:'/admin/statistical/topStore', name:'topStore', component: StatisticalTopStore, meta:{title:'StatisticalTopStore'}},
+    {path:'/admin/statistical/StatisticalProduct', name:'topStatisticalProduct', component: StatisticalProduct, meta:{title:'StatisticalProduct'}},
+
+    {path: '/payment', name: 'Payment', component: Payment, meta:{title: 'Payment'}},
     {path: '/admin/shipper', name: 'Shipper', component: Shipper, meta:{title: 'Shipper'}},
     {path: '/admin/shipper/:id', name: 'ShipperDetail', component: ShipperDetail, meta:{title: 'ShipperDetail'}},
     {path: '/admin/order', name: 'AdminShipperOrder', component: AdminShipperOrder, meta:{title: 'AdminShipperOrder'}},
+    {path: '/admin/order/:id', name: 'AdminShipperDetailOrder', component: AdminShipperDetailOrder, meta:{title: 'AdminShipperDetailOrder'}},
+
+
     //user
     {path: '/user/cart', name: 'Cart', component: Cart, meta: {title: 'Cart'}},
     {path: '/user/order', name: 'OrderUser', component: OrderUser, meta: {title: 'Order'}},
@@ -54,6 +84,8 @@ export const routes = [
     /**Store router */
     {path: '/store/register', name: 'StoreRegister', component: StoreRegister, meta:{title: 'Store Register'}},
     {path: '/payment', name: 'Payment', component: Payment, meta:{title: 'Payment'}},
+    {path:'/products/:id',name:'ProductDetail',component: ProductDetail,meta:{title:'Product Details'}},
+
     //shipper
     {path: '/shipper/order', name: 'ShipperOrder', component: ShipperOrder, meta: {title: 'ShipperOrder'}},
     {path: '/shipper/receiveOrder/:id',name:'ShipperReceiveOrder', component: ShipperReceiveOrder, meta:{title:'ShipperReceiveOrder'}},

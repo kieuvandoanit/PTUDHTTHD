@@ -16,6 +16,31 @@
         <div class="col-2"><b-icon icon="journal-bookmark-fill"></b-icon> </div>
         <div class="col-10" v-on:click="ShipperOrder">Quản lý đơn hàng (Shipper)</div>
     </div>
+    <div class="row item-manager">
+        <div class="col-2"><b-icon icon="journal-bookmark-fill"></b-icon> </div>
+        <div class="col-10" v-on:click="profileManager">Quản lý hồ sơ</div>
+    </div>
+    <!-- Thống kê -->
+    <div class="row item-manager">
+        <div class="col-2"><b-icon icon="journal-bookmark-fill"></b-icon> </div>
+        <div class="col-10" v-on:click="countShipper">Thống kê Shipper</div>
+    </div>
+    <div class="row item-manager">
+        <div class="col-2"><b-icon icon="journal-bookmark-fill"></b-icon> </div>
+        <div class="col-10" v-on:click="countUser">Thống kê khách hàng</div>
+    </div>
+    <div class="row item-manager">
+        <div class="col-2"><b-icon icon="journal-bookmark-fill"></b-icon> </div>
+        <div class="col-10" v-on:click="countStore">Thống kê cửa hàng</div>
+    </div>
+    <div class="row item-manager">
+        <div class="col-2"><b-icon icon="journal-bookmark-fill"></b-icon> </div>
+        <div class="col-10" v-on:click="topProduct">Thống kê mặt hàng thiết yếu</div>
+    </div>
+    <div class="row item-manager">
+        <div class="col-2"><b-icon icon="journal-bookmark-fill"></b-icon> </div>
+        <div class="col-10" v-on:click="statisticalProduct">Thống kê mặt hàng cùng kỳ</div>
+    </div>
 </div>
 </template>
 
@@ -33,6 +58,25 @@ export default {
         },
         ShipperOrder: function(){
             this.$router.push('/admin/order');
+        },
+        profileManager: function(){
+            this.$router.push('/admin/profile');
+        },
+        //Thống kê
+        countShipper: function(){
+            this.$router.push('/admin/statistical/countShipper');
+        },
+        countUser: function(){
+            this.$router.push('/admin/statistical/countUser');
+        },
+        countStore: function(){
+            this.$router.push('/admin/statistical/countStore');
+        },
+        topProduct: function(){
+            this.$router.push('/admin/statistical/topProduct');
+        },
+        statisticalProduct: function(){
+            this.$router.push('/admin/statistical/StatisticalProduct');
         }
     }
 }

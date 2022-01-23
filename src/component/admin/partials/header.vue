@@ -1,12 +1,8 @@
 <template>
     <div class="row header">
-      <div class="col-3 content-center">
-        <div class="row">
-          <div class="col-2"><b-icon icon="cart-plus-fill"></b-icon></div>
-          <div class="col-10">ĐI CHỢ THUÊ</div>
-        </div>
-      </div>
-      <div class="col-9"></div>
+      <div class="col-md-1 content-center"><b-icon icon="cart-plus-fill"></b-icon></div>
+      <div class="col-md-2 content-center">ĐI CHỢ THUÊ</div>
+      <div class="col-md-9"></div>
     </div>
 </template>
 
