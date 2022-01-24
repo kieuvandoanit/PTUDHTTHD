@@ -81,9 +81,6 @@ export default {
   },
   methods:{
     ...mapActions(['getOrder']),
-    AddStore: function(){
-      this.$router.push('store/create')
-    },
     
     
   }

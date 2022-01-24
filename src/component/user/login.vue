@@ -55,7 +55,18 @@ export default {
             localStorage.setItem('ward', res.data[0].ward)
             localStorage.setItem('street', res.data[0].street)
             localStorage.setItem('home_number', res.data[0].home_number)
-            this.$router.push('/storepage')
+            localStorage.setItem('role', res.data[0].role)
+            let role = res.data[0].role;
+            if(role === 1){// user
+              this.$router.push('/storepage');
+            }else if(role === 2){ // cua hang
+
+            }else if(role === 3){ // shipper
+              this.$router.push('/shipper/order');
+            }else{//admin
+
+            }
+            
           }
         })
         .catch((error) =>{

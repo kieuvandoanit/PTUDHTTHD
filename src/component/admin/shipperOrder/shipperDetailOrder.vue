@@ -62,19 +62,10 @@
                         <div class="form-row align-items-center">
                             <div class="col-auto my-1">
                             <label class="mr-sm-2" for="inlineFormCustomSelect">Mã Shipper</label>
-                            <select class="custom-select mr-sm-2" v-model="ordersDetail.shipperId" id="inlineFormCustomSelect">
-                                <option selected value="SP01">SP01</option>
-                                <option value="SP02">SP02</option>
-                                <option value="SP03">SP03</option>
-                                <option value="SP04">SP04</option>
-                            </select>
+                            <input type="text" v-model="ordersDetail.shipperId" style="width: 500px"><br>
+                            
                             <label class="mr-sm-2" for="inlineFormCustomSelect">Họ Tên Shipper</label>
-                            <select class="custom-select mr-sm-2" v-model="ordersDetail.shipperName" id="inlineFormCustomSelect">
-                                <option selected value="Nguyễn Tuấn Anh">Nguyễn Tuấn Anh</option>
-                                <option value="Trần Văn Phúc">Trần Văn Phúc</option>
-                                <option value="Lê Hoài Nam">Lê Hoài Nam</option>
-                                <option value="Phan Thanh Kiệt">Phan Thanh Kiệt</option>
-                            </select>
+                            <input type="text" v-model="ordersDetail.shipperName" style="width: 470px">
                             </div>
                             <div class="col-auto my-1">
                                 <button type="submit" class="btn btn-primary">Giao đơn</button>
@@ -122,7 +113,7 @@ export default {
             phoneNumber: this.ordersDetail.phoneNumber,
             totalPrice: this.ordersDetail.totalPrice,
             product: this.ordersDetail.product,
-            status: this.status,
+            status: 'Chờ tiếp nhận',
             payments: this.ordersDetail.payments,
             customerId: this.ordersDetail.customerId,
             discount: this.ordersDetail.discount,

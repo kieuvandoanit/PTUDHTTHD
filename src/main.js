@@ -14,6 +14,7 @@ Vue.config.productionTip = false;
 Vue.use(BootstrapVue);
 Vue.use(IconsPlugin);
 
+
 Vue.use(VueRouter);
 
 /**Config connect firebase */
@@ -34,7 +35,10 @@ const router = new VueRouter({
 });
 router.beforeEach((to, from, next)=>{
     document.title = to.meta.title;
-    next();
+    if (to.name !== 'Login' && !localStorage.getItem('userID')){
+        next({ name: 'Login' }); 
+    } 
+    else next();
 });
 
 new Vue({

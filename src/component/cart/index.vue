@@ -21,7 +21,7 @@
         </tbody>
         <tfoot> 
           <tr> 
-            <td><a href="http://hocwebgiare.com/" class="btn btn-warning"><i class="fa fa-angle-left"></i> Tiếp tục mua hàng</a></td> 
+            <td><router-link to="/product" class="btn btn-warning"><i class="fa fa-angle-left"></i> Tiếp tục mua hàng</router-link></td> 
             <td><button class="btn btn-success" v-on:click="updateOrder"><i class="fa fa-angle-left"></i> Cập nhật giỏ hàng</button></td>
             <td colspan="1" class="hidden-xs"> </td> 
             <td class="hidden-xs text-center"><strong>Tổng tiền {{cart.totalPrice}} đ</strong></td> 
@@ -47,7 +47,8 @@ export default {
     ProductCart
   },
   created(){
-    this.getCart(12345)
+    let userID = localStorage.getItem('userID');
+    this.getCart(userID)
   },
   computed: {
     ...mapGetters(['cart'])
@@ -55,7 +56,7 @@ export default {
   methods:{
     ...mapActions(['getCart']),
     updateOrder(){
-      let userID = 12345;
+      let userID = localStorage.getItem('userID');
       let cart = {
         product: this.cart.product,
         totalPrice: this.cart.totalPrice

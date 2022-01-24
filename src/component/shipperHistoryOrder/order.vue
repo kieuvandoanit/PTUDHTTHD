@@ -9,7 +9,8 @@
       <th class="col-md-2" style="font-weight: 400">{{order.totalPrice}}</th>
       <th class="col-md-2" style="font-weight: 400">{{order.shipperId}}</th>
       <th class="col-md-2" style="font-weight: 400">{{order.shipperName}}</th>
-      <th class="col-md-2" style="font-weight: 400"><router-link class="btn btn-outline-success" v-bind:to="'/shipper/order/'+order.id">Chi tiết</router-link></th>
+    <th class="col-md-2" style="font-weight: 400"><router-link class="btn btn-outline-success" v-bind:to="'/shipper/order/'+order.id">Chi tiết</router-link>
+    </th>
   </tr>
 </template>
 
@@ -36,7 +37,7 @@ export default {
                 'btn-primary': this.order.status === 'Đã tiếp nhận',
                 'btn-success': this.order.status === 'Thành công',
                 'btn-info': this.order.status === 'Đang giao',
-                'btn-warning': this.order.status === 'Chuẩn bị',
+                'btn-warning': this.order.status === 'Chờ tiếp nhận',
             }
         }
     }
