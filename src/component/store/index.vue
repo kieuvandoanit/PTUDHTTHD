@@ -1,31 +1,13 @@
 <template>
 <div class="container">
     <Header/>
-    <div class="d-flex justify-content-center row">
-        <div class="col-md-12">
-            <div class="rounded">
-                <div class="table-responsive table-borderless">
-                    <table class="table">
-                        <thead>
-                            <tr>
-                                <th>Store #</th>
-                                <th>Store name</th>
-                                <th>Status</th>
-                                <th>Address</th>
-                                <th>Phone number</th>
-                            </tr>
-                        </thead>
-                        <tbody class="table-body">
-                            <Store
-                                v-for="store in stores"
-                                :key="store.store_id"
-                                v-bind:store="store"
-                            />
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-        </div>
+    <router-link class="btn btn-success" to="/store/addProduct" style="margin-bottom: 30px;">Thêm sản phẩm</router-link>
+    <div class="row">
+        <Product
+            v-for="product in productInStore"
+            :key="product._id"
+            v-bind:product="product"
+        />
     </div>
 </div>  
 
@@ -34,17 +16,18 @@
 <script>
 import{mapActions, mapGetters} from 'vuex';
 import Header from '../Header.vue'
-import Store from './store.vue';
+import Product from './product.vue';
 export default {
     components:{
-        Store,
+        Product,
         Header
     },
     created(){
-        this.getStore()
+        let storeID = localStorage.getItem("storeID");
+        this.getProduct(storeID)
     },
-    computed:{...mapGetters(['stores'])},
-    methods:{...mapActions(['getStore'])},
+    computed:{...mapGetters(['productInStore'])},
+    methods:{...mapActions(['getProduct'])},
 }
 </script>
 

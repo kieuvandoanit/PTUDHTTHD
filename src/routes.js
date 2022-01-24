@@ -26,6 +26,7 @@ import AdminShipperDetailOrder from './component/admin/shipperOrder/shipperDetai
 
 import Payment from './component/payment'
 import Cart from './component/cart'
+import StoreProductAdd from './component/addProduct/addProduct'
 import OrderUser from './component/orderUser'
 import OrderDetailUser from './component/orderDetailUser'
 import Shipper from './component/admin/shipper/Shipper'
@@ -42,18 +43,22 @@ import LoginPage from './component/user/login'
 import ProductDetailPage from './component/user/productDetail'
 import ProductDetail from './component/product_detail'
 import FindShipperNear from './component/user/findShipper'
+import StoreManagerDetail from './component/admin/storeDetail/storeDetail'
 
 export const routes = [
     //Admin
     {path: '/', name: 'homepage', component: Home, meta:{middleware: auth, title: 'Home'}},
     {path:'/store',name:'Store', component: Store, meta:{title: 'Store'}},
-    {path: '/order',name:'Order', component: OrderManager, meta:{title:'Order'}},
-    {path:'/order/:id',name:'OrderDetail',component: OrderDetail,meta:{title:'Order Details'}},
+    {path:'/store/product',name:'StoreProduct', component: Store, meta:{title: 'Sản phẩm'}},
+    {path:'/store/addProduct',name:'StoreProductAdd', component: StoreProductAdd, meta:{title: 'Thêm sản phẩm'}},
+    {path: '/store/order',name:'StoreOrder', component: OrderManager, meta:{title:'Đơn hàng'}},
+    {path:'/store/order/:id',name:'StoreOrderDetail',component: OrderDetail,meta:{title:'Chi tiết đơn hàng'}},
     //admin
     {path:'/admin/product', name:'Product', component: ProductManager, meta:{title:'ProductManager'}},
     {path:'/admin/product/create', name:'CreateProduct', component: CreateProductManager, meta:{title:'CreateProductManager'}},
     {path:'/admin/product/update', name:'UpdateProduct', component: UpdateProductManager, meta:{title:'UpdateProductManager'}},
     {path:'/admin/store', name:'Store', component: StoreManager, meta:{title:'StoreManager'}},
+    {path:'/admin/store/:id', name:'StoreDetail', component: StoreManagerDetail, meta:{title:'StoreManager'}},
     {path:'/admin/store/create', name:'CreateStore', component: CreateStoreManager, meta:{title:'CreateStoreManager'}},
     {path:'/admin/store/update', name:'UpdateStore', component: UpdateStoreManager, meta:{title:'UpdateStoreManager'}},
     {path:'/admin/profile', name:'Profile', component: ProfileManager, meta:{title:'ProfileManager'}},

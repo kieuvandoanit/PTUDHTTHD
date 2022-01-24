@@ -7,7 +7,8 @@ const order = {
         order_detail:0,
         orderUser:[],
         orderUserDetail: 0,
-        orderShipper: []
+        orderShipper: [],
+        orderStore: []
     },
     getters:{
         orders: state => state.orders,
@@ -15,6 +16,7 @@ const order = {
         orderUser: state => state.orderUser,
         orderUserDetail: state => state.orderUserDetail,
         orderShipper: state => state.orderShipper,
+        orderStore: state => state.orderStore,
     },
     mutations:{
         SET_ORDERS(state, orders){
@@ -51,8 +53,10 @@ const order = {
         },
         SET_ORDER_SHIPPER(state, order){
             state.orderShipper = order;
+        },
+        SET_ORDER_STORE(state, order){
+            state.orderStore = order;
         }
-
     },
     actions:{
         async getOrder({commit}){
@@ -60,6 +64,15 @@ const order = {
                 //const response = await axios.get('http://localhost:52861/api/order');
                  const response = await axios.get('http://localhost:52861/api/order');
                 commit('SET_ORDERS', response.data)
+            }catch(error){
+                console.log(error)
+            }
+        },
+        async getOrderByStoreID({commit},storeID){
+            try{
+                //const response = await axios.get('http://localhost:52861/api/order');
+                 const response = await axios.get(`http://localhost:52861/api/orderShipper/storeID/${storeID}`);
+                commit('SET_ORDER_STORE', response.data)
             }catch(error){
                 console.log(error)
             }

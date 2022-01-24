@@ -11,7 +11,7 @@
             </div>
         </div>
         <div class="body">
-            <div class="form-check" v-for="(shipper, index) in shipperShow">
+            <div class="form-check" v-for="(shipper, index) in shipperShow" :key="index">
                 <input class="form-check-input" type="radio" name="flexRadioDefault" :id="shipper.Id" :value="shipper.Id" v-model="choosed">
                 <label class="form-check-label" for="flexRadioDefault1">
                     <b>{{shipper.fullname}}</b> (SĐT: <b>{{shipper.phoneNumber}}</b>, Đ/C: <b>{{shipper.address.home_number}} {{shipper.address.street}}, {{shipper.address.ward}}, {{shipper.address.district}}, {{shipper.address.province}}</b>)

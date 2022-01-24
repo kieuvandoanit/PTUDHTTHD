@@ -56,11 +56,12 @@ export default {
             localStorage.setItem('street', res.data[0].street)
             localStorage.setItem('home_number', res.data[0].home_number)
             localStorage.setItem('role', res.data[0].role)
+            localStorage.setItem('storeID', '61ecdbd2f5e01747ffbe02f8')
             let role = res.data[0].role;
             if(role === 1){// user
               this.$router.push('/storepage');
             }else if(role === 2){ // cua hang
-
+              this.$router.push('/store/product');
             }else if(role === 3){ // shipper
               this.$router.push('/shipper/order');
             }else{//admin
