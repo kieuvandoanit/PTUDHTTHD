@@ -65,7 +65,7 @@
         </div>
         <div>
           <h1>Biểu đồ</h1>
-          <!-- <line-chart :data="lineChart"></line-chart> -->
+          <column-chart :data="columChart"></column-chart>
         </div>
       </div>
     </div>
@@ -109,7 +109,7 @@ export default {
       statisticalByMonth: [],
       statisticalByYear: [],
       statisticalByQuater: [],
-      lineChart:{}
+      columChart: []
     };
   },
   created() {
@@ -132,13 +132,14 @@ export default {
       if (this.time == 2) {
         this.statisticalQuater(listOrder);
       }
-      // for(let i=0;i<listOrder.length;i++){
-      //   let Arr=[];
-      //   let term = ArrTopProducts[i].Product ;
-      //   Arr.push(term);
-      //   Arr.push(ArrTopProducts[i].Quantity);
-      //   this.columChart.push(Arr);
-      // }
+      let ArrMonth = this.statisticalByMonth;
+      for(let i=0;i<ArrMonth.length;i++){
+        let Arr=[];
+        let term ="Tháng: " + ArrMonth[i].month + "/" + ArrMonth[i].year;
+        Arr.push(term);
+        Arr.push(ArrMonth[i].totalPrice);
+        this.columChart.push(Arr);
+      }
     },
     StatisticalYear(listOrder){
       if (this.statisticalByYear.length > 0) {
@@ -152,7 +153,7 @@ export default {
             listyears.push(new Date(year.orderDate).getFullYear());
           }
           if (index === listOrder.length - 1) {
-            listyears.forEach((yearEl, indexYear) => {
+            listyears.forEach((yearEl) => {
               let storeByYear = [];
               let totalByStore = 0;
               storeByYear = listOrder.filter(
@@ -234,23 +235,20 @@ export default {
             lsQuater1 = this.statisticalByMonth.filter(
               (item) => item.year === Listyears[i] && (item.month == 1 || item.month == 2 || item.month==3)
             );
+            this.totalQuater(lsQuater1,Listyears[i],1);
             lsQuater2 = this.statisticalByMonth.filter(
               (item) => item.year === Listyears[i] && (item.month == 4 || item.month == 5 || item.month==6)
-            )
+            );
+            this.totalQuater(lsQuater2,Listyears[i],2);
             lsQuater3 = this.statisticalByMonth.filter(
               (item) => item.year === Listyears[i] && (item.month == 7 || item.month == 8 || item.month==9)
-            )
+            );
+            this.totalQuater(lsQuater3,Listyears[i],3);
             lsQuater4 = this.statisticalByMonth.filter(
               (item) => item.year === Listyears[i] && (item.month == 10 || item.month == 11 || item.month==12)
-            )
+            );
+            this.totalQuater(lsQuater4,Listyears[i],4);
           }
-        for(let i=0;i<Listyears.length; i++){
-          this.totalQuater(lsQuater1,Listyears[i],1);
-          this.totalQuater(lsQuater2,Listyears[i],2);
-          this.totalQuater(lsQuater3,Listyears[i],3);
-          this.totalQuater(lsQuater4,Listyears[i],4);
-          }
-        console.log( this.statisticalByQuater);
       }
       }
 
