@@ -40,7 +40,9 @@
           </div>
         <div class="form-group item-input" >
                <button class="btn btn-success btn-add">Đăng nhập</button>
+               <router-link to="/register" class="btn btn-primary" style="margin-top: 20px;">Đăng ký</router-link>
           </div>
+
       </form>
     </div>         
   </div>
