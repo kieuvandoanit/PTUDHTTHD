@@ -5,20 +5,20 @@
       </div>
       <div id="menu" class="col-md-10">
           <ul>
-              <li>
-                  <router-link tag="a" class="menu-link" to="/">Trang chủ</router-link>
-                </li>
-              <li>
-                  <router-link tag="a" class="menu-link" to="/storepage">Cửa hàng</router-link>
+            <li>
+                <router-link tag="a" class="menu-link" to="/">Trang chủ</router-link>
                 </li>
             <li>
-                  <router-link tag="a" class="menu-link" to="/user/Order">Đơn hàng</router-link>
+                <router-link tag="a" class="menu-link" to="/storepage">Cửa hàng</router-link>
                 </li>
             <li>
-                  <router-link tag="a" class="menu-link" to="/user/cart">Giỏ hàng</router-link>
+                <router-link tag="a" class="menu-link" to="/user/Order">Đơn hàng</router-link>
                 </li>
             <li>
-                  <router-link tag="a" class="menu-link" to="/login">Đăng xuất</router-link>
+                <router-link tag="a" class="menu-link" to="/user/cart">Giỏ hàng</router-link>
+                </li>
+            <li>
+                <router-link tag="a" class="menu-link" to="/login">Đăng xuất</router-link>
                 </li>
               
           </ul>
