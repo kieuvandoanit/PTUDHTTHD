@@ -39,6 +39,7 @@ import RegisterPage from './component/user/register'
 import LoginPage from './component/user/login'
 import ProductDetailPage from './component/user/productDetail'
 import ProductDetail from './component/product_detail'
+import FindShipperNear from './component/user/findShipper'
 
 export const routes = [
     //Admin
@@ -81,6 +82,7 @@ export const routes = [
     {path: '/register', name: 'Register page',component: RegisterPage, meta:{title: 'Register page'}},
     {path: '/login', name: 'Login page',component: LoginPage, meta:{title: 'Login page'}},
     {path: '/product-detail', name: 'Product Detail page',component: ProductDetailPage, meta:{title: 'Product Detail page'}},
+    {path: '/findShipper', name: 'Find shipper page',component: FindShipperNear, meta:{title: 'Find shipper page'}},
     /**Store router */
     {path: '/store/register', name: 'StoreRegister', component: StoreRegister, meta:{title: 'Store Register'}},
     {path: '/payment', name: 'Payment', component: Payment, meta:{title: 'Payment'}},

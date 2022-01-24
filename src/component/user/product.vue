@@ -13,9 +13,9 @@
         </div>
         <div class="search">
             <div class="input-group mb-3">
-                <input type="text" class="form-control" placeholder="Tìm kiếm sản phảm">
+                <input type="text" class="form-control" placeholder="Tìm kiếm sản phảm" v-model="keySearch">
                 <div class="input-group-append">
-                    <button class="input-group-text">Tìm kiếm</button>
+                    <button class="input-group-text" v-on:click="SearchProduct()">Tìm kiếm</button>
                 </div>
             </div>
         </div>
@@ -50,6 +50,8 @@ export default {
         errors: [],
         products: [],
         store: {},
+        keySearch: '',
+        productShow: [],
     }
   },
   created(){
@@ -98,8 +100,13 @@ export default {
             .catch(e => {
                 this.errors.push(e)
             })
+      },
+      SearchProduct: function(){
+            //console.log(this.keySearch)
+            //this.productShow = this.products.filter(item => ) 
+            const regex = new RegExp(/^al$/);
+            console.log(regex.test('alias'));
       }
-
   }
    
 }
