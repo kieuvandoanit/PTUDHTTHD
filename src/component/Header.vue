@@ -2,18 +2,18 @@
   <div id="header">
     <div id="logo" class="col-md-2">
       <a href="/" class="logo_link"
-        ><b-icon icon="cart-plus-fill"></b-icon>Đi chợ Thuê</a>
+        ><b-icon icon="cart-plus-fill"></b-icon>R1</a>
     </div>
     <div id="menu" class="col-md-8">
       <ul>
         <li>
-          <router-link tag="a" class="menu-link" to="/">Trang chủ</router-link>
+          <router-link tag="a" class="menu-link" to="/store/product">Trang chủ</router-link>
         </li>
         <li>
-          <router-link tag="a" class="menu-link" to="/Store">Store</router-link>
+          <router-link tag="a" class="menu-link" to="/store/product">Sản phẩm</router-link>
         </li>
         <li>
-          <router-link tag="a" class="menu-link" to="/Order">Order</router-link>
+          <router-link tag="a" class="menu-link" to="/store/order">Đơn hàng</router-link>
         </li>
       </ul>
     </div>
@@ -21,7 +21,9 @@
 </template>
 
 <script>
-export default {};
+export default {
+
+};
 </script>
 
 <style>

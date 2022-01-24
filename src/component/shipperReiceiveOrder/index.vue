@@ -65,17 +65,11 @@
                         <div class="col-auto my-1">
                         <label class="mr-sm-2" for="inlineFormCustomSelect">Mã Shipper</label>
                         <select class="custom-select mr-sm-2" v-model="ordersDetail.shipperId" id="inlineFormCustomSelect">
-                            <option selected value="SP01">SP01</option>
-                            <option value="SP02">SP02</option>
-                            <option value="SP03">SP03</option>
-                            <option value="SP04">SP04</option>
+                            <option selected v-bind:value="this.userID">{{this.userID}}</option>
                         </select>
                         <label class="mr-sm-2" for="inlineFormCustomSelect">Họ Tên Shipper</label>
                         <select class="custom-select mr-sm-2" v-model="ordersDetail.shipperName" id="inlineFormCustomSelect">
-                            <option selected value="Nguyễn Tuấn Anh">Nguyễn Tuấn Anh</option>
-                            <option value="Trần Văn Phúc">Trần Văn Phúc</option>
-                            <option value="Lê Hoài Nam">Lê Hoài Nam</option>
-                            <option value="Phan Thanh Kiệt">Phan Thanh Kiệt</option>
+                            <option selected v-bind:value="this.fullname">{{this.fullname}}</option>
                         </select>
                         </div>
                         <div class="col-auto my-1">
@@ -98,7 +92,9 @@ import {mapGetters, mapActions} from 'vuex'
 export default {
     data:function(){
         return {
-            status:""
+            status:"",
+            userID: localStorage.getItem("userID"),
+            fullname: localStorage.getItem("name"),
         }
     },
     components:{
@@ -123,7 +119,7 @@ export default {
             phoneNumber: this.ordersDetail.phoneNumber,
             totalPrice: this.ordersDetail.totalPrice,
             product: this.ordersDetail.product,
-            status: this.status,
+            status: "Đã tiếp nhận",
             payments: this.ordersDetail.payments,
             customerId: this.ordersDetail.customerId,
             discount: this.ordersDetail.discount,
@@ -132,7 +128,9 @@ export default {
             storeId: this.ordersDetail.storeId
         })
             .then(function(res){
-                alert(res.data);
+                // this.$router.push('/shipper/order');
+                alert("Nhận đơn hàng thành công!");
+                
             })
             .catch(function (error) {
                 console.log(error);

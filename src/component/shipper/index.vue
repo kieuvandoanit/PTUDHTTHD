@@ -9,7 +9,7 @@
             <select class="custom-select mr-sm-2 form-group" id="inlineFormCustomSelect" v-model="status" style="width: 200px; height: 40px;">
                 <option value="All" selected>Tất cả</option>
                 <option value="Đã tiếp nhận">Đã tiếp nhận</option>
-                <option value="Chuẩn bị">Chuẩn bị</option>
+                <option value="Chờ tiếp nhận">Chờ tiếp nhận</option>
                 <option value="Đang giao">Đang giao</option>
                 <option value="Thành công">Thành công</option>
                 <option value="Đã hủy">Đã hủy</option>
@@ -28,8 +28,8 @@
                 <th class="col-md-1">Họ tên khách</th>
                 <th class="col-md-1">Địa chỉ</th>
                 <th class="col-md-1">Điện thoại</th>
-                <!-- <th class="col-md-1">Trạng thái</th> -->
-                <th class="col-md-1">ShipperID</th>
+                <th class="col-md-1">Trạng thái</th>
+                <!-- <th class="col-md-1">ShipperID</th> -->
                 <th class="col-md-2">Tên Shipper</th>
                 <th class="col-md-2">Tổng tiền</th>
                 <th class="col-md-2">Nhận đơn</th>

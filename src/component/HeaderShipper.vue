@@ -2,7 +2,7 @@
   <div id="header">
     <div id="logo" class="col-md-2">
       <a href="/" class="logo_link"
-        ><b-icon icon="cart-plus-fill"></b-icon>Hi Duy</a>
+        ><b-icon icon="cart-plus-fill"></b-icon>R1</a>
     </div>
     <div id="menu" class="col-md-10">
       <ul>
@@ -14,6 +14,9 @@
         </li>
         <li>
           <router-link tag="a" class="menu-link" to="/shipper/orderHistory">Lịch sử giao hàng</router-link>
+        </li>
+        <li>
+          <router-link tag="a" class="menu-link" to="/login">Đăng xuất</router-link>
         </li>
         <!-- <li class="nav-item">
           <a class="btn btn-outline-primary mr-sm-2 btn-xs pull-right" href="/">

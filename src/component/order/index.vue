@@ -35,7 +35,7 @@
         </thead>
         <tbody>
             <Order
-                v-for="order in orders"
+                v-for="order in orderStore"
                 :key="order.id"
                 v-bind:order="order"
             />
@@ -60,13 +60,14 @@ export default {
         }
     },
     created(){
-        this.getOrder()
+        let storeID = localStorage.getItem('storeID');
+        this.getOrderByStoreID(storeID)
     },
     computed:{
-        ...mapGetters(['orders'])
+        ...mapGetters(['orderStore'])
     },
     methods:{
-        ...mapActions(['getOrder']),
+        ...mapActions(['getOrderByStoreID']),
         findStatus(e){
             e.preventDefault();
             this.$store.dispatch('filterOrder',this.status)

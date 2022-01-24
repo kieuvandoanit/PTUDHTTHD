@@ -1,5 +1,6 @@
 <template>
    <div class="container-fluid">
+       <HeaderUser/>
         <div class="header">
             <div class="row d-flex align-items-center h-100">
                 <div class="col-4" style="padding-left: 20px">
@@ -13,25 +14,29 @@
         </div>
         <div class="search">
             <div class="input-group mb-3">
-                <input type="text" class="form-control" placeholder="Tìm kiếm sản phảm">
+                <input type="text" class="form-control" placeholder="Tìm kiếm sản phảm" v-model="keySearch">
                 <div class="input-group-append">
-                    <button class="input-group-text">Tìm kiếm</button>
+                    <button class="input-group-text" v-on:click="SearchProduct()">Tìm kiếm</button>
+                </div>
+                <div>
+                    <router-link to="/user/cart"><img style="height: 35px;" src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/df/Shopping_cart_icon.svg/116px-Shopping_cart_icon.svg.png" alt=""></router-link>
                 </div>
             </div>
+            
         </div>
         <div class="body">
             <div class="row">
                  <div class="col-4" v-for="(product, index) in products" :key="index">
-                    <div class="card" v-on:click="GetProductDetail(product.id)" style="cursor: pointer;">
-                        <div class="image">
-                            <img :src="product.image" style="witdh: 100px"/>
+                    <div class="card" style="cursor: pointer;">
+                        <div class="image" v-on:click="GetProductDetail(product.Id)">
+                            <img :src="product.image" style="witdh: 100px; height: 250px;"/>
                         </div>
-                        <div class="content">
+                        <div class="content" v-on:click="GetProductDetail(product.Id)">
                                 <h6>{{product.name}}</h6>
                                 {{product.price}} VNĐ/{{product.unit}}
                         </div>
                         <div class="footer">
-                            <button type="button" class="btn btn-success">Mua hàng</button>
+                            <button type="button" v-on:click="addCart(product.Id, product.name, product.price, product.unit, product.image)" class="btn btn-success">Mua hàng</button>
                         </div>
                     </div>
                 </div> 
@@ -41,29 +46,44 @@
 </template>
 <script>
 import axios from 'axios';
-
+import HeaderUser from '../Header_user.vue'
 export default {
   components: {
+      HeaderUser
   },
   data () {
     return {
         errors: [],
         products: [],
         store: {},
+        keySearch: '',
+        productShow: [],
     }
   },
   created(){
-        this.store = this.$route.params.store;
-        console.log(this.store)
-        this.callAPI()
+        if(JSON.stringify(this.$route.params) === '{}'){
+            let storeId = localStorage.getItem('storeID');
+            this.GetStoreDetail(storeId)
+            this.callAPI(storeId)
+        }else{
+            this.store = this.$route.params.store;
+            this.callAPI(this.store.id)
+            localStorage.setItem('storeID', this.store.id)
+        }
   },
   methods:{
-      NextPage: function() {
-          this.page++ 
-          this.callAPI()
+      GetStoreDetail: function(storeID){
+          axios.get(`https://localhost:44331/api/store/${storeID}`)
+            .then(response =>{
+                console.log(response)
+                this.store = response.data
+            })
+            .catch(e =>{
+            this.errors.push(e)
+        })
       },
-      callAPI: function(){
-          axios.get(`https://localhost:44331/api/product?storeID=${this.store.id}`)
+      callAPI: function(storeID){
+          axios.get(`https://localhost:44331/api/product?storeID=${storeID}`)
             .then(response =>{
                 console.log(response)
                 this.products = response.data
@@ -71,11 +91,6 @@ export default {
             .catch(e =>{
             this.errors.push(e)
         })
-      },
-      PreviousPage: function() {
-          this.page = (this.page > 0) ? this.page-1 : 0 
-          console.log(this.page)
-          this.callAPI()
       },
       GetProductDetail: function(id) {
           axios.get(`https://localhost:44331/api/product/${id}`)
@@ -91,8 +106,38 @@ export default {
             .catch(e => {
                 this.errors.push(e)
             })
+      },
+      SearchProduct: function(){
+            //console.log(this.keySearch)
+            //this.productShow = this.products.filter(item => ) 
+            const regex = new RegExp(/^al$/);
+            console.log(regex.test('alias'));
+      },
+      async addCart(productID, productName, productPrice, productUnit, productImage){
+          //get userID, arayProduct, totalPrice
+          //Lay cart hien tai
+          //lay thong tin product
+          let product = {
+              productID: productID,
+              productName: productName,
+              productPrice: productPrice,
+              unit: productUnit,
+              quantity: 1,
+              productImage: productImage
+          };
+        //   console.log(product);
+          let userID = localStorage.getItem('userID');
+          let cartTemp = await axios.get(`http://localhost:52861/api/cart/${userID}`);
+          let cart = cartTemp.data;
+          cart.product.push(product);
+          cart.totalPrice = cart.totalPrice + productPrice;
+          // update cart
+          await axios.put(`http://localhost:6039/cart`,{
+              userID: userID,
+              product: cart.product,
+              totalPrice: cart.totalPrice
+          });
       }
-
   }
    
 }

@@ -37,6 +37,7 @@
                 <td>{{store.phone_number}}</td>
                 <td>{{store.isApprove}}</td>
                 <td>
+                    <router-link :to="'/admin/store/'+store.id" class="btn btn-warning">Chi tiết</router-link>
                     <button type="button" class="btn btn-primary" v-on:click="UpdateStore(store.id)">Sửa</button>
                     <button type="button" class="btn btn-danger" v-on:click="DeleteStore(store.id)">Xóa</button>
                     <button type="button" class="btn btn-success" v-on:click="StatisticalStore(store.id)">DoanhThu</button>
@@ -66,8 +67,9 @@ export default {
     }
   },
   created(){
-    //http://localhost:8099/stores
-    axios.get("http://localhost:36028/api/Store/All")
+    //http://localhost:8099/stores (api Hiếu)
+    //http://localhost:36028/api/Store/All
+    axios.get("http://localhost:52861/api/store")
     .then(response =>{
       this.stores = response.data
     })

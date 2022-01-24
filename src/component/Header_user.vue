@@ -3,19 +3,22 @@
       <div id="logo" class="col-md-2">
           <a href="#" class="logo_link">R01</a>
       </div>
-      <div id="menu" class="col-md-8">
+      <div id="menu" class="col-md-10">
           <ul>
-              <li>
-                  <router-link tag="a" class="menu-link" to="/">Trang chủ</router-link>
-                </li>
-              <li>
-                  <router-link tag="a" class="menu-link" to="/user/Store">Store</router-link>
+            <li>
+                <router-link tag="a" class="menu-link" to="/">Trang chủ</router-link>
                 </li>
             <li>
-                  <router-link tag="a" class="menu-link" to="/user/Order">Order</router-link>
+                <router-link tag="a" class="menu-link" to="/storepage">Cửa hàng</router-link>
                 </li>
             <li>
-                  <router-link tag="a" class="menu-link" to="/">Cart</router-link>
+                <router-link tag="a" class="menu-link" to="/user/Order">Đơn hàng</router-link>
+                </li>
+            <li>
+                <router-link tag="a" class="menu-link" to="/user/cart">Giỏ hàng</router-link>
+                </li>
+            <li>
+                <router-link tag="a" class="menu-link" to="/login">Đăng xuất</router-link>
                 </li>
               
           </ul>
@@ -52,5 +55,8 @@ export default {
     }
     a{
         text-decoration: none;
+    }
+    li{
+        margin: 0px 20px;
     }
 </style>

@@ -1,12 +1,6 @@
 <template>
   <div id="Payment">
-    <Header />
-    <!-- <ul>
-          <li v-for="payment in payments" 
-            :key="payment.PaymentId">
-              <p>Thanh toan: {{payment.PaymentMethod}}</p>
-          </li>
-      </ul> -->
+    <HeaderUser />
     <div class="row">
       <div class="col-75">
         <div class="container">
@@ -14,9 +8,7 @@
             <div class="row">
               <div class="col-50">
                 <h4>Thông tin giao hàng</h4>
-                <label for="fullname"
-                  ><i class="fa fa-user"></i>Họ và tên</label
-                >
+                <label for="fullname"><i class="fa fa-user"></i>Họ và tên</label>
                 <input
                   type="text"
                   id="fullname"
@@ -34,35 +26,32 @@
                   placeholder="012345678"
                   v-model="phoneNumber"
                 />
-                <!-- <label for="email"><i class="fa fa-envelope"></i> Email</label>
-                <input
-                  type="text"
-                  id="email"
-                  name="email"
-                  placeholder="john@example.com"
-                  v-model="email"
-                /> -->
- 
                 <div class="row">
                   <div class="col-50">
-                    <label for="home_number">Số nhà</label>
-                    <input type="number" id="home_number" name="home_number" placeholder="542" v-model="address.home_number">
+                    <label for="province">Tỉnh/ Thành phố</label>
+                    <!-- <input type="text" id="province" name="province" placeholder="Tỉnh/Thành phố" v-model="address.province"> -->
+                    <select class="form-control" v-model="address.province" @change="changeProvince">
+                        <option v-for="province in provinces" :key="province.name" v-bind:value="province.name" >{{ province.name }}</option>  
+                    </select>
                   </div>
                   <div class="col-50">
-                    <label for="street">Tên đường</label>
-                    <input type="text" id="street" name="street" placeholder="Nguyễn Tất Thành" v-model="address.street">
+                    <label for="district">Quận</label>
+                    <!-- <input type="text" id="district" name="district" placeholder="Quận" v-model="address.district"> -->
+                    <select class="form-control" v-model="address.district">
+                        <option v-for="district in districts" :key="district.name" v-bind:value="district.name" >{{ district.name }}</option>  
+                    </select>
                   </div>
                   <div class="col-50">
                     <label for="ward">Phường</label>
                     <input type="text" id="ward" name="ward" placeholder="Phường" v-model="address.ward">
                   </div>
                   <div class="col-50">
-                    <label for="district">Quận</label>
-                    <input type="text" id="district" name="district" placeholder="Quận" v-model="address.district">
+                    <label for="street">Tên đường</label>
+                    <input type="text" id="street" name="street" placeholder="Nguyễn Tất Thành" v-model="address.street">
                   </div>
                   <div class="col-50">
-                    <label for="province">Tỉnh/ Thành phố</label>
-                    <input type="text" id="province" name="province" placeholder="Tỉnh/Thành phố" v-model="address.province">
+                    <label for="home_number">Số nhà</label>
+                    <input type="number" id="home_number" name="home_number" placeholder="542" v-model="address.home_number">
                   </div>
                 </div>
               </div>
@@ -142,18 +131,16 @@
               ><i class="fa fa-shopping-cart"></i> <b></b
             ></span>
           </h4>
-          <p>
-            <a href="#">{{ this.product[0].productName }}</a>
-            <span class="price">{{ this.product[0].price }}</span>
-          </p>
-          <p>
-            <a href="#">{{ this.product[1].productName }}</a>
-            <span class="price">{{ this.product[1].price }}</span>
-          </p>
+          <Product
+            v-for="product in cart.product"
+            :key="product.productID"
+            v-bind:product="product"
+          />
+          
           <hr />
           <p>
             Total
-            <span class="price" style="color: black"><b>100.000 VNĐ</b></span>
+            <span class="price" style="color: black"><b>{{cart.totalPrice}} VNĐ</b></span>
           </p>
         </div>
       </div>
@@ -164,20 +151,28 @@
 <script>
 import { mapGetters, mapActions } from "vuex";
 import axios from "axios";
-import Header from "../Header.vue";
+import HeaderUser from "../Header_user.vue";
+import Product from "./product.vue"
 export default {
   name: "Payment",
   components: {
-    Header,
+    HeaderUser,
+    Product
   },
   created() {
     this.getPayment();
+    axios.get('https://provinces.open-api.vn/api/?depth=2')
+        .then((res) => {
+          this.provinces = res.data;
+    })
   },
   computed: {
-    ...mapGetters(["Payments"]),
+    ...mapGetters(["Payments",'cart']),
   },
   data: function () {
     return {
+      provinces: [],
+      districts: [],
       paymentMethod: "",
       orderDate: "",
       payments: "",
@@ -197,34 +192,17 @@ export default {
         street: "",
         home_number: "",
       },
-      product: [
-            {
-              productName: "Cà rốt",
-              price: "50.000",
-              unit: "kg",
-              quantity: "2",
-              productImage: "",
-            },
-            {
-              productName: "Khoai lang Nhật",
-              price: "50.000",
-              unit: "kg",
-              quantity: "2",
-              productImage: "",
-            },
-          ],
-      discount: "",
-      totalPrice: "100000",
-      customerId: "",
       status: "",
       shipperId: "",
       shipperName: "",
-      storeId: "",
-      _class: "",
+      storeId: ""
     };
   },
   methods: {
     ...mapActions(["getPayment"]),
+    changeProvince(){
+        this.districts = this.provinces.filter(item => item.name === this.address.province)[0]['districts']
+    },
     changeMethod(e){
       e.preventDefault();
       if(this.paymentMethod === "online"){
@@ -255,33 +233,20 @@ export default {
             "street": this.address.street,
             "home_number": this.address.home_number,
           },
-          "product": [
-            {
-              "productName": "Cà rốt",
-              "price": "50.000",
-              "unit": "kg",
-              "quantity": "2",
-              "productImage": "",
-            },
-            {
-              "productName": "Khoai lang Nhật",
-              "price": "50.000",
-              "unit": "kg",
-              "quantity": "2",
-              "productImage": "",
-            },
-          ],
+          "product": this.cart.product,
           "discount": "",
-          "totalPrice": 100000,
-          "customerId": "CUS01",
-          "status": "Thành công",
-          "shipperId": "SP01",
+          "totalPrice": this.cart.totalPrice,
+          "customerId": this.cart.userID,
+          "status": "Chờ tiếp nhận",
+          "shipperId": "",
           "shipperName": "",
-          "storeId": "ST01",
+          "storeId": localStorage.getItem("storeID"),
           "_class": "",
         })
         .then(function (res) {
-          alert(res.data);
+          alert("Đặt hàng thành công!");
+          this.$router.go('/findShipper');
+          
         })
         .catch(function (error) {
           console.log(error);

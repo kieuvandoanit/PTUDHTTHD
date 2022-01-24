@@ -1,25 +1,6 @@
 <template>
   <div id="list_order">
     <Header/>
-    <h3>Lịch sử giao hàng</h3>
-    <form v-on:submit="findStatus">
-        <div class="form-row align-items-center row">
-            <div class="col-auto my-1">
-            <label class="mr-sm-2 sr-only" for="inlineFormCustomSelect">Trạng thái đơn hàng: </label>
-            <select class="custom-select mr-sm-2 form-group" id="inlineFormCustomSelect" v-model="status" style="width: 200px; height: 40px;">
-                <option value="All" selected>Tất cả</option>
-                <option value="Đã tiếp nhận">Đã tiếp nhận</option>
-                <option value="Chuẩn bị">Chuẩn bị</option>
-                <option value="Đang giao">Đang giao</option>
-                <option value="Thành công">Thành công</option>
-                <option value="Đã hủy">Đã hủy</option>
-            </select>
-            </div>
-            <div class="col-auto my-1">
-            <button type="submit" class="btn btn-primary">Submit</button>
-            </div>
-        </div>
-    </form>
     <h4>Danh sách đơn hàng</h4>
     <table class="table table-striped">
         <thead>
@@ -36,7 +17,7 @@
         </thead>
         <tbody>
             <Order
-                v-for="order in orders"
+                v-for="order in orderShipper"
                 :key="order.id"
                 v-bind:order="order"
             />
@@ -61,13 +42,14 @@ export default {
         }
     },
     created(){
-        this.getOrder()
+        let shipperID = localStorage.getItem('userID');
+        this.getOrderByShipper(shipperID)
     },
     computed:{
-        ...mapGetters(['orders'])
+        ...mapGetters(['orderShipper'])
     },
     methods:{
-        ...mapActions(['getOrder']),
+        ...mapActions(['getOrderByShipper']),
         findStatus(e){
             e.preventDefault();
             this.$store.dispatch('filterOrder',this.status)

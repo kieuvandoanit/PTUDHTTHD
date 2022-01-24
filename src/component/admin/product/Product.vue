@@ -68,7 +68,7 @@ export default {
     }
   },
   created(){
-    //http://localhost:8099/products
+    //http://localhost:8099/products (api Hiếu)
     axios.get("http://localhost:6040/productAll")
     .then(response =>{
       this.products = response.data
