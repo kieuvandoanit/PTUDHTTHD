@@ -1,7 +1,6 @@
 <template>
   <tr>
     <td scope="row">{{index + 1}}</td>
-    <td>{{item.storeId}}</td>
     <td>{{item.time}}</td>
     <td>{{item.totalPrice}}</td>
   </tr>

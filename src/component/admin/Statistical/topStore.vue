@@ -33,7 +33,6 @@
             <thead>
               <tr>
                 <th scope="col">STT</th>
-                <th scope="col">Mã cửa hàng</th>
                 <th scope="col">Thời gian</th>
                 <th scope="col">Doanh Thu</th>
               </tr>
@@ -63,6 +62,10 @@
               />
             </tbody>
           </table>
+        </div>
+        <div>
+          <h1>Biểu đồ</h1>
+          <!-- <line-chart :data="lineChart"></line-chart> -->
         </div>
       </div>
     </div>
@@ -106,6 +109,7 @@ export default {
       statisticalByMonth: [],
       statisticalByYear: [],
       statisticalByQuater: [],
+      lineChart:{}
     };
   },
   created() {
@@ -128,9 +132,19 @@ export default {
       if (this.time == 2) {
         this.statisticalQuater(listOrder);
       }
+      // for(let i=0;i<listOrder.length;i++){
+      //   let Arr=[];
+      //   let term = ArrTopProducts[i].Product ;
+      //   Arr.push(term);
+      //   Arr.push(ArrTopProducts[i].Quantity);
+      //   this.columChart.push(Arr);
+      // }
     },
     StatisticalYear(listOrder){
-      let listyears = [];
+      if (this.statisticalByYear.length > 0) {
+      }
+      else {
+        let listyears = [];
       listOrder.forEach((year, index) => {
           if (
             listyears.indexOf(new Date(year.orderDate).getFullYear()) === -1
@@ -159,6 +173,8 @@ export default {
             });
           }
         });
+      }
+
     },
     StatistcalMonth(listOrder) {
       if (this.statisticalByMonth.length > 0) {
@@ -198,7 +214,10 @@ export default {
       }
     },
     statisticalQuater(listOrder) {
-      if (this.statisticalByMonth.length > 0) {
+      if (this.statisticalByQuater.length > 0) {
+      }
+      else {
+        if (this.statisticalByMonth.length > 0) {
         let Listyears =[];
         let lsQuater1=[];
         let lsQuater2=[];
@@ -232,6 +251,7 @@ export default {
           this.totalQuater(lsQuater4,Listyears[i],4);
           }
         console.log( this.statisticalByQuater);
+      }
       }
 
     },
