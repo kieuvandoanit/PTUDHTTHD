@@ -2,7 +2,7 @@
   <!-- <div class="container">
     <h1>Đăng nhập</h1>
         <form class="needs-validation cus-form" v-on:submit.prevent="submitForm">
-        
+
           <div class="form-group item-input">
               <label for="username">Tên đăng nhập*</label>
               <input type="text" class="form-control" id="username" placeholder="Nhập tên đăng nhập" v-model="form.username">
@@ -44,7 +44,7 @@
           </div>
 
       </form>
-    </div>         
+    </div>
   </div>
 </div>
 </section>
@@ -52,7 +52,7 @@
 <script>
 import axios from 'axios';
 import firebase from 'firebase';
- 
+
 export default {
   components: {
   },
@@ -65,7 +65,7 @@ export default {
       }
     }
   },
-  created(){ 
+  created(){
   },
   methods:{
     submitForm(){
@@ -92,14 +92,16 @@ export default {
             }else if(role === 3){ // shipper
               this.$router.push('/shipper/order');
             }else{//admin
-              this.$router.push('/admin/order');
+
+              this.$router.push('/admin/store');
+
             }
-            
+
           }
         })
         .catch((error) =>{
           this.errors.push(error)
-        }) 
+        })
       }else{
         this.errors.push("Dữ liệu không được để trống!!")
       }

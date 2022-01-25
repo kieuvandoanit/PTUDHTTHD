@@ -7,48 +7,53 @@
       </div>
       <div class="col-9 body">
         <div class="row header-body">
-          <div class="col-6">
-          </div>
-          <div class="col-6">
+          <div class="col-12">
             <div class="input-group mb-3">
+              <input type="text" class="form-control" placeholder="Tìm kiếm tài khoản">
               <div class="input-group-append">
+                <span class="input-group-text" id="basic-addon2">Tìm kiếm</span>
               </div>
             </div>
           </div>
         </div>
-        <div class="row content-body">
+        <div class="row content-body" style="height: 708px;overflow-y: scroll;">
           <table class="table table-striped">
             <thead>
               <tr>
                 <th scope="col">STT</th>
-                <th scope="col">Tên quận</th>
-                <th scope="col">Tên tỉnh</th>
-                <th scope="col">Tổng shipper</th>
+                <th scope="col">Tên</th>
+                <th scope="col">Số điện thoại</th>
+                <th scope="col">Địa chỉ</th>
+                <th scope="col">Vai trò</th>
               </tr>
             </thead>
-            <tbody>
-              <tr v-for="(countshipper, index) in shippers" :key="index">
+           <tbody>
+              <tr v-for="(user, index) in users" :key="index">
                 <th scope="row">{{index + 1}}</th>
-                <td>{{countshipper.District.district}}</td>
-                <td>{{countshipper.District.province}}</td>
-                <td>{{countshipper.Count}}</td>
+                <td>{{user.name}}</td>
+                <td>{{user.phone}}</td>
+                <td>{{user.home_number}} {{user.street}} P.{{user.ward}} Q.{{user.district}} {{user.province}}</td>
+                <td v-if="user.role == 1">
+                    Khách hàng
+                </td>
+                <td v-if="user.role == 2">
+                    Cửa hàng
+                </td>
+                <td v-if="user.role == 3">
+                    Shipper
+                </td>
+                <td v-if="user.role == 4">
+                   Admin
+                </td>
               </tr>
             </tbody>
           </table>
         </div>
-          <div>
-            <h1>Biểu đồ</h1>
-            <column-chart :data="columChart"></column-chart>
-          </div>
       </div>
     </div>
   </div>
 </template>
-
-
 <script>
-
-
 import axios from 'axios';
 import Header from '../partials/header';
 import Sidebar from '../partials/sidebar';
@@ -60,33 +65,24 @@ export default {
   },
   data () {
     return {
-      shippers: [],
-      columChart:[],
+      users: [],
       errors: []
     }
   },
   created(){
-    axios.get("http://localhost:36028/api/Shipper")
+    axios.get("https://localhost:44331/api/user")
     .then(response =>{
-      this.shippers = response.data;
-      let ArrShipper= this.shippers;
-      for(let i=0;i<ArrShipper.length;i++){
-        let Arr=[];
-        let term ="Quận: " + ArrShipper[i].District.district + "-" + ArrShipper[i].District.province;
-        Arr.push(term);
-        Arr.push(ArrShipper[i].Count);
-        this.columChart.push(Arr);
-      }
+      this.users = response.data
+      console.log(this.users)
     })
     .catch(e =>{
       this.errors.push(e)
     })
   },
-
-
+  methods:{
+  }
 }
 </script>
-
 <style scoped>
   .sidebar{
     height: 800px;

@@ -34,6 +34,10 @@
             </tbody>
           </table>
         </div>
+        <div>
+          <h1>Biểu đồ</h1>
+          <column-chart :data="columChart"></column-chart>
+        </div>
       </div>
     </div>
   </div>
@@ -52,6 +56,7 @@ export default {
   data () {
     return {
       TopProducts: [],
+      columChart:[],
       errors: []
     }
   },
@@ -59,7 +64,15 @@ export default {
     axios.get("http://localhost:36028/api/Order/topProduct")
     .then(response =>{
       this.TopProducts = response.data;
-      console.log(this.TopProducts)
+      //console.log(this.TopProducts)
+      let ArrTopProducts= this.TopProducts;
+      for(let i=0;i<ArrTopProducts.length;i++){
+        let Arr=[];
+        let term = ArrTopProducts[i].Product ;
+        Arr.push(term);
+        Arr.push(ArrTopProducts[i].Quantity);
+        this.columChart.push(Arr);
+      }
     })
     .catch(e =>{
       this.errors.push(e)

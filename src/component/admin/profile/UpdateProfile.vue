@@ -77,12 +77,10 @@ export default {
   },
   created(){
     this.profile = this.$route.params.profile;
-    console.log(this.product)
     this.form.storeName = this.profile.storeName;
     this.form.store_id = this.profile.store_id;
     this.form.businessLicense = this.profile.businessLicense;
     this.form.foodSafetyCertificate = this.profile.foodSafetyCertificate;
-
   },
   methods:{
     previewImage(event){
@@ -128,6 +126,7 @@ export default {
         })
     },
     submitForm(){
+      console.log(this.form);
       this.errors = []
       if(this.form.storeName && this.form.store_id){
         axios.put(`http://localhost:6040/updateProfile/${this.profile.id}`, this.form)

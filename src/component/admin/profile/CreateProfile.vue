@@ -6,7 +6,7 @@
         <Sidebar/>
       </div>
       <div class="col-9 body">
-        <h1>Thêm mới Thông tin</h1>
+        <h1>Thêm mới Hồ Sơ</h1>
         <form class="needs-validation cus-form" v-on:submit.prevent="submitForm">
         <p v-if="errors.length">
           <b>Lỗi:</b>
@@ -66,11 +66,13 @@ export default {
       foodSafetyCertificateImg: null,
       uploadValue: 0,
       uploadValue2: 0,
+      store: [],
       form: {
         storeName: '',
         store_id: '',
         businessLicense: '',
-        foodSafetyCertificate:''
+        foodSafetyCertificate:'',
+        isApproved:''
       }
     }
   },
@@ -120,15 +122,26 @@ export default {
     submitForm(){
       this.errors = []
       if(this.form.storeName && this.form.store_id){
-        axios.post('http://localhost:6040/createprofile', this.form)
-        .then((res) => {
+        console.log(this.form.store_id);
+        let storeID = this.form.store_id;
+        let isAprrove = '';
+        axios.get(`http://localhost:36028/api/Store/${storeID}`)
+        .then(response =>{
+          this.store = response.data;
+          isAprrove = this.store[0].isApprove;
+          this.form.isApproved = isAprrove;
+          axios.post('http://localhost:6040/createprofile', this.form)
+          .then((res) => {
           if(res.data){
             this.$router.push('/admin/profile')
           }
-        })
-        .catch((error) =>{
-          this.errors.push(error)
-        })
+          })
+          .catch((error) =>{
+            this.errors.push(error)
+          })
+        });
+
+
       }
       if(!this.form.storeName){
       this.errors.push("Tên bắt buộc phải nhập")
