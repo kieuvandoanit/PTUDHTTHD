@@ -92,7 +92,7 @@ export default {
             }else if(role === 3){ // shipper
               this.$router.push('/shipper/order');
             }else{//admin
-
+              this.$router.push('/admin/order');
             }
             
           }
