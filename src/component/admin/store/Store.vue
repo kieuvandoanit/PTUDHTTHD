@@ -38,6 +38,7 @@
                 <td>{{store.isApprove}}</td>
                 <td>
                     <button type="button" class="btn btn-primary" v-on:click="UpdateStore(store.id)">Sửa</button>
+                   <!-- <button type="button" class="btn btn-primary" v-if="store.isApprove == 'no'" v-on:click="Approve(store.id)">Xét duyệt</button> -->
                     <button type="button" class="btn btn-danger" v-on:click="DeleteStore(store.id)">Xóa</button>
                     <button type="button" class="btn btn-success" v-on:click="StatisticalStore(store.id)">DoanhThu</button>
                 </td>

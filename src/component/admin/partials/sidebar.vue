@@ -14,6 +14,10 @@
     </div>
     <div class="row item-manager">
         <div class="col-2"><b-icon icon="journal-bookmark-fill"></b-icon> </div>
+        <div class="col-10" v-on:click="UserManager">Quản lý tài khoản</div>
+    </div>
+    <div class="row item-manager">
+        <div class="col-2"><b-icon icon="journal-bookmark-fill"></b-icon> </div>
         <div class="col-10" v-on:click="ShipperOrder">Quản lý đơn hàng (Shipper)</div>
     </div>
     <div class="row item-manager">
@@ -21,6 +25,10 @@
         <div class="col-10" v-on:click="profileManager">Quản lý hồ sơ</div>
     </div>
     <!-- Thống kê -->
+    <div class="row item-manager">
+        <div class="col-2"><b-icon icon="journal-bookmark-fill"></b-icon> </div>
+        <div class="col-10" v-on:click="getProfit">Quản lý hoa hồng</div>
+    </div>
     <div class="row item-manager">
         <div class="col-2"><b-icon icon="journal-bookmark-fill"></b-icon> </div>
         <div class="col-10" v-on:click="countShipper">Thống kê Shipper</div>
@@ -56,6 +64,9 @@ export default {
         ShipperManager: function(){
             this.$router.push('/admin/shipper');
         },
+        UserManager: function(){
+            this.$router.push('/admin/user')
+        },
         ShipperOrder: function(){
             this.$router.push('/admin/order');
         },
@@ -63,6 +74,9 @@ export default {
             this.$router.push('/admin/profile');
         },
         //Thống kê
+        getProfit: function(){
+            this.$router.push('/admin/profit');
+        },
         countShipper: function(){
             this.$router.push('/admin/statistical/countShipper');
         },

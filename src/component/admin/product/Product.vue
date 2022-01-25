@@ -19,7 +19,7 @@
             </div>
           </div>
         </div>
-        <div class="row content-body">
+        <div class="row content-body" style="height: 708px;overflow-y: scroll;">
           <table class="table table-striped">
             <thead>
               <tr>
