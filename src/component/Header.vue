@@ -15,6 +15,9 @@
         <li>
           <router-link tag="a" class="menu-link" to="/store/order">Đơn hàng</router-link>
         </li>
+        <li>
+          <router-link tag="a" class="menu-link" to="/login">Đăng xuất</router-link>
+        </li>
       </ul>
     </div>
   </div>
