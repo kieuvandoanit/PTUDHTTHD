@@ -1,6 +1,6 @@
 <template>
   <div id="Payment">
-    <Header />
+    <HeaderUser />
     <div class="row">
       <div class="col-75">
         <div class="container">
@@ -151,12 +151,12 @@
 <script>
 import { mapGetters, mapActions } from "vuex";
 import axios from "axios";
-import Header from "../Header.vue";
+import HeaderUser from "../Header_user.vue";
 import Product from "./product.vue"
 export default {
   name: "Payment",
   components: {
-    Header,
+    HeaderUser,
     Product
   },
   created() {
@@ -244,7 +244,8 @@ export default {
           "_class": "",
         })
         .then(function (res) {
-          alert(res.data);
+          alert("Đặt hàng thành công!");
+          this.$router.go('/findShipper');
           
         })
         .catch(function (error) {

@@ -8,6 +8,10 @@ import "bootstrap/dist/css/bootstrap.css";
 import "bootstrap-vue/dist/bootstrap-vue.css";
 import babelPolyfill from 'babel-polyfill';
 import firebase from "firebase";
+import Chartkick from 'vue-chartkick';
+import Chart from 'chart.js';
+
+
 
 Vue.config.productionTip = false;
 
@@ -16,6 +20,8 @@ Vue.use(IconsPlugin);
 
 
 Vue.use(VueRouter);
+Vue.use(Chartkick.use(Chart));
+
 
 /**Config connect firebase */
 

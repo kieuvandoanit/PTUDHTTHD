@@ -36,6 +36,10 @@
             </tbody>
           </table>
         </div>
+          <div>
+            <h1>Biểu đồ</h1>
+            <column-chart :data="columChart"></column-chart>
+          </div>
       </div>
     </div>
   </div>
@@ -57,6 +61,7 @@ export default {
   data () {
     return {
       shippers: [],
+      columChart:[],
       errors: []
     }
   },
@@ -64,12 +69,20 @@ export default {
     axios.get("http://localhost:36028/api/Shipper")
     .then(response =>{
       this.shippers = response.data;
-      console.log(this.shippers);
+      let ArrShipper= this.shippers;
+      for(let i=0;i<ArrShipper.length;i++){
+        let Arr=[];
+        let term ="Quận: " + ArrShipper[i].District.district + "-" + ArrShipper[i].District.province;
+        Arr.push(term);
+        Arr.push(ArrShipper[i].Count);
+        this.columChart.push(Arr);
+      }
     })
     .catch(e =>{
       this.errors.push(e)
     })
   },
+
 
 }
 </script>

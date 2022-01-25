@@ -62,10 +62,20 @@
                         <div class="form-row align-items-center">
                             <div class="col-auto my-1">
                             <label class="mr-sm-2" for="inlineFormCustomSelect">Mã Shipper</label>
-                            <input type="text" v-model="ordersDetail.shipperId" style="width: 500px"><br>
-                            
+                            <!-- <input type="text" v-model="ordersDetail.shipperId" style="width: 500px"><br> -->
+                            <select class="custom-select mr-sm-2" v-model="ordersDetail.shipperId" id="orderDetailShipper">
+                            <option selected value="61ee168df15889fb267ec54b">Shipper 1</option>
+                            <option value="61ee6071a75d1fa02395b812">Shipper 2</option>
+                            <option value="61ee624ba75d1fa02395b813">Shipper 3</option>
+                            <option value="61ee6436a75d1fa02395b814">Shipper 4</option>
+                            </select>
                             <label class="mr-sm-2" for="inlineFormCustomSelect">Họ Tên Shipper</label>
-                            <input type="text" v-model="ordersDetail.shipperName" style="width: 470px">
+                            <select class="custom-select mr-sm-2" v-model="ordersDetail.shipperName" id="orderDetailShipper">
+                            <option selected value="Nguyễn Tuấn Anh">Nguyễn Tuấn Anh</option>
+                            <option value="Nông Thị Làm">Nông Thị Làm</option>
+                            <option value="Hồ Thị Làm">Hồ Thị Làm</option>
+                            <option value="Dương Văn Tam">Dương Văn Tam</option>
+                            </select>
                             </div>
                             <div class="col-auto my-1">
                                 <button type="submit" class="btn btn-primary">Giao đơn</button>

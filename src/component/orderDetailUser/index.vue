@@ -28,7 +28,13 @@
     </div>
     <div class="d-flex justify-content-start align-items-center py-1 pl-3">
         <div class="text-muted">Shipper ID: </div>
-        <div class="ml-auto"> <label style="padding-left: 15px">{{orderUserDetail.shipperId}}</label> </div>
+        
+        <div class="ml-auto" v-if="orderUserDetail.shipperId != ''"> 
+            <label style="padding-left: 15px">{{orderUserDetail.shipperId}}</label> 
+        </div>
+        <div class="ml-auto" v-else> 
+            <router-link to="/findShipper">Tìm shipper</router-link>
+        </div>
     </div>
     <div class="d-flex justify-content-start align-items-center pb-4 pl-3 border-bottom">
         <div class="text-muted">Discount: </div>
@@ -54,12 +60,12 @@
                     <div class="col-auto my-1">
                     <label class="mr-sm-2" for="inlineFormCustomSelect">Status</label>
                     <select class="custom-select mr-sm-2" v-model="status" id="inlineFormCustomSelect">
-                      <option selected>Choose...</option>
-                      <option value="Delete">Cancel</option>
+                      <option selected>Chọn...</option>
+                      <option value="Đã hủy">Hủy</option>
                     </select>
                     </div>
                     <div class="col-auto my-1">
-                      <button type="submit" class="btn btn-primary">Submit</button>
+                      <button type="submit" class="btn btn-primary">Cập nhật</button>
                     </div>
                 </div>
             </form>
@@ -113,7 +119,7 @@ export default {
             storeId: this.orderUserDetail.storeId
         })
         .then(function(res){
-            alert(res.data);
+            alert("Đơn hàng đã được hủy!");
         })
         .catch(function (error) {
             console.log(error);

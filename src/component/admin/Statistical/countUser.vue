@@ -36,6 +36,10 @@
             </tbody>
           </table>
         </div>
+        <div>
+          <h1>Biểu đồ</h1>
+          <column-chart :data="columChart"></column-chart>
+          </div>
       </div>
     </div>
   </div>
@@ -56,6 +60,7 @@ export default {
   data () {
     return {
       Users: [],
+      columChart:[],
       errors: []
     }
   },
@@ -63,7 +68,14 @@ export default {
     axios.get("http://localhost:36028/api/User")
     .then(response =>{
       this.Users = response.data;
-      console.log( this.Users);
+      let ArrUsers= this.Users;
+      for(let i=0;i<ArrUsers.length;i++){
+        let Arr=[];
+        let term ="Quận: " + ArrUsers[i].District.district + "-" + ArrUsers[i].District.province;
+        Arr.push(term);
+        Arr.push(ArrUsers[i].Count);
+        this.columChart.push(Arr);
+      }
     })
     .catch(e =>{
       this.errors.push(e)
