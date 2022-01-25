@@ -18,18 +18,6 @@
         <li>
           <router-link tag="a" class="menu-link" to="/login">Đăng xuất</router-link>
         </li>
-        <!-- <li class="nav-item">
-          <a class="btn btn-outline-primary mr-sm-2 btn-xs pull-right" href="/">
-            <i class="fa fa-sign-in" aria-hidden="true"></i>
-            Đăng nhập
-          </a>
-        </li>
-        <li class="nav-item">
-          <a class="btn btn-outline-success btn-xs pull-right" href="/register">
-            <i class="fa fa-user-plus" aria-hidden="true"></i>
-            Đăng ký
-          </a>
-        </li> -->
       </ul>
     </div>
   </div>
