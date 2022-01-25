@@ -27,6 +27,7 @@
                 <th scope="col">Tên cửa hàng</th>
                 <th scope="col">Giấy phép kinh doanh</th>
                 <th scope="col">Giấy chứng nhận an toàn thực phẩm</th>
+                <th scope="col">Trạng thái</th>
                 <th scope="col"></th>
               </tr>
             </thead>
@@ -36,10 +37,11 @@
                 <td>{{profile.storeName}}</td>
                 <td><img  v-bind:src="profile.businessLicense" style="width:230px;height:170px"></td>
                 <td><img  v-bind:src="profile.foodSafetyCertificate" style="width:230px;height:170px"></td>
+                <td>{{profile.isApproved}}</td>
                 <td>
                     <button type="button" class="btn btn-primary" v-on:click="UpdateProfile(profile.id)">Sửa</button>
                     <button type="button" class="btn btn-danger" v-on:click="DeleteProfile(profile.id)">Xóa</button>
-                    <button type="button" class="btn btn-success" v-on:click="Approved(profile.id, profile.store_id)">Duyệt</button>
+                    <button v-if="profile.isApproved == 'no'" type="button" class="btn btn-success" v-on:click="Approved(profile.id, profile.store_id)">Duyệt</button>
                 </td>
               </tr>
             </tbody>
@@ -69,16 +71,19 @@ export default {
     }
   },
   created(){
-    axios.get("http://localhost:6040/profile")
-    .then(response =>{
-      this.profiles = response.data
-      console.log(this.profiles)
-    })
-    .catch(e =>{
-      this.errors.push(e)
-    })
+    this.getProfileList();
   },
   methods:{
+    getProfileList: function(){
+       axios.get("http://localhost:6040/profile")
+        .then(response =>{
+          this.profiles = response.data
+          console.log(this.profiles)
+        })
+        .catch(e =>{
+          this.errors.push(e)
+        })
+    },
     AddProfile: function(){
       this.$router.push('profile/create')
     },
@@ -103,8 +108,21 @@ export default {
       })
     },
     Approved: function(profileID, storeID){
-      console.log(profileID)
-      console.log(storeID)
+      axios.put(`http://localhost:6040/updateProfile/${profileID}`,{isApproved: 'approved'})
+      .then((res) => {
+          if(res.data){
+            axios.put(`http://localhost:8099/updateStore/${storeID}`,{isApproved: 'approved'})
+            .then(response =>{
+              if(response.data){
+                this.profiles.filter(item => item.id == profileID)[0].isApproved = 'approved'
+              }
+            })
+          }
+        })
+        .catch((error) =>{
+          this.errors.push(error)
+        })
+
     }
   }
 }

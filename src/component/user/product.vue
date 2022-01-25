@@ -26,7 +26,7 @@
         </div>
         <div class="body">
             <div class="row">
-                 <div class="col-4" v-for="(product, index) in products" :key="index">
+                 <div class="col-4" v-for="(product, index) in productShow" :key="index">
                     <div class="card" style="cursor: pointer;">
                         <div class="image" v-on:click="GetProductDetail(product.Id)">
                             <img :src="product.image" style="witdh: 100px; height: 250px;"/>
@@ -85,8 +85,8 @@ export default {
       callAPI: function(storeID){
           axios.get(`https://localhost:44331/api/product?storeID=${storeID}`)
             .then(response =>{
-                console.log(response)
                 this.products = response.data
+                this.SearchProduct()
             })
             .catch(e =>{
             this.errors.push(e)
@@ -108,12 +108,12 @@ export default {
             })
       },
       SearchProduct: function(){
-            //console.log(this.keySearch)
-            //this.productShow = this.products.filter(item => ) 
-            const csLewisQuote = 'Vinmart Linh Tây';
-            const regex1 = /inh/;
-           console.log(csLewisQuote.match(regex1))  // ["are", index: 3, input: "We are what we believe we are.", groups: undefined]
+         this.productShow = this.products.filter(item => this.validateUrl(item.name.toUpperCase(), this.keySearch.toUpperCase()) == true);
       },
+     validateUrl: function(str, key) {
+	        var pattern = new RegExp(`^(.*?(${key})[^$]*)$`); 
+	        return !!pattern.test(str);
+        },
       async addCart(productID, productName, productPrice, productUnit, productImage){
           //get userID, arayProduct, totalPrice
           //Lay cart hien tai
