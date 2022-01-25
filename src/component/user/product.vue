@@ -110,8 +110,9 @@ export default {
       SearchProduct: function(){
             //console.log(this.keySearch)
             //this.productShow = this.products.filter(item => ) 
-            const regex = new RegExp(/^al$/);
-            console.log(regex.test('alias'));
+            const csLewisQuote = 'Vinmart Linh Tây';
+            const regex1 = /inh/;
+           console.log(csLewisQuote.match(regex1))  // ["are", index: 3, input: "We are what we believe we are.", groups: undefined]
       },
       async addCart(productID, productName, productPrice, productUnit, productImage){
           //get userID, arayProduct, totalPrice
