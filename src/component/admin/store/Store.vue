@@ -55,7 +55,7 @@ import axios from 'axios';
 import Header from '../partials/header';
 import Sidebar from '../partials/sidebar';
 
-export default {
+  export default {
   components: {
     Header,
     Sidebar
