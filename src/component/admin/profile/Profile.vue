@@ -19,19 +19,19 @@
             </div>
           </div>
         </div>
-        <div class="row content-body">
-          <table class="table table-striped">
-            <thead>
-              <tr>
-                <th scope="col">STT</th>
-                <th scope="col">Tên cửa hàng</th>
-                <th scope="col">Giấy phép kinh doanh</th>
-                <th scope="col">Giấy chứng nhận an toàn thực phẩm</th>
-                <th scope="col">Trạng thái</th>
-                <th scope="col"></th>
-              </tr>
-            </thead>
-            <tbody>
+          <div class="row content-body">
+            <table class="table table-striped">
+              <thead>
+                <tr>
+                  <th scope="col">STT</th>
+                  <th scope="col">Tên cửa hàng</th>
+                  <th scope="col">Giấy phép kinh doanh</th>
+                  <th scope="col">Giấy chứng nhận an toàn thực phẩm</th>
+                  <th scope="col">Trạng thái</th>
+                  <th scope="col"></th>
+                </tr>
+              </thead>
+              <tbody>
               <tr v-for="(profile, index) in profiles" :key="index">
                 <th scope="row">{{index + 1}}</th>
                 <td>{{profile.storeName}}</td>
