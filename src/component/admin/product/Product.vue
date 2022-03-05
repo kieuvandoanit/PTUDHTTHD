@@ -68,7 +68,7 @@ export default {
     }
   },
   created(){
-    axios.get("http://localhost:6040/productAll")
+    axios.get("http://localhost:8099/products")
     .then(response =>{
       this.products = response.data
     })
