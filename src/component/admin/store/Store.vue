@@ -70,7 +70,7 @@ export default {
     //http://localhost:8099/stores (api Hiếu)
     //http://localhost:52861/api/store (api Đoàn)
     //http://localhost:36028/api/Store/All
-    axios.get("http://localhost:8099/stores")
+    axios.get("http://localhost:36028/api/Store/All")
     .then(response =>{
       this.stores = response.data
     })
