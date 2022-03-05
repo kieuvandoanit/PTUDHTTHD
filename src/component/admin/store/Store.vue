@@ -10,7 +10,7 @@
            <div class="col-6">
             <button type="button" class="btn btn-success" v-on:click="AddStore">Thêm cửa hàng</button>
           </div>
-          <div class="col-6">
+          <div class="col-6"  >
             <div class="input-group mb-3">
               <input type="text" class="form-control" placeholder="Tìm kiếm cửa hàng">
               <div class="input-group-append">
@@ -55,7 +55,7 @@ import axios from 'axios';
 import Header from '../partials/header';
 import Sidebar from '../partials/sidebar';
 
-export default {
+  export default {
   components: {
     Header,
     Sidebar
